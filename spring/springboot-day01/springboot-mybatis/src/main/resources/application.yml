@@ -1,0 +1,39 @@
+server:
+  port: 9001
+#数据源配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root123
+
+# mybatis配置: 如果是注解,不用以下配置
+# 如果是使用mybatis的映射配置文件xml方式: 需要配置以下两行
+# mybatis:
+#  mapper-locations:      # 指定映射配置文件的类路径
+#  type-aliases-package:  # 对映射的实体类进行取别名
+
+# 设置Mapper接口所对应的XML文件位置，如果你在Mapper接口中有自定义方法，需要进行该配置
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  # 设置别名包扫描路径，通过该属性可以给包中的类注册别名
+  type-aliases-package: com.one.pojo
+  # 自定义Mysql的数据类型转换器
+  type-handlers-package: com.one.handler
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# pagehelper分页插件配置
+pagehelper:
+  #标识使用哪种数据库
+#  dialect: mysql #pagehelper插件4.0.0以后的版本支持自动识别使用的数据库，可以不用配置dialect : mysql
+  #启用分页合理化参数,如果pageNum<1会查询第一页,如果pageNum>pages会查询最后一页  默认值为false,即不启用
+  reasonable: true
+  #支持通过 Mapper 接口参数来传递分页参数，默认值false，分页插件会从查询方法的参数值中，自动根据上面 params 配置的字段中取值，查找到合适的值时就会自动分页
+  support-methods-arguments: true
+  #为了支持startPage(Object params)方法，增加了该参数来配置参数映射，用于从对象中根据属性名取值， 可以配置pageNum,pageSize,count,pageSizeZero,reasonable，不配置映射的用默认值， 默认值为pageNum=pageNum;pageSize=pageSize;count=countSql;reasonable=reasonable;pageSizeZero=pageSizeZero
+  params: count=countSql
+  # 如果 pageSize=0 就会查询出全部的结果,相当于没有执行分页查询, 默认为false
+  page-size-zero: true

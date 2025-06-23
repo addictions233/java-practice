@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       https://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+        <!--配置SpringMVC的组件扫描的包路径-->
+        <context:component-scan base-package="com.one"/>
+
+        <!--配置注解驱动 即HandlerMapping + HandlerAdapter-->
+        <mvc:annotation-driven/>
+
+        <!--方式2: SpringMVC提供的通用资源放行,让浏览器可以访问的静态资源, 这里放行jquery-->
+        <mvc:default-servlet-handler/>
+
+        <!--<mvc:interceptors>-->
+                <!--<mvc:interceptor>-->
+                        <!--<mvc:mapping path="/showPage"/>-->
+                        <!--<bean class="com.one.interceptor.MyInterceptor"/>-->
+                <!--</mvc:interceptor>-->
+        <!--</mvc:interceptors>-->
+
+        <!-- 配置文件上处理器,加载文件上传的类CommonsMultipartResolver的Bean对象-->
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+                <!--设置属性参数值, 限制上传文件大小, 参数单位是byte: 1m=1024*1024byte-->
+                <property name="maxUploadSize" value="1024000"/>
+        </bean>
+</beans>

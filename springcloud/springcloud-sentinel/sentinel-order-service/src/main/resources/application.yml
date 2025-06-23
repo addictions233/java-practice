@@ -1,0 +1,35 @@
+server:
+  port: 7070
+spring:
+  application:
+    name: order-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 # nacos配置中心地址
+      discovery:
+        server-addr: 127.0.0.1:8848 # nacos注册中心地址
+
+    sentinel: # sentinel控制台配置
+      transport:
+        dashboard: 127.0.0.1:8080 # 添加sentinel控制台的地址，sentinel-dashboard的启动地址和端口
+        port: 60001 # 本应用与sentinel-dashboard的通信端口,指定为没有被占用的较大的端口
+  datasource: # mysql数据源的配置
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+mybatis: # mybatis的常规配置
+  mapper-locations: classpath*:mapper/*.xml  # 映射配置文件的路径
+  type-aliases-package: com.one.domain # 设置别名包的扫描路径
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # mybatis日志
+    map-underscore-to-camel-case: true # 把下划线改为小驼峰
+logging:
+  level:
+    com.one: debug # 前面的配置是指定哪个包路径下的日志:后面的配置是日志级别
+
+# 开启feign对sentinel的支持
+feign:
+  sentinel:
+    enabled: true

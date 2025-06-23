@@ -1,0 +1,30 @@
+server:
+  port: 9096
+dubbo:
+  application:
+    name: dubbo-provider-application
+    # 注册模型：interface instance all
+#    register-mode: all # 既进行实例级别注册又进行接口级别注册, 同时兼容2.x和3.x版本调用
+#    register-mode: interface # 进行接口级别注册
+    register-mode: instance # 进行实例级别注册
+    # 元数据类型，默认是local，可选remote
+    metadata-type: remote
+  # 支持的协议
+  protocols:
+    dubbo:  # 支持dubbo协议
+      name: dubbo
+      port: 20081
+    tri:  # 支持triple协议
+      name: tri
+      port: 20088
+    rest: # 支持rest协议
+      name: rest
+      port: 9095
+  # 注册中心
+  registry:
+    address: zookeeper://127.0.0.1:2181
+#    address: nacos://127.0.0.1:8848
+
+  # 元数据中心，如果不指定元数据中心，默认使用dubbo的注册中心
+  metadata-report:
+    address: zookeeper://127.0.0.1:2181

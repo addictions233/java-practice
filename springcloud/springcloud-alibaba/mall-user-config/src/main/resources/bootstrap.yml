@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: mall-user-config  #微服务名称
+
+  # 远程配置的优先级: mall-user-config-dev.yml > mall-user-config.yml > mall-user-config > extension-configs > shared-configs
+  profiles:
+    active: dev #加载开发环境的配置文件    mall-user-config-dev.yml
+
+  cloud:
+    nacos:
+      config:  #配置nacos配置中心地址
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+        file-extension: yml   # 指定配置文件的扩展名为yml, 默认是properties
+        namespace: ea07e09b-77b3-4ae9-84fb-6fa5081252dc # 配置中心可以先按照命名空间进行隔离, 更高级别不同系统的隔离
+        group: MALL_USER_CONFIG_GROUP # group可以隔离不同的服务配置
+        # 自定义 Data Id 的配置
+        shared-configs:  #不同工程的通用配置 支持共享的 DataId
+          - data-id: nacos.yml
+            group: GLOBALE_GROUP
+          - data-id: openfeign.yml
+            group: GLOBALE_GROUP
+            refresh: true   #支持动态刷新
+
+        extension-configs:  # 支持一个应用多个 DataId 的配置
+          - data-id: actuator.yml
+          - data-id: common.yml
+            group: REFRESH_GROUP
+            refresh: true   #支持动态刷新
+
+
+
+
+
+

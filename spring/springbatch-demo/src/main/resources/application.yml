@@ -1,0 +1,22 @@
+
+spring:
+  application:
+    name: spring-batch-demo
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/db_test?serverTimezone=Asia/Shanghai&characterEncoding=UTF-8&autoReconnect=true
+    hikari:
+      password: root
+      username: root
+  jpa:
+    open-in-view: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+  # 禁止项目启动时运行job
+  batch:
+    job:
+      enabled: false
+server:
+  port: 8090

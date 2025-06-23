@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册页面</title>
+</head>
+<body>
+    <h3>异步测试</h3>
+    <form action="#" method="get" autocomplete="off">
+        用户名: <input type="text" id="username">
+        <span id="uspan"></span><br/>
+        密码: <input type="password" id="password"><br/>
+        <button type="submit">注册</button>
+    </form>
+
+</body>
+<script>
+    <!--传统方式实现ajax,前端浏览器页面和后台服务器进行少量数据交互,两个特点: 异步交互和页面的局部刷新-->
+    document.getElementById("username").onblur = function () {
+        let xmlHttp = new XMLHttpRequest();
+        let username = document.getElementById("username").value;
+        //后面的参数为true表示是异步请求,false表示为同步请求
+        xmlHttp.open("GET","/userServlet?username="+username,true)  //开启异步请求
+        xmlHttp.send();
+        //处理响应
+        xmlHttp.onreadystatechange = function () {
+            if(xmlHttp.readyState==4 && xmlHttp.status == 200){
+                document.getElementById("uspan").innerHTML = xmlHttp.responseText;
+            }
+        }
+    };
+
+</script>
+</html>

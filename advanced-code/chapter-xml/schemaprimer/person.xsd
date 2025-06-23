@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- xmlns属性表示它是一个xml约束文件，同时也受其他xml文件约束-->
+<!-- targetNamespace属性表示唯一的url地址， 指定当前schema文件的名称空间-->
+<!-- elementForDefault属性表示当前schema文件是一个质量良好的文件-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.itheima.com/javase"
+        elementFormDefault="qualified">
+        <!--定义复杂persons标签 根标签-->
+        <element name="persons">
+            <complexType>
+                <sequence>
+                    <!--定义复杂person标签-->
+                    <element name="person">
+                        <complexType>
+                            <sequence>
+                                <!--定义简单name标签和age标签 type属性指定标签内容的数据类型-->
+                                <element name="name" type="string"></element>
+                                <element name="age"   type="string"></element>
+                            </sequence>
+                            <!--定义person标签的属性-->
+                            <attribute name = "id" type="string" use="required"></attribute>
+                        </complexType>
+                    </element>
+                </sequence>
+            </complexType>
+        </element>
+
+</schema>

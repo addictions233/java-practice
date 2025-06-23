@@ -1,0 +1,40 @@
+server:
+  port: 9090
+spring:
+  # mysql数据源配置
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/db_test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # redis配置
+  redis:
+    host: 127.0.0.1  # redis主机ip
+    port: 6379 # redis端口
+    password: wanjunjie # 连接redis的密码
+    # SpringBoot2.0默认采用Lettuce客户端来连接Redis服务端的
+    # lettuce默认是不使用连接池的，只有配置 redis.lettuce.pool下的属性的时候才可以使用到redis连接池
+    lettuce:
+      pool:
+        max-active: 8 #连接池的最大连接数(使用负值表示没有限制)
+        max-idle: 8 # 连接池中的最大空闲连接
+        max-wait: 30 # 连接池最大阻塞等待时间(使用负值表示没有限制)
+        min-idle: 4 # 连接池中的最小空闲连接
+    # 使用Jedis默认你配置与否都会有连接池，而lettuce则需要配置文件中配置一下才会使用连接池
+#    jedis:
+#      pool:
+#        max-active: 8
+#          max-idle: 8
+#          max-wait: 30
+#          min-idle: 4
+  # 配置缓存, 初始化缓存容量, 最大容量, 过期时间
+#  cache:
+#    type: caffeine
+#    caffeine:
+#      spec: initialCapacity=10,maximumSize=200,expireAfterWrite=3s
+
+redisson:
+  address: redis://127.0.0.1:6379
+  database: 2
+
+

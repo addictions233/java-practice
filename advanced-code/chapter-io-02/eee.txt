@@ -1,0 +1,20 @@
+package com.itheima.filewriter;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileWriterDemo1 {
+    public static void main(String[] args) throws IOException {
+        FileReader fr = new FileReader("My_Day12\\src\\com\\itheima\\fileoutputstream\\FileOutputStream1.java");
+        FileWriter fw = new FileWriter("My_Day12\\ddd.txt");
+
+        int ch;
+        while((ch=fr.read())!=-1){
+            fw.write(ch);
+            fw.flush();
+        }
+        fr.close();
+        fw.close();
+    }
+}

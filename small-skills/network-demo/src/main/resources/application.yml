@@ -1,0 +1,8 @@
+server:
+  port: 9095
+
+wx:
+  open:
+    app_id: wx3bdb1192c22883f3
+    app_secret: db9d6b88821df403e5ff11742e799105
+    redirect_url: http://note.java.itcast.cn/wx/callback

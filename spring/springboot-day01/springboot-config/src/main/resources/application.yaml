@@ -1,0 +1,4 @@
+# 测设三个配置文件的执行顺序
+server:
+  port: 8082
+name: hjk

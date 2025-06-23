@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       https://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+    <!--
+        第一种:扫描com.one包路径下的, 仅包含Controller的注解,
+        此方式有缺陷, 当Spring和SpringMVC的包扫描重叠时,会创建多个Bean对象,违背单例原则
+    -->
+    <!--<context:component-scan base-package="com.one">-->
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    <!--</context:component-scan>-->
+    
+    <!--第二种:配置SpringMVC组件扫描的包路径,因为SpringMVC就是控制Controller层,所以指定组件扫描路径要具体到controller层目录-->
+    <context:component-scan base-package="com.one.controller"/>
+
+
+
+    <!--静态资源放行的三种方式:-->
+    <!--方式1: 放行指定类型的静态资源配置方式, 缺点: 每个资源都得写一个放行标签,过于繁琐-->
+    <!--<mvc:resources mapping="/img/**" location="/img/"/>-->
+    <!--<mvc:resources mapping="/js/**" location="/js/"/>-->
+    <!--<mvc:resources mapping="/css/**" location="/css/"/>-->
+
+    <!--方式2: SpringMVC提供的通用资源放行,让浏览器可以访问的静态资源js, image等-->
+    <mvc:default-servlet-handler/>
+
+    <!--依赖注解驱动 annotation-driven = 处理器映射器 + 处理器适配器(处理请求参数和响应结果(包括将返回的对象转为json字符串)) + 异常处理器
+        默认注册一个RequestMappingHandlerMapping, 一个RequestMappingHandlerAdapter, 一个ExceptionHandler, 以支持使用了
+        @RequestMapping, @ExceptionHandler及其他注解的控制器方法的请求处理
+    -->
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+
+    <!--自定义数据类型转换器-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <!--由于Conversion转换器存储在set集合中,新添加的转化器会覆盖之前的转换器-->
+            <set>
+                <bean class="com.one.config.MyDateConverter"/>
+            </set>
+        </property>
+    </bean>
+
+    <!--配置视图器解析器 ViewResolver-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--访问路径的前缀-->
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <!--访问路径的后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>

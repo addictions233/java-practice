@@ -1,0 +1,51 @@
+#server:
+#  port: 8060
+#
+#spring:
+#  application:
+#    name: mall-user-config-demo  #微服务名称
+#
+#  cloud:
+#    nacos:  #配置nacos注册中心地址
+#      discovery:
+#        server-addr: nacos.mall.com:8848
+#        username: nacos
+#        password: nacos
+#
+#    openfeign:
+#      client:
+#        config:
+#          mall-order:  # 对应微服务
+#            loggerLevel: FULL
+#            # 连接超时时间
+#            connectTimeout: 3000
+#            # 请求处理超时时间
+#            readTimeout: 5000
+#      httpclient:  #feign client使用 Apache HttpClient5
+#        hc5:
+#          enabled: true
+#      compression: # 配置 GZIP 来压缩数据
+#        request:
+#          enabled: true
+#          mime-types: text/xml,application/xml,application/json
+#          min-request-size: 2048  # 最小请求压缩阈值
+#        response:
+#          enabled: true
+#
+#logging:
+#  level:
+#    com.one.configdemo.feign: debug   #打印openFegin日志
+#    com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder: debug
+#
+#
+#common:
+#  name: zhangsan
+#  age: 10
+#
+#
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'

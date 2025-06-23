@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       https://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--1,加载jdbc.properties属性文件-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--2,创建数据库连接池Druid的Bean对象-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!--用set方式进行属性值注入-->
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}" />
+    </bean>
+
+    <!--3,1集成MyBatis框架,mybatis建立数据库连接需要SqlSessionFactoryBean类的Bean对象-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="typeAliasesPackage" value="com.one.domain" />
+    </bean>
+
+    <!--3.2集成MyBatis框架所需的MapperScannerConfigurer类的Bean对象,指定映射配置文件的包路径-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--指定映射配置文件和Dao层接口的包路径-->
+        <property name="basePackage" value="com.one.dao"/>
+    </bean>
+
+    <!--4,创建Service层的实现类AccountServiceImpl的Bean对象-->
+    <bean id="accountService" class="com.one.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao" />
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+    <!--&lt;!&ndash;创建通知所属的类AOPAdvice的Bean对象&ndash;&gt;-->
+    <bean id="txAdvice" class="com.one.advice.TxAdvice">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--开启AOP配置-->
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="pt" expression="execution(* *..transfer(..))"/>
+        <!--配置切面-->
+        <aop:aspect ref="txAdvice">
+            <!--采用around类型的通知-->
+            <aop:around method="transactionManager" pointcut-ref="pt"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--使用空参构造,并创建Spring事务管理需要的DataSourceTransactionManager类Bean对象-->
+<!--    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        &lt;!&ndash;用构造方法进行DI注入进行属性赋值&ndash;&gt;-->
+<!--        <constructor-arg name="dataSource" ref="dataSource"/>-->
+<!--    </bean>-->
+
+    <!--用Spring中声明式事务控制, 创建进行事务管理的通知类的Bean对象, 注意: 本类是一个通知类,包含通知Advice-->
+<!--    <tx:advice id="txAdvice" transaction-manager="txManager">-->
+<!--        <tx:attributes>-->
+<!--            &lt;!&ndash;因为事务管理只在Service层进行,只用在name属性中指定需要进行事务管理的切入点方法即可&ndash;&gt;-->
+<!--            <tx:method name="transfer" isolation="DEFAULT" read-only="false" propagation="REQUIRED"/>-->
+<!--        </tx:attributes>-->
+<!--    </tx:advice>-->
+
+    <!--开启AOP,配置事务的织入, 用Spring进行事务管理依赖的底层就是AOP,所以必须开启AOP-->
+<!--    <aop:config>-->
+<!--        <aop:pointcut id="pt" expression="execution(* com.itheima.service.impl.*.*(..))"/>-->
+<!--        &lt;!&ndash; advice-ref属性指定通知类, 这里有问题: 到底对哪些方法进行事务管理???&ndash;&gt;-->
+<!--       <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>-->
+<!--    </aop:config>-->
+
+    <!--&lt;!&ndash;IOC注解开发方式, 需要指定创建Bean对象的类所属的包名&ndash;&gt;-->
+    <!--<context:component-scan base-package="com.itheima"/>-->
+
+    <!--&lt;!&ndash;AOP注解开发方式,开启AOP注解驱动支持&ndash;&gt;-->
+    <!--<aop:aspectj-autoproxy/>-->
+
+    <!--&lt;!&ndash;Spring声明式事务控制在注解方式下开发&ndash;&gt;-->
+    <!--<tx:annotation-driven transaction-manager="txManager"/>-->
+</beans>

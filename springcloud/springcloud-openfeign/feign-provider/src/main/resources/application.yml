@@ -1,0 +1,16 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: feign-provider
+  cloud:
+    # 配置nacos的注册中心
+    nacos:
+      discovery:
+        # nacos在作为注册中心的访问地址和端口
+        server-addr: 127.0.0.1:8848
+#    # 配置zookeeper注册中心地址
+#    zookeeper:
+#      connect-string: localhost:2181
+#      discovery:
+#        instance-host: 127.0.0.1

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis的DTD约束-->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--configuration 核心根标签-->
+<configuration>
+
+    <!--properties 引入数据库连接的信息配置属性文件, 解决硬编码问题(利于后期代码维护)-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!--typeAliases 给类起别名-->
+    <typeAliases>
+        <!--对bean中的单个实体类起别名, 不常用-->
+        <!--<typeAlias type="com.one.jsp.Student" alias="student"/>-->
+        <!--对整个包中的实体类批量起别名,所有的实体类别名都是类名(类名不区分大小写,推荐类名首字母小写(小驼峰命名))  常用-->
+        <package name="com.one.bean"/>
+    </typeAliases>
+
+    <!--environments配置数据库环境, mybatis可以配置多个数据源。default属性指定使用的是哪个数据源-->
+    <environments default="mysql">
+        <!--environment配置数据库环境  id属性唯一标识，字符串数据类型，必填-->
+        <environment id="mysql">
+            <!-- transactionManager事务管理。  type属性，采用JDBC默认的事务处理-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!-- dataSource数据源信息   type属性 POOLED表示采用数据库连接池-->
+            <dataSource type="POOLED">
+                <!-- property获取数据库连接的配置信息 -->
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+
+
+    <!-- mappers引入映射配置文件 -->
+    <mappers>
+        <!-- mapper 引入指定的映射配置文件，resource属性指定映射配置文件的路径，mapper子标签可以写多个，表示多个映射配置文件 -->
+        <mapper resource="StudentMapper.xml"/>
+        <!-- mapper标签只能单个引入映射配置文件， package标签可以批量引入一个包下的所用的映射配置文件-->
+        <!--<package name="com.one.mapper"/>-->
+    </mappers>
+
+
+</configuration>
+

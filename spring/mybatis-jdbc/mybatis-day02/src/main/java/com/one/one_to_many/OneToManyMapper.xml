@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    mapper: Mybatis代理接口方式的映射接口
+    namespace: 与映射接口的全限定类名必须保持一致
+-->
+<mapper namespace="com.one.one_to_many.OneToManyMapper">
+    <resultMap id="OneToMany" type="classes">
+        <id column="cid" property="id"/>
+        <result column="cname" property="name"/>
+
+        <!--
+            collection: 配置被包含对象的集合的映射关系
+            property: 被包含对象的变量名
+            ofType: 被包含对象的实际数据类型(全限定类名,如果取别名可以用简称)
+        -->
+        <collection property="students" ofType="student">
+            <id column="sid" property="id"/>
+            <result column="sname" property="name"/>
+            <result column="age" property="age"/>
+        </collection>
+
+    </resultMap>
+
+    <!--
+    select sql查询语句标签
+    id: 与代理接口的方法名保持一致
+    -->
+    <select id="selectAll"  resultMap="OneToMany">
+        select c.id cid,c.name cname,s.id sid,s.name sname,age from student s, classes c where s.cid=c.id;
+    </select>
+
+</mapper>

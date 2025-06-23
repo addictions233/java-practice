@@ -1,0 +1,29 @@
+server:
+  port: 8888
+
+spring:
+  application: # 要想将应用服务注册到nacos注册中心必须必须写服务名称
+    name: nacos-gateway
+  cloud:
+    nacos:
+      discovery:
+        # nacos作为注册中心的访问地址,需要将gateway网关的服务注册到nacos中
+        server-addr: 8.135.28.120:8848
+    gateway:
+      routes: # 路由器 转发请求   一个路由器包含多个过滤器和多个断言
+        - id: nacos-provider  #主键,一般写要转发的路由的服务提供者的名称
+#          uri: http://localhost:9001/  # 静态路由 访问的生产者的url地址
+          uri: lb://nacos-provider  # 动态路由 lb://后面接转发的服务在nacos注册中心中的服务名称
+          predicates:  # 断言不能为空,对满足断言规则的访问地址才路由到对应的uri中
+            - Path=/api/product/**    # Path的首字母要大写,且=两边不能有空格, 路由地址
+          filters:  # 局部过滤器,只针对当前路由器有效
+            - StripPrefix=1 # 去除1位地址前缀
+        - id: nacos-consumer # 消费者的名称
+#          uri: http://localhost:9002/  # 静态路由,访问的消费者的url地址
+          uri: lb://nacos-consumer  # lb(loadBalanced)是一种协议,负载均衡的缩写
+          predicates:   # 断言,用来判断请求路径是否满足断言规则
+            #网关也是作为一个服务应用启动起来的,只用访问http://localhost:8888/consumer/**的路径请求都会路由到对应的uri中
+            - Path=/api/consumer/**
+          filters: # 局部过滤器,只针对当前路由器有效
+            - StripPrefix=1
+#            - PrefixPath:/api 添加路由前缀

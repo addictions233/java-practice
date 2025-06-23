@@ -1,0 +1,21 @@
+server:
+  port: 9991
+spring:
+  application:
+    name: kafka-demo
+  kafka:
+    bootstrap-servers: 8.135.28.120:9092
+    producer:
+      # 生产者的重试次数
+      retries: 10
+      # 对key进行序列化的方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 对value进行序列化的方式
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      # 消费者的组名
+      group-id: test-consumer-group
+      # 对key进行反序列化方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 对value进行反序列化方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

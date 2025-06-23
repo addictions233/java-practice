@@ -1,0 +1,19 @@
+server:
+  port: 9098
+spring:
+  application:
+    name: stream-provider
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 # nacos配置中心地址
+      discovery:
+        server-addr: 127.0.0.1:8848 # nacos注册中心地址
+    stream:
+      rocketmq:
+        binder: # rocketmq的命名服务器的地址
+          name-server: 124.220.21.120:9876
+      bindings:
+        output1:  # 配置发送消息的通道名称,必须与我们自定义的通道名称一致
+          destination: topic-stream # 该通道发送的消息的topic
+          group: output-groupA # 设置生产者的分组

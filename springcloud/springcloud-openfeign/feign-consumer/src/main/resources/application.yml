@@ -1,0 +1,59 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: feign-consumer
+  cloud:
+    # 配置nacos的注册中心
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    # 配置zookeeper注册中心地址
+#    zookeeper:
+#      connect-string: localhost:2181
+#      discovery:
+#        instance-host: 127.0.0.1
+
+    # 以下配置都是LoadBalancerProperties配置类
+    loadbalancer:
+      retry:
+        enabled: true # 是否开启重试
+        retry-on-all-operations: true # 是否所有的请购都重试, false表示只有GET请求才重试
+        max-retries-on-same-service-instance: # 同一个实例的重试次数, 不包括第一次调用, 比如填写3, 实际会调用4次
+        max-retries-on-next-service-instance: 0 # 其他实例的重试次数, 多节点情况下使用
+
+# 配置feign接口调用的超时时间,feign默认集成了ribbon负载均衡
+#ribbon:
+#  ConnectTimeout: 1000 # 设置连接超时时间 单位:毫秒 默认为 1s
+#  ReadTimeout: 3000  # 设置provider接口响应的超时时间 默认为1s
+
+# 配置feign接口的调用日志记录,只记录指定包下的日志级别, 还需要写FeignConfig配置类
+logging:
+  level:
+    com.one: debug # 只有com.one包中才记录debug级别日志,默认是info级别,会记录feign调用的详细信息
+
+feign:
+  # 开启okhttp client客户端的支持
+  okhttp:
+    enabled: true
+  # 关闭httpclient client客户端的支持
+  httpclient:
+    enabled: false
+  # 配置客户端的调用超时时间
+  client:
+    config:
+      client:
+        connectTimeout: 60000
+        readTimeout: 60000
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

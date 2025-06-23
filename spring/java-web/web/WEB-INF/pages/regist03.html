@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册页面</title>
+    <script src="../../js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <form action="#" method="get" autocomplete="off">
+        用户名: <input type="text" id="username">
+        <span id="uspan"></span><br/>
+        密码:&nbsp;&nbsp; <input type="password" id="password"><br/>
+        <button type="submit">注册</button>
+    </form>
+
+</body>
+<script>
+    <!--用jquery实现前端浏览器页面和后台服务器数据交互-->
+    $("#username").blur(function () {
+        let username = $("#username").val();
+        $.ajax({
+            //请求资源路径
+            url:"/userServlet",   //多个参数之间用逗号隔开
+            //是否异步
+            async:true,
+            // 请求参数
+            data:"username="+username,
+            //请求方式
+            type:"GET",
+            //响应的数据格式
+            datatype:"text",
+            //请求成功调用的函数
+            success:function (data) {
+                $("#uspan").html(data);
+            },
+            //请求失败调用的函数
+            error:function () {
+                alert("请求失败!")
+            }
+
+            });
+    });
+
+
+</script>
+</html>

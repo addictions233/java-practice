@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    Mybatis接口代理方式下的namespace必须与接口的全类名一致
+-->
+<mapper namespace="com.one.one_to_one.OneToOneMapper">
+    <!--
+        resultMap: 配置数据表字段和实体对象属性的映射关系
+        id : 与下面的resultMap的值相对应
+        type: 实体类(外键所在的从表的实体类)的全类名
+    -->
+    <resultMap id="oneToOne" type="card">
+        <id column="cid" property="id"/>
+        <result column="number" property="number"/>
+
+        <!--
+            association: 配置被包含对象的映射关系 配置Person类对象的映射关系
+            property: 被包含对象的变量名,即Card类中成员变量person的变量名
+            javaType: 被包含对象的全限定类名, 由于bean包下的都设置了取别名,所以不用写全类名
+         -->
+        <association property="person" javaType="person">
+            <id column="pid" property="id"/>
+            <result column="name" property="name"/>
+            <result column="age" property="age"/>
+        </association>
+
+    </resultMap>
+
+    <!--关联查询时,不能有重名的列,如果重名就取别名-->
+
+    <select id="selectAll" resultMap="oneToOne">
+        select c.id cid,number,pid,name,age from person p, card c where p.id=c.pid
+    </select>
+</mapper>

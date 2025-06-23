@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<students>
+    <!-- XML 可扩展标记语言  标签名 属性名称= 属性值-->
+    <student id="1">
+        <name>张三</name>
+        <age>23</age>
+        <!-- XML中五个特殊字符： &lt；< &gt; > -->
+        <info>这是一个&lt;学生&gt;对象</info>
+        <message><![CDATA[<<<<   >>>>> &&&& ''' """"]]></message>
+    </student>
+    <student id="2">
+        <name>李四</name>
+        <age>24</age>
+        <info>这是一个&lt;学生&gt;对象</info>
+        <!-- XML文件中可以存在CDATA区， CDATA区中的内容被当做纯文本处理，不受XML语法解析，所以可以使用任何字符-->
+        <message><![CDATA[这是一个文本编辑区域]]></message>
+    </student>
+</students>

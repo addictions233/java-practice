@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <display-name>java-web</display-name>
+    <welcome-file-list>
+        <!--修改默认的起始页面 访问地址是 http://localhost:8080/-->
+        <welcome-file>/index.html</welcome-file>
+    </welcome-file-list>
+
+    <!--在web.xml中配置servlet, 既可以采用xml配置方式也可以采用@WebServlet注解的方式-->
+    <servlet>
+        <!--声明自定义的servlet的名称-->
+        <servlet-name>myServlet1</servlet-name>
+        <!--指定servlet是对应哪个功能类,写全限定类名-->
+        <servlet-class>com.one.servlet.MyServlet1</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!--指定自定义的servlet映射路径-->
+    <servlet-mapping>
+        <servlet-name>myServlet1</servlet-name>
+        <!--全路径匹配, 定义的myServlet1的访问路径就是 项目根路径/myServlet1 -->
+        <url-pattern>/myServlet1</url-pattern>
+    </servlet-mapping>
+
+    <!--配置 Servlet路径, 采用xml配置,也可以使用@WebServlet注解进行配置-->
+    <servlet>
+        <servlet-name>myServlet3</servlet-name>
+        <servlet-class>com.one.servlet.MyServlet3</servlet-class>
+        <!--配置servletConfig对象,即servlet的初始化参数-->
+        <init-param>
+            <!--用于获取初始化参数的key-->
+            <param-name>encoding</param-name>
+            <!--初始化参数的值-->
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <!--每个初始化参数都需要用到init-param标签-->
+        <init-param>
+            <param-name>servletInfo</param-name>
+            <param-value>This is Demo8</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>myServlet3</servlet-name>
+        <url-pattern>/myServlet3</url-pattern>
+    </servlet-mapping>
+
+    <!--配合servletContext全局域对象-->
+    <context-param>
+        <!-- 全局域对象中配置的参数的key-->
+        <param-name>servletContextInfo</param-name>
+        <!-- 全局域对象中配置的参数的value-->
+        <param-value>This is application scope</param-value>
+    </context-param>
+
+    <context-param>
+        <!-- 全局域对象中配置的参数的key-->
+        <param-name>globalEncoding</param-name>
+        <!-- 全局域对象中配置的参数的value-->
+        <param-value>UTF-8</param-value>
+    </context-param>
+
+
+
+    <!--用XML方式配置过滤器filter-->
+    <filter>
+        <!--自定义过滤器的名称标签值-->
+        <filter-name>filterDemo01</filter-name>
+        <!--过滤器的在项目中的全类名-->
+        <filter-class>com.one.filter.FilterDemo01</filter-class>
+    </filter>
+
+    <!--配置过滤器的拦截路径, /*表示所有请求都会进来,和servlet的路径配置方式相似-->
+    <filter-mapping>
+        <!--与上面的过滤器名称标签值保持一致-->
+        <filter-name>filterDemo01</filter-name>
+        <!--配置过滤路径  /*代表拦截所以请求-->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--&lt;!&ndash;用XML方式配置过滤器&ndash;&gt;-->
+    <!--<filter>-->
+    <!--<filter-name>filterDemo02</filter-name>-->
+    <!--<filter-class>com.one.filter.FilterDemo02</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+    <!--<filter-name>filterDemo02</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
+    <!--
+    Filter拦截所有的资源访问,静态资源和动态资源都会拦截
+    要知道Filter在请求拦截中执行了几次,就在浏览器中查看客户端请求了几次资源
+    -->
+    <!--配置过滤器-->
+    <filter>
+        <filter-name>filterDemo04</filter-name>
+        <filter-class>com.one.filter.FilterDemo04</filter-class>
+        <!--开启异步请求的开关-->
+        <async-supported>true</async-supported>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>filterDemo04</filter-name>
+        <!--确认拦截的服务器资源, /*代表拦截所以资源, /index.jsp代表拦截对index.jsp页面的访问-->
+        <url-pattern>/index.jsp</url-pattern>
+        <!--Filter默认就是拦截请求,且只拦截客户端的请求(重点掌握)-->
+        <dispatcher>REQUEST</dispatcher>
+        <!-- 过滤器错误页面,当由服务器调用全局错误页面时,过滤器工作-->
+        <dispatcher>ERROR</dispatcher>
+        <!-- 默认请求转发不进行拦截,但是当写了该配置语句之后,请求转发也会被过滤器进行拦截(重点掌握)-->
+        <dispatcher>FORWARD</dispatcher>
+        <!--过滤请求包含,当请求包含时,过滤器工作,它只能过滤动态包含, jsp的include指令是静态包含-->
+        <dispatcher>INCLUDE</dispatcher>
+        <!--过滤异步类型,它要求我们在filter标签中配置开启已不再支持-->
+        <dispatcher>ASYNC</dispatcher>
+
+    </filter-mapping>
+</web-app>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis的DTD约束-->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- configuration 核心根标签-->
+<configuration>
+    <!--properties 引入数据库的信息配置连接属性 -->
+    <properties resource="jdbc.properties">
+    </properties>
+
+    <!--setting 配置log4j日志打印工具-->
+    <settings>
+        <setting name="logImpl" value="log4j"/>
+    </settings>
+
+    <!--typeAlias 给实体类或者其他类取别名-->
+    <typeAliases>
+        <!--该包名下的所有类全部搜索,且取别名为类名(不区分大小写,建议小写)-->
+        <package name="com.one.domain"></package>
+    </typeAliases>
+
+    <!--plugin 集成分页插件助手 新版本用法-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+    <!--enviroments 配置数据环境,环境可以有多个,default属性指定默认环境-->
+    <environments default="mysql">
+        <!--enviroment配置数据库环境,id属性为唯一标识-->
+        <environment id="mysql">
+            <!--transactionManager 事务管理, type属性:采用JDBC默认事务-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--dataSoure 数据源信息 type属性:连接池-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+
+        </environment>
+    </environments>
+
+    <!--mappers 引入Mybatis的映射配置文件-->
+    <mappers>
+        <!--mapper 引入映射配置文件 resource属性 指定映射配置文件名称(注意相对路径)-->
+        <mapper resource="com/one/mapper/StudentMapper.xml"/>
+    </mappers>
+
+</configuration>

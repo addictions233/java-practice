@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: rocketmq-springboot
+server:
+  port: 9095
+rocketmq: # 指定rocketmq的命名服务器地址
+  name-server: 127.0.0.1:9876
+  producer: # 指定producer的分组
+    group: producer-groupA
+    enable-msg-trace: true
+    retry-times-when-send-async-failed: 3
+    retry-times-when-send-failed: 3
+    send-message-timeout: 60000

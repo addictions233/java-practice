@@ -1,0 +1,5 @@
+# Auto Configure 规定哪些Configuration的bean对象会被加载
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.one.config.CacheManagerAutoConfiguration,\
+  com.one.config.RedisTemplateConfig,\
+  com.one.lock.DistributedLockAutoConfiguration

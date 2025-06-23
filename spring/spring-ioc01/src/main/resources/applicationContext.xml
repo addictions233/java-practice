@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       https://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--1,创建spring控制的资源 name属性可以配置多个名称,就是取别名, 通过不用配置,配置多个名称不利于使用-->
+    <!--<bean id="userService" name="userService2,userService3" class="com.itheima.service.impl.UserServiceImpl"/>-->
+
+    <!--scope属性  默认为单例模式 scope="singleton", 如果配置scope属性值 = "prototype", 则是多例-->
+    <!--当为单例设计模式时,是饿汉模式, 即在加载applicationContext.xml配置文件时就创建了所有bean对象
+        创建好了之后放置在应用域中,供后面复用
+    -->
+
+    <!--<bean id="userService4" scope="prototype" class="com.itheima.service.impl.UserServiceImpl"/>-->
+
+    <!--<bean id="userService5" scope="singleton" class="com.itheima.service.impl.UserServiceImpl"-->
+    <!--init-method="initMethod" destroy-method="destroyMethod" />-->
+
+    <!--<bean id="userService6" scope="prototype" class="com.itheima.service.impl.UserServiceImpl"-->
+    <!--init-method="initMethod" destroy-method="destroyMethod" />-->
+
+    <!-- set方式进行DI注入 使用set方式注入的Bean对象类是需要空参构造的,默-->
+    <!--<bean id="userService7" class="com.itheima.service.impl.UserServiceImpl">-->
+        <!--&lt;!&ndash;将要注入的引用类型的成员变量通过proerty属性进行注入,对应的name是要注入的成员变量名,使用ref属性声明要注入的对象&ndash;&gt;-->
+        <!--<property name="userDao" ref="userDao"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="userDao" class="com.itheima.dao.impl.UserDaoImpl">-->
+        <!--&lt;!&ndash;当要注入的成员变量为基本数据类型或者String类型,用value属性进行注入赋值&ndash;&gt;-->
+        <!--<property name="name" value="zhangsan"/>-->
+    <!--</bean>-->
+
+    <!--用带参构造器进行DI注入, 使用构造器注入的bean对象类是要有有参构造的-->
+    <!--<bean id="bookDao" class="com.itheima.dao.impl.BookDaoImpl">-->
+        <!--<constructor-arg name="name" value="zhangsan"/>-->
+        <!--<constructor-arg name="addr" value="wuhan"/>-->
+    <!--</bean>-->
+
+    <!--用set注入方式配置DruidDataSource对象-->
+    <!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">-->
+    <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+    <!--<property name="url" value="jdbc:mysql://127.0.0.1:3306/db3" />-->
+    <!--<property name="username" value="root"/>-->
+    <!--<property name="password" value="root"/>-->
+    <!--</bean>-->
+
+    <!--用set注入方式读取druid.properties配置文件来配置DruidDataSource对象-->
+    <!--1,引入druid.properties资源配置文件-->
+    <context:property-placeholder location="classpath:druid.properties"/>
+    <!--2,用set方式注入数据, EL表达式取值-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${driverClassName}"/>
+        <property name="url" value="${url}"/>
+        <!--注意: 如果写成 value="${username}, 取到的是你的windows系统的用户名,而不是你的配置文件"-->
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+
+    <!--创建AccountService类的bean对象,并用set方式对accountDao属性赋值-->
+    <bean id="accountService" class="com.one.service.impl.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+    </bean>
+
+    <!--spring整合mybatis后创建连接用的sqlSession会话对象-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.one.domain"/>
+    </bean>
+
+    <!--加载mybatis映射配置文件的扫描,将其作为spring的bean进行管理-->
+    <!--spring会自动创建 com.itheima.dao包下所有的接口的实现类对象,且对象为类首字母小写-->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.one.dao" />
+    </bean>
+
+
+
+
+</beans>

@@ -1,0 +1,16 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: nacos-provider   # nacos注册中心中的名称默认就是该应用名称
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848   # nacos作为注册中心
+      config:
+        server-addr: 127.0.0.1:8848   # nacos作为配置中心
+        file-extension: yml  # nacos配置中心默认为配置文件格式为.properties,要改为.yml必须加入此条配置
+ribbon:
+  okhttp:
+    enabled: true

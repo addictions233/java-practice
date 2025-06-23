@@ -1,0 +1,99 @@
+server:
+  port: 8800
+
+
+feign:
+  sentinel:
+    enabled: true  #开启Sentinel 对 Feign 的支持
+
+spring:
+  application:
+    name: mall-user-sentinel-demo
+  cloud:
+    nacos:
+      discovery:    #配置nacos注册中心地址
+        server-addr: nacos.mall.com:8848
+        username: nacos
+        password: nacos
+
+    openfeign: #openfeign的配置
+      client:
+        config:
+          mall-order: # 对应微服务
+            loggerLevel: FULL
+            # 连接超时时间
+            connectTimeout: 3000
+            # 请求处理超时时间
+            readTimeout: 5000
+      okhttp:       #feign client使用 okhttp
+        enabled: true
+
+    sentinel:
+      transport:
+        # 添加sentinel的控制台地址
+        dashboard: 127.0.0.1:8090
+        # 指定启动应用与Sentinel控制台交互的端口，应用会起一个HttpServer占用该端口
+        port: 8719
+      # 将其配置为 false 即可根据不同的 URL 进行链路限流
+      #web-context-unify: false
+      # 从nacos配置中心拉取规则信息
+      datasource:
+        flow-rules: #流控规则
+          nacos:
+            server-addr: nacos.mall.com:8848
+            namespace: 8750e4e3-fff4-4f5a-b081-668cc6403556
+            username: nacos
+            password: nacos
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP   # 注意groupId对应Sentinel Dashboard中的定义
+            data-type: json
+            rule-type: flow
+
+
+
+  #数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ms_user?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    druid:
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
+
+
+
+# 添加Sentinel后，需要暴露/actuator/sentinel端点   http://localhost:8800/actuator/sentinel
+# Sentinel Endpoint里暴露的信息包括当前应用的所有规则信息、日志目录、当前实例的IP，Sentinel Dashboard地址应用和心跳频率等等信息。
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+logging:
+  level:
+    com.one.usersentinel.feign: debug   #打印openFegin日志
+    com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder: debug

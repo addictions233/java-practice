@@ -1,0 +1,12 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    # spring应用名称
+    name: nacos-consumer
+  cloud:
+    nacos:
+      discovery:
+        # nacos注册中心的服务地址
+        server-addr: 8.135.28.120:8848

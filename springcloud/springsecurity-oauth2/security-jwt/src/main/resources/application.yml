@@ -1,0 +1,8 @@
+server:
+  port: 8888
+
+
+
+jwt:
+  secret: e9948PG02lURjvhjotDGQ6ksRdz3920MEfdy0q6HIszaxNNXw5D1yGq7l3zVWVfUbPBSA56JMqawy7Mt2vPDx5AveuOHHpT0uZB   #密钥
+  expMillis: 3600000   #30分钟过期，可根据实际情况自行修改

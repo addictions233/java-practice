@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--MyBatis的DTD约束-->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--configuration mybatis核心配置文件根标签-->
+<configuration>
+    <!--properties 加载mysql数据库连接的四要素属性配置文件-->
+    <properties resource="jdbc.properties"></properties>
+
+    <!--settings 设置log4j日志打印设置-->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!--typeAliases 给与数据库表映射的实体类取别名,这样在映射文件中使用实体类不用写全限定名称-->
+    <typeAliases>
+        <!--package 采用包扫描的方式给实体类取别名,直接用类名 name属性:指定实体类的包名-->
+        <package name="com.one.bean"></package>
+    </typeAliases>
+
+    <!--plugins 插件,这里配置分页插件助手-->
+    <plugins>
+        <!--interceptor属性 注意不同版本的分页插件助手interceptor的属性值不一样-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+    <!--environments 配置数据环境变量,数据环境可以有多个 default属性 指定默认的数据环境-->
+    <environments default="mysql">
+        <!--environment 配置数据库环境变量 id属性 唯一标识-->
+        <environment id="mysql">
+            <!--transactionManager 事务管理 type属性 采用JDBC默认的事务管理-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--dataSource 数据源 type属性 连接池-->
+            <dataSource type="POOLED">
+                <!--property mysql数据库连接 value属性 用${}字符串拼接进行对value属性赋值-->
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--mappers 引入映射配置文件-->
+    <mappers>
+        <!--package 采用包扫描的方式引入映射配置文件 name属性 指定映射配置文件的相对路径,如果是注解开发指定的就是接口的包名-->
+        <package name="com/one/mapper"></package>
+    </mappers>
+
+
+    <!--mappers 引入映射配置文件的位置,注意mappers标签下可以写多个mapper标签,引入不同持久层接口的映射配置文件
+    如果不写mappers标签,代码运行时会报下面错误
+    Type interface com.one.mapper.CountryMapper is not known to the MapperRegistry.
+-->
+<!--    <mappers>-->
+<!--        &lt;!&ndash;方式一: mapper标签:引入映射配置文件 resource属性:指定配置文件的相对路径&ndash;&gt;-->
+<!--        <mapper resource="com/one/mapper/CountryMapper.xml"></mapper>-->
+<!--        &lt;!&ndash;方式二: mapper标签:注解方式下配置映射配置接口 resource属性:指定接口的全限定名&ndash;&gt;-->
+<!--        &lt;!&ndash;        <mapper class ="com.one.mapper.CountryMapper"></mapper>&ndash;&gt;-->
+<!--        &lt;!&ndash;方式三: package 用包扫描的方法配置包中的所有映射配置文件或者映射注解接口-->
+<!--            注意:如果是注解开发的方式引入映射接口,name属性就写接口包名  用点分隔-->
+<!--                 如果是映射配置文件的方式引入xml文件,name属性就写文件的路径名  用正斜扛进行分隔-->
+<!--        &ndash;&gt;-->
+<!--        &lt;!&ndash;        <package name="com/one/mapper"></package>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <package name="com.one.mapper"></package>&ndash;&gt;-->
+<!--    </mappers>-->
+
+
+
+
+</configuration>

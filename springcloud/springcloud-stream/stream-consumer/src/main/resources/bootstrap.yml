@@ -1,0 +1,21 @@
+server:
+  port: 9099
+spring:
+  application:
+    name: stream-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+    stream:
+      rocketmq:
+        binder:
+          name-server: 124.220.21.120:9876 # rocketmq的命名服务器地址
+      bindings:
+        input1: # 定义接收消息的管道, 必须与我们自定义的管道名称一致
+          destination: topic-stream # 该通道消费的消息的topic, 与发送消息的topic一致
+          group: input-groupA # 设置消费者的分组
+
+

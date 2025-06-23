@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.one.dao.UserDao">
+    <!--通过uuid查询用户-->
+    <select id="get" parameterType="Integer" resultType="com.one.domain.User">
+        SELECT * from user where uuid=#{uuid}
+    </select>
+
+    <!--查询所有的用户-->
+    <select id="getAll" resultType="com.one.domain.User">
+        SELECT * FROM user
+    </select>
+
+    <insert id="save" parameterType="com.one.domain.User" >
+        INSERT INTO user(userName,password,realName,gender,birthday) values
+        (#{userName},#{password},#{realName},#{gender},#{birthday})
+    </insert>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE from user where uuid=#{uuid}
+    </delete>
+
+    <update id="update" parameterType="com.one.domain.User">
+        update user set userName=#{userName},password=#{password},realName=#{realName},
+        gender=#{gender},birthday=#{birthday} where uuid=#{uuid}
+    </update>
+    
+    <!--根据用户名和密码登录-->
+    <select id="getByUserNameAndPassword" resultType="com.one.domain.User">
+        SELECT * FROM user where userName=#{userName} and password=#{password}
+    </select>
+</mapper>

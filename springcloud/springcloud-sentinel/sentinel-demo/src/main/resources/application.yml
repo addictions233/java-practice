@@ -1,0 +1,12 @@
+server:
+  port: 9096
+spring:
+  application:
+    name: sentinel-demo
+
+#暴露actuator端点   http://localhost:8800/actuator/sentinel
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,0 +1,41 @@
+# 测试三个文件的执行顺序
+server:
+  port: 8083
+
+name: efg
+#对象
+person:
+  name: 张三
+  age: 23
+
+#对象行内写法
+person2: {name: lisi,age: 24}
+
+#数组
+address:
+  - beijing
+  - shanghai
+
+#数组行内写法
+address2: [beijing,shangahai]
+
+#纯量
+msg1: 'hello \n world'
+msg2: "hello \n world"
+
+#参数引用
+person3:
+  name: ${name}
+  age: 1234
+
+#注意: 缩进和空格
+#对象:
+user:
+  username: zhangsan
+  age: 23
+  address: wuhan
+
+
+# 测试注册静态成员变量
+host: 192.168.0.1
+post: 9095

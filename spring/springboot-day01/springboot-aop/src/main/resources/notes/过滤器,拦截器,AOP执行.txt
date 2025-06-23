@@ -1,0 +1,5 @@
+过滤器、拦截器以及切片的调用顺序
+如下图，展示了三者的调用顺序Filter->Interceptor->ControllerAdvice->Aspect->Controller。
+相反的是，当Controller抛出的异常的处理顺序则是从内到外的。
+因此我们总是定义一个全局异常处理器, 使用注解@ControllerAdvice去统一处理控制器抛出的异常,也就是在ControllerAdvice阶段对异常进行了处理
+如果一旦异常被@ControllerAdvice修饰的全局异常处理器处理了，则调用拦截器的afterCompletion()方法的参数Exception ex就为空了。

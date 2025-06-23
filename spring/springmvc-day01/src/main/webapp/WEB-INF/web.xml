@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<!--用乱码处理过滤器处理post请求方式中文乱码问题,与Servlet中使用的完全相同,差异之处在于这里处理器的类由SpringMVC提供-->
+	<filter>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>enconding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterEncodingFilter</filter-name>
+		<!--中文乱码处理过滤器的作用路径为所有路径-->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<servlet>
+		<!--加载SpringMVC前端控制器(核心控制器)DispatcherServlet-->
+		<servlet-name>DispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<!--加载SpringMVC的核心配置文件spring-mvc.xml,对前端控制器DispatchServlet对象进行初始化-->
+			<param-value>classpath*:spring-mvc.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DispatcherServlet</servlet-name>
+		<!--
+		注意: 映射路径 url-pattern标签指定DispatcherServlet接管的访问路径
+			/ 代表匹配所有(包括静态资源, 不包括jsp动态资源  匹配到就会被DispatcherServlet拦截接管
+			/* 代表匹配所有(包括静态资源,也包括jsp) DispatcherServlet会拦截所有的静态资源和动态资源
+			如果写成 /* ,连index.jsp都访问不了
+		-->
+		<url-pattern>/</url-pattern>
+
+		<!--只匹配(映射)后缀名是.do的资源(包括动态资源和静态资源),前端控制器DispatcherServlet只接管.do结尾的访问路径-->
+		<!--<url-pattern>*.do</url-pattern>-->
+	</servlet-mapping>
+
+</web-app>

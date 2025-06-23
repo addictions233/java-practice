@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+    namespace属性 名称空间 注意:
+    1,接口代理的开发方式下名称空间属性值必须和Mapper层接口的全限定类名一致
+    2,传统dao层实现接口的开发方式下名称空间写接口实现类的类名一致,通过(类名.id属性值)来确定唯一sql语句
+-->
+<mapper namespace="com.one.mapper.UserMapper">
+<!--这里用resultMap主要是用来解决数据表字段名称和pojo类属性名称不匹配问题    -->
+    <resultMap id="BaseResultMap" type="com.one.bean.SysUser">
+        <id property="userId" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="userPassword" column="user_password"/>
+        <result property="userEmail" column="user_email"/>
+        <result property="userInfo" column="user_info"/>
+        <result property="headImg" column="head_img"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+    <select id="findById" parameterType="long" resultMap="BaseResultMap">
+        select * from system_user where id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from system_user
+    </select>
+</mapper>
