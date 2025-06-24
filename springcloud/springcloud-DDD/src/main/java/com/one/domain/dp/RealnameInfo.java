@@ -1,4 +1,4 @@
-package com.one.domain.bo;
+package com.one.domain.dp;
 
 import lombok.Data;
 

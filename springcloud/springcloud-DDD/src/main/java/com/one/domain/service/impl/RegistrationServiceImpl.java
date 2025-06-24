@@ -1,8 +1,8 @@
 package com.one.domain.service.impl;
 
-import com.one.domain.bo.PhoneNumber;
-import com.one.domain.bo.RealnameInfo;
-import com.one.domain.bo.SalesRep;
+import com.one.domain.dp.PhoneNumber;
+import com.one.domain.dp.RealnameInfo;
+import com.one.domain.dp.SalesRep;
 import com.one.domain.entity.User;
 import com.one.domain.respository.SalesRepRepository;
 import com.one.domain.respository.UserRepository;

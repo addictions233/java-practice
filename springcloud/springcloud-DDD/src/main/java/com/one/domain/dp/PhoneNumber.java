@@ -1,7 +1,6 @@
-package com.one.domain.bo;
+package com.one.domain.dp;
 
 import lombok.Data;
-import lombok.Getter;
 
 /**
  * 在DDD中, DP(Domain Primitive)可以说是一切模型,方法, 架构的基础.

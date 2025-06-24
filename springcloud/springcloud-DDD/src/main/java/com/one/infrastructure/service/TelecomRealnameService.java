@@ -1,7 +1,7 @@
 package com.one.infrastructure.service;
 
-import com.one.domain.bo.PhoneNumber;
-import com.one.domain.bo.RealnameInfo;
+import com.one.domain.dp.PhoneNumber;
+import com.one.domain.dp.RealnameInfo;
 import com.one.domain.service.RealnameService;
 
 /**
