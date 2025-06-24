@@ -2,6 +2,9 @@ package com.one.domain.dp;
 
 import lombok.Data;
 
+/**
+ * DP 也可以称为 value object (值对象)
+ */
 @Data
 public class RealnameInfo {
 

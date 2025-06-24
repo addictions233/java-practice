@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Entity: 有状态, 领域实体对象
+ * Entity (DO 领域对象): 有状态, 领域实体对象
  * 领域对象与我们操作的数据表映射对象DO (domain object)无关
  */
 @Data
