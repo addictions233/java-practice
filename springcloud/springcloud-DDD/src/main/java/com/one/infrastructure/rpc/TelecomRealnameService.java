@@ -1,4 +1,4 @@
-package com.one.infrastructure.service;
+package com.one.infrastructure.rpc;
 
 import com.one.domain.dp.PhoneNumber;
 import com.one.domain.dp.RealnameInfo;
