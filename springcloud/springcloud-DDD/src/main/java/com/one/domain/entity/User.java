@@ -9,8 +9,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Entity (DO 领域对象): 有状态, 领域实体对象
- * 领域对象与我们操作的数据表映射对象DO (domain object)无关
+ * Entity (Domain Object 领域对象): 有状态, 领域实体对象
+ * 领域对象与我们操作的数据表映射对象PO (persistent object)无关
+ * Entity是对业务领域的建模, 而不是对数据领域映射的建模,
+ * PO (persistent object) 才是对象数据领域映射的建模 (即数据表的映射对象)
+ * Entity和PO之间可能存在 一对一, 一对多 或者多对一的关系
  */
 @Data
 @NoArgsConstructor
