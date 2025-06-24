@@ -1,6 +1,6 @@
 package com.one.domain.service;
 
-import com.one.domain.dp.PhoneNumber;
+import com.one.domain.vo.PhoneNumber;
 import com.one.domain.entity.User;
 
 /**

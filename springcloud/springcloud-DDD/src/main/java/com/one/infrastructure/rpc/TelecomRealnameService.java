@@ -1,7 +1,7 @@
 package com.one.infrastructure.rpc;
 
-import com.one.domain.dp.PhoneNumber;
-import com.one.domain.dp.RealnameInfo;
+import com.one.domain.vo.PhoneNumber;
+import com.one.domain.vo.RealnameInfo;
 import com.one.domain.service.RealnameService;
 
 /**

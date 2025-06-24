@@ -1,6 +1,6 @@
 package com.one.infrastructure.repository;
 
-import com.one.domain.dp.SalesRep;
+import com.one.domain.vo.SalesRep;
 import com.one.domain.respository.SalesRepRepository;
 import com.one.infrastructure.dao.SaleRepDao;
 

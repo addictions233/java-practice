@@ -1,6 +1,6 @@
 package com.one.domain.respository;
 
-import com.one.domain.dp.SalesRep;
+import com.one.domain.vo.SalesRep;
 
 /**
  * 归属地

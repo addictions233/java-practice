@@ -1,4 +1,4 @@
-package com.one.domain.dp;
+package com.one.domain.vo;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
  * 在DDD中, DP(Domain Primitive)可以说是一切模型,方法, 架构的基础.
  * 它在特点领域, 拥有精准定义, 可以自我验证, 拥有行为的对象. 可以认为是领域的最小组成部分.
  * DP: 抽象并封装自检和一些隐形属性的计算逻辑, 且这些属性是无状态的.
- * DP 也可以称为 value object (值对象)
+ * DP 也可以称为 value object (值对象 vo)
  */
 @Data
 public class PhoneNumber {

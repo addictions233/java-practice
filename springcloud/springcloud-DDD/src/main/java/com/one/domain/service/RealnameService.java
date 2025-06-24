@@ -1,7 +1,7 @@
 package com.one.domain.service;
 
-import com.one.domain.dp.PhoneNumber;
-import com.one.domain.dp.RealnameInfo;
+import com.one.domain.vo.PhoneNumber;
+import com.one.domain.vo.RealnameInfo;
 
 /**
  * Domain Service: 抽象并发封装多对象的有状态逻辑

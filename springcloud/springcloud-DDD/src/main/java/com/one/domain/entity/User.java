@@ -1,9 +1,9 @@
 package com.one.domain.entity;
 
-import com.one.domain.dp.Label;
-import com.one.domain.dp.PhoneNumber;
-import com.one.domain.dp.RealnameInfo;
-import com.one.domain.dp.SalesRep;
+import com.one.domain.vo.Label;
+import com.one.domain.vo.PhoneNumber;
+import com.one.domain.vo.RealnameInfo;
+import com.one.domain.vo.SalesRep;
 import com.one.domain.respository.SalesRepRepository;
 import lombok.Data;
 import lombok.NoArgsConstructor;
