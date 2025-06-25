@@ -7,7 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import java.util.List;
 
-public class SpringApp {
+public class IocApp {
     public static void main(String[] args) {
 //        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-bak-1.xml");
 //

@@ -17,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @ComponentScan("com.one")
 //@EnableAspectJAutoProxy(proxyTargetClass = true) // 使用@Enable*注解启用aspectj注解的支持, 本质上还是引入AnnotationAwareAspectJAutoProxyCreator
-public class AopApplication {
+public class AopApp {
     public static void main(String[] args) {
 //        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
 //        UserService userService = (UserService)applicationContext.getBean("userService");
@@ -26,7 +26,7 @@ public class AopApplication {
 //        System.out.println("最后的总价:"+ money);
 
 
-        AnnotationConfigApplicationContext applicationContext1 = new AnnotationConfigApplicationContext(AopApplication.class);
+        AnnotationConfigApplicationContext applicationContext1 = new AnnotationConfigApplicationContext(AopApp.class);
         UserService userService1 = (UserService) applicationContext1.getBean("userService");
         userService1.save();
 
