@@ -7,7 +7,7 @@ import lombok.Data;
  * 它在特点领域, 拥有精准定义, 可以自我验证, 拥有行为的对象. 可以认为是领域的最小组成部分.
  * DP: 抽象并封装自检和一些隐形属性的计算逻辑, 且这些属性是无状态的.
  * DP 也可以称为 value object (值对象 vo)
- * VO 是不可变对象, 没有唯一标识符. 通常用于表示一些属性的组合
+ * VO (value object) 是不可变对象, 没有唯一标识符. 通常用于表示一些属性的组合
  */
 @Data
 public class PhoneNumber {
