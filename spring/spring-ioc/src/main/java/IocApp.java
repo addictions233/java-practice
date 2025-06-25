@@ -9,7 +9,7 @@ import java.util.List;
 
 public class IocApp {
     public static void main(String[] args) {
-//        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-bak-1.xml");
+//        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 //
 //
 //
