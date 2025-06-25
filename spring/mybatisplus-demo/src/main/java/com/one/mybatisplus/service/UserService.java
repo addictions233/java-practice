@@ -1,7 +1,5 @@
 package com.one.mybatisplus.service;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.dynamic.datasource.annotation.DSTransactional;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.one.mybatisplus.entity.TbUser;
 

@@ -1,7 +1,5 @@
 package com.one.mybatisplus.service.impl;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.dynamic.datasource.annotation.DSTransactional;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @ClassName: UserServiceImpl
@@ -23,9 +20,6 @@ import java.util.Map;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, TbUser> implements UserService {
-
-    @Resource
-    private UserMapper userMapper;
 
     @Resource
     private JdbcTemplate jdbcTemplate;
@@ -58,13 +52,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, TbUser> implements 
     /**
      * 通过注解指定查询数据源
      */
-    @DS("#session.rw")
+//    @DS("#session.rw")
     public List<?> selectUser() {
         return jdbcTemplate.queryForList("select * from tb_user");
     }
 
-    @DS("write")
-    @DSTransactional
+//    @DS("write")
+//    @DSTransactional
     public void createUser(TbUser user) {
         jdbcTemplate.update("insert into tb_user values(?,?,?,?,?)", user.getUserName(), user.getUserStatus(), user.getName(), user.getInfo());
         int i = 1/0;

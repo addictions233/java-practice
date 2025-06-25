@@ -2,97 +2,84 @@ server:
   port: 8081
 
 
-spring:
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    #自定义第一个数据源
-    datasource1:
-      url: jdbc:mysql://localhost:3306/db_master?serverTimezone=UTC
-      username: root
-      password: root
-      initial-size: 1
-      min-idle: 1
-      max-active: 20
-      test-on-borrow: true
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    #自定义第二个数据源
-    datasource2:
-      url: jdbc:mysql://localhost:3306/db_slave?serverTimezone=UTC
-      username: root
-      password: root
-      initial-size: 1
-      min-idle: 1
-      max-active: 20
-      test-on-borrow: true
-      driver-class-name: com.mysql.cj.jdbc.Driver
-
 # 多数据源配置
 #spring:
 #  datasource:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    type: com.alibaba.druid.pool.DruidDataSource
-#    # mybatis plus配置动态数据源
-#    dynamic:
-#      #设置默认的数据源或者数据源组,read
-#      primary: master
-#      #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
-#      strict: false
-#      # 数据源master
-#      master:
+#    dynamic: # mybatis plus配置动态数据源
+#      primary: master #设置默认的数据源或者数据源组,read
+#      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+#      master: # 数据源master
 #        url: jdbc:mysql://127.0.0.1:3306/db_master?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
 #        username: root
 #        password: root
-#      # 数据源slave
-#      slave:
+#        initial-size: 1
+#        min-idle: 1
+#        max-active: 20
+#        test-on-borrow: false
+#      slave: # 数据源slave
 #        url: jdbc:mysql://127.0.0.1:3306/db_slave?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
 #        username: root
 #        password: root
+#        initial-size: 1
+#        min-idle: 1
+#        max-active: 20
+#        test-on-borrow: false
+#      test: # 业务数据源
+#        url: jdbc:mysql://127.0.0.1:3306/db_test?allowMultiQueries=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+#        username: root
+#        password: root
+#        initial-size: 1
+#        min-idle: 1
+#        max-active: 20
+#        test-on-borrow: false
 
 
 #数据源配置
-#spring:
-#  servlet:
-#    multipart:
-#      #设置单个文件的大小
-#      max-file-size: 20MB
-#      max-request-size: 50MB
-#  datasource:
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    driverClassName: com.mysql.cj.jdbc.Driver
-#    druid:
-#      url: jdbc:mysql://localhost:3306/db_test?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-#      username: root
-#      password: root
-#      initialSize: 5
-#      minIdle: 10
-#      maxActive: 20
-#      maxWait: 60000
-#      connectTimeOut: 30000
-#      socketTimeOut: 30000
-#      timeBetweenEvictionRunsMillis: 60000
-#      minEvictableIdleTimeMillis: 300000
-#      maxEvictableIdleTimeMillis: 900000
-#      validationQuery: SELECT 1 FROM DUAL
-#      testWhileIdle: true
-#      testOnBorrow: false
-#      testOnReturn: false
-#      webStatFilter:
-#        enabled: true
-#      statViewServlet:
-#        enabled: true
-#        allow:
-#        url-pattern: /druid/*
-#        login-username: admin
-#        login-password: 123456
-#      filter:
-#        stat:
-#          enabled: false
-#          log-slow-sql: false
-#          slow-sql-millis: 1000
-#          merge-sql: true
-#        wall:
-#          config:
-#            multi-statement-allow: true
+spring:
+  servlet:
+    multipart:
+      #设置单个文件的大小
+      max-file-size: 20MB
+      max-request-size: 50MB
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://localhost:3306/db_test?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+      initialSize: 5
+      minIdle: 10
+      maxActive: 20
+      maxWait: 60000
+      connectTimeOut: 30000
+      socketTimeOut: 30000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      maxEvictableIdleTimeMillis: 900000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        allow:
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: 123456
+      filter:
+        stat:
+          enabled: false
+          log-slow-sql: false
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
 
 # mybatis配置
 mybatis:
@@ -119,11 +106,4 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     call-setters-on-null: true
   type-enums-package: com.one.mybatisplus.enums # 设置枚举类扫描的包路径
-
-# 分页插件
-pagehelper:
-  helperDialect: mysql
-  reasonable: false
-  supportMethodsArguments: true
-  countSuffix: _COUNT
 

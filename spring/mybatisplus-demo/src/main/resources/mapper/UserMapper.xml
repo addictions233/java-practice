@@ -4,7 +4,6 @@
 
 
     <select id="selectPageByCustom" resultType="com.one.mybatisplus.entity.TbUser">
-        SELECT * FROM user
-        WHERE state = #{state}
+        SELECT * FROM tb_user
     </select>
 </mapper>

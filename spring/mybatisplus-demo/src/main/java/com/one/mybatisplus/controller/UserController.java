@@ -1,20 +1,17 @@
 package com.one.mybatisplus.controller;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.one.mybatisplus.entity.TbUser;
 import com.one.mybatisplus.mapper.UserMapper;
 import com.one.mybatisplus.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
 
 /**
  * @author roy
@@ -31,8 +28,11 @@ public class UserController {
     @Resource
     UserService userService;
 
+//    @Resource
+//    DynamicRoutingDataSource dataSource;
+//
     @Resource
-    DynamicRoutingDataSource dataSource;
+    private DataSource dataSource;
 
     @ResponseBody
     @RequestMapping("/queryCourse")
@@ -68,25 +68,15 @@ public class UserController {
         return "SUCCESS BY DS";
     }
 
-    @ResponseBody
-    @RequestMapping("/addDB")
-    public Object addDB(){
-        DruidDataSource tmpdb = new DruidDataSource();
-        tmpdb.setUsername("root");
-        tmpdb.setPassword("root");
-        tmpdb.setUrl("jdbc:mysql://localhost:3306/coursedb2?serverTimezone=UTC");
-        tmpdb.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.addDataSource("test",tmpdb);
-        return "DB added";
-    }
-
-    @GetMapping("/customPage")
-    public IPage<TbUser> customPage(@RequestParam(defaultValue = "1") int current,
-                                     @RequestParam(defaultValue = "10") int size,
-                                     Integer state) {
-        Page<TbUser> page = new Page<>(current, size);
-        IPage<TbUser> userPage = userMapper.selectPageByCustom(page, state);
-        return userPage;
-    }
-
+//    @ResponseBody
+//    @RequestMapping("/addDB")
+//    public Object addDB(){
+//        DruidDataSource tmpdb = new DruidDataSource();
+//        tmpdb.setUsername("root");
+//        tmpdb.setPassword("root");
+//        tmpdb.setUrl("jdbc:mysql://localhost:3306/coursedb2?serverTimezone=UTC");
+//        tmpdb.setDriverClassName("com.mysql.cj.jdbc.Driver");
+//        dataSource.addDataSource("test",tmpdb);
+//        return "DB added";
+//    }
 }
