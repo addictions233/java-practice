@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       https://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+
+    <!--
+    base-package属性的属性值一般为域名倒着写, 作用是扫描哪个包下的注解,
+    即注解的java类放在哪个包下了,并创建Bean对象
+    -->
+    <context:component-scan base-package="com.one"/>
+
+    <!--<bean id="userService" class="com.one.service.impl.UserServiceImpl" />-->
+
+    <!--<bean id="userDao" class="com.one.dao.impl.UserDaoImpl" />-->
+
+    <!--<bean id="bookDao" class="com.one.dao.impl.BookDaoImpl" />-->
+
+</beans>
