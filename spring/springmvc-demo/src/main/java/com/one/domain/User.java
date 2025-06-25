@@ -1,11 +1,12 @@
 package com.one.domain;
 
-import org.springframework.stereotype.Component;
 
-@Component
 public class User {
+    private String id;
     private String name;
     private Integer age;
+
+    private Address address;
 
     public String getName() {
         return name;
@@ -15,7 +16,7 @@ public class User {
         this.name = name;
     }
 
-    public Integer gegtAge() {
+    public Integer getAge() {
         return age;
     }
 
@@ -29,5 +30,21 @@ public class User {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

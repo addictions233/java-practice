@@ -17,7 +17,7 @@ import java.util.Map;
  * @Date: 2020/12/06
  */
 @Controller
-public class UserController {
+public class ParamController {
     /**
      * Note:  @RequestMapping注解用来设置当前方法的访问路径
      * @return jsp

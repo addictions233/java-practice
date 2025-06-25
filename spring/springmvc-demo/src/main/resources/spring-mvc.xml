@@ -14,19 +14,40 @@
        http://www.springframework.org/schema/tx
        https://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/aop
-       https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--配置SpringMVC的组件扫描的包路径-->
+    <context:component-scan base-package="com.one"/>
+
+    <!--配置注解驱动 即HandlerMapping + HandlerAdapter-->
+    <mvc:annotation-driven/>
+
+    <!--方式2: SpringMVC提供的通用资源放行,让浏览器可以访问的静态资源, 这里放行jquery-->
+    <mvc:default-servlet-handler/>
+
+    <!--<mvc:interceptors>-->
+    <!--<mvc:interceptor>-->
+    <!--<mvc:mapping path="/showPage"/>-->
+    <!--<bean class="com.one.interceptor.MyInterceptor"/>-->
+    <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+    <!-- 配置文件上处理器,加载文件上传的类CommonsMultipartResolver的Bean对象-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置属性参数值, 限制上传文件大小, 参数单位是byte: 1m=1024*1024byte-->
+        <property name="maxUploadSize" value="1024000"/>
+    </bean>
 
     <!--
-        第一种:扫描com.one包路径下的, 仅包含Controller的注解,
-        此方式有缺陷, 当Spring和SpringMVC的包扫描重叠时,会创建多个Bean对象,违背单例原则
-    -->
+   第一种:扫描com.one包路径下的, 仅包含Controller的注解,
+   此方式有缺陷, 当Spring和SpringMVC的包扫描重叠时,会创建多个Bean对象,违背单例原则
+-->
     <!--<context:component-scan base-package="com.one">-->
-        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
     <!--</context:component-scan>-->
-    
+
     <!--第二种:配置SpringMVC组件扫描的包路径,因为SpringMVC就是控制Controller层,所以指定组件扫描路径要具体到controller层目录-->
     <context:component-scan base-package="com.one.controller"/>
-
 
 
     <!--静态资源放行的三种方式:-->
