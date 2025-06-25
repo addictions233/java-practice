@@ -1,11 +1,20 @@
 package com.one.domain;
 
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
+/**
+ *
+ */
 public class User {
     private String id;
+
+    @NotBlank(message = "姓名不能为空")
     private String name;
     private Integer age;
 
+    @Valid
     private Address address;
 
     public String getName() {

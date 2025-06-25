@@ -1,12 +1,10 @@
 package com.one.domain;
 
-/**
- * @ClassName: Address
- * @Description: TODO
- * @Author: one
- * @Date: 2020/12/06
- */
+import javax.validation.constraints.NotBlank;
+
 public class Address {
+
+    @NotBlank(message = "省份不能为空")
     private String province;
     private String city;
     private String rode;

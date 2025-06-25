@@ -4,12 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
-/**
- * @author one
- * @description TODO
- * @date 2023-4-21
- */
-
 public class DateDTO {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
