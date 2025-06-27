@@ -8,10 +8,10 @@
             com.mysql.cj.jdbc.Driver
         </property>
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/mybatis-vip?characterEncoding=utf8&amp;serverTimezone=UTC
+            jdbc:mysql://localhost:3306/db_test?characterEncoding=utf8&amp;serverTimezone=UTC
         </property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">123456</property>
+        <property name="hibernate.connection.password">root</property>
         <property name="hibernate.dialect">
             org.hibernate.dialect.MySQLDialect
         </property>
