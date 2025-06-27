@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Author: one
  * @Date: 2020/12/01
  */
-public class TestDruid {
+public class DruidTest {
     @Test
     public void testDruid(){
         //2,加载核心配置文件

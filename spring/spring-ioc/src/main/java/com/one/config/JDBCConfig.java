@@ -1,9 +1,13 @@
 package com.one.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
 
 /**
  * @ClassName: JDBCConfig
@@ -26,16 +30,18 @@ public class JDBCConfig {
     @Value("${jdbc.password}")
     private String password;
 
-    //@Bean()的参数用于指定Bean对象的id值,当不写时，默认值是Bean对象的id值当前方法的方法名
     @Bean("dataSource")
     public DruidDataSource getDataSource(){
-//        System.out.println(driver);
-        DruidDataSource dds = new DruidDataSource();
-        dds.setDriverClassName(driver);
-        dds.setUrl(url);
-        dds.setUsername(username);
-        dds.setPassword(password);
+        DruidDataSource druidDataSource = new DruidDataSource();
+        druidDataSource.setDriverClassName(driver);
+        druidDataSource.setUrl(url);
+        druidDataSource.setUsername(username);
+        druidDataSource.setPassword(password);
+        return druidDataSource;
+    }
 
-        return dds;
+    @Bean
+    public JdbcTemplate getJdbcTemplate(@Autowired DataSource dataSource){
+        return new JdbcTemplate(dataSource);
     }
 }

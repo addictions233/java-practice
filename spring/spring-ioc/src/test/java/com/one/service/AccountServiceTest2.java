@@ -14,7 +14,7 @@ import java.util.List;
  * @Author: one
  * @Date: 2020/12/02
  */
-public class TestAccountService {
+public class AccountServiceTest2 {
     @Test
     public void testAccountService(){
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");

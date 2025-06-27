@@ -11,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Author: one
  * @Date: 2020/12/02
  */
-public class TestBookDao {
+public class BookDaoTest {
     @Test
     public void testBookDao(){
         ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-bak.xml");
