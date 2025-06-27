@@ -23,14 +23,14 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
+        <!-- c3p0数据库连接池 -->
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>
             <version>0.9.5.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+        <!-- druid数据库连接池 -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
@@ -45,39 +45,40 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+        <!-- mybatis的依赖, 默认使用Hikari数据库连接池 -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <version>3.5.3</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
+        <!-- pagehelper mybatis的分页插件 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
             <version>5.1.10</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <!-- fastjson -->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.62</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <!-- log4j的依赖,日志的具体实现 -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <!--绑定log4j实现，需要导入适配器-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>2.0.4</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <!-- slf4j-api的api规范 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -86,7 +87,7 @@
 
 
 
-        <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+        <!-- jedis -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
