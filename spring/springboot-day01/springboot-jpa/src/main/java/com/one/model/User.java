@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 在映射文件的位置，我们也可以通过注解的方式来替换掉映射文件
+ */
 @Data
 @Entity
 @Table(name = "tb_user")

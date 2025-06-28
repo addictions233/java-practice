@@ -3,6 +3,7 @@
         '-//Hibernate/Hibernate Mapping DTD 3.0//EN'
         'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
 <hibernate-mapping>
+    <!-- 在使用Hibernate的使用，我们需要为实体类创建一些hbm的xml映射文件 -->
     <class name="com.one.model.User" table="tb_user">
         <id name="id" />
         <property name="userName" column="user_name"></property>
