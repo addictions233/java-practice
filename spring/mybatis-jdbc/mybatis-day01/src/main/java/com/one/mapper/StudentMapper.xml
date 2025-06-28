@@ -20,19 +20,19 @@
         parameterType属性：指定参数映射对象类型
     -->
     <!--2) Mapper接口方法名和Mapper.xml中定义的每个statement的id相同-->
-    <select id="selectAll" resultType="student">
+    <select id="selectAll" resultType="com.one.domain.Student">
         <include refid="select"/>
     </select>
 
-    <select id="selectById" resultType="student" parameterType="int">
+    <select id="selectById" resultType="com.one.domain.Student" parameterType="int">
         <include refid="select"/> WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="student">
+    <insert id="insert" parameterType="com.one.domain.Student">
         INSERT INTO student VALUES (#{id},#{name},#{age})
     </insert>
 
-    <update id="update" parameterType="student">
+    <update id="update" parameterType="com.one.domain.Student">
         UPDATE student SET name = #{name},age = #{age} WHERE id = #{id}
     </update>
 
@@ -40,7 +40,8 @@
         DELETE FROM student WHERE id = #{id}
     </delete>
 
-    <select id="selectCondition" resultType="student" parameterType="student">
+    <select id="selectCondition" resultType="com.one.domain.Student"
+            parameterType="com.one.domain.Student">
         <include refid="select"/>
         <where>
             <if test="id != null">
@@ -55,7 +56,7 @@
         </where>
     </select>
 
-    <select id="selectByIds" resultType="student" parameterType="list">
+    <select id="selectByIds" resultType="com.one.domain.Student" parameterType="list">
         <include refid="select"/>
         <where>
             <foreach collection="list" open="id IN (" close=")" item="id" separator=",">
