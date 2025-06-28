@@ -1,4 +1,4 @@
-package com.one.many_to_many;
+package com.one.many2many;
 
 import com.one.bean.Student;
 

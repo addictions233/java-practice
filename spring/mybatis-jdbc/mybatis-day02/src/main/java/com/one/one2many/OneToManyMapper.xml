@@ -7,7 +7,7 @@
     mapper: Mybatis代理接口方式的映射接口
     namespace: 与映射接口的全限定类名必须保持一致
 -->
-<mapper namespace="com.one.one_to_many.OneToManyMapper">
+<mapper namespace="com.one.one2many.OneToManyMapper">
     <resultMap id="OneToMany" type="classes">
         <id column="cid" property="id"/>
         <result column="cname" property="name"/>

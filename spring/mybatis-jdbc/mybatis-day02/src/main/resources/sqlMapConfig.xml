@@ -43,9 +43,9 @@
     <!--mappers 引入Mybatis的映射配置文件-->
     <mappers>
         <!--mapper:引入映射配置文件 resource属性:指定映射配置文件名称(注意是相对路径)-->
-        <mapper resource="com/one/one_to_one/One2One.xml"/>
-        <mapper resource="com/one/one_to_many/OneToManyMapper.xml"/>
-        <mapper resource="com/one/many_to_many/ManyToManyMapper.xml"/>
+        <mapper resource="com/one/one2one/One2One.xml"/>
+        <mapper resource="com/one/one2many/OneToManyMapper.xml"/>
+        <mapper resource="com/one/many2many/ManyToManyMapper.xml"/>
     </mappers>
 
 </configuration>

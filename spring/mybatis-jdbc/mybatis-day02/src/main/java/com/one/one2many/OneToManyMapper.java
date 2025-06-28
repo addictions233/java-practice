@@ -1,4 +1,4 @@
-package com.one.one_to_many;
+package com.one.one2many;
 
 import com.one.bean.Classes;
 

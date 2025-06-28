@@ -13,7 +13,6 @@
         <module>mybatis-day02</module>
         <module>jdbc</module>
         <module>mybatis-day03</module>
-        <module>mybatis-day00</module>
     </modules>
 
     <properties>

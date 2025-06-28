@@ -1,4 +1,4 @@
-package com.one.one_to_one;
+package com.one.one2one;
 
 import com.one.bean.Card;
 

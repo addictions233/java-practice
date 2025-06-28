@@ -50,19 +50,19 @@
 
     <!--mappers 引入映射配置文件的位置,注意mappers标签下可以写多个mapper标签,引入不同持久层接口的映射配置文件
     如果不写mappers标签,代码运行时会报下面错误
-    Type interface com.one.mapper.CountryMapper is not known to the MapperRegistry.
--->
+    Type interface com.one.mapper.CountryMapper is not known to the MapperRegistry-->
+
 <!--    <mappers>-->
-<!--        &lt;!&ndash;方式一: mapper标签:引入映射配置文件 resource属性:指定配置文件的相对路径&ndash;&gt;-->
+        <!--方式一: mapper标签:引入映射配置文件 resource属性:指定配置文件的相对路径-->
 <!--        <mapper resource="com/one/mapper/CountryMapper.xml"></mapper>-->
-<!--        &lt;!&ndash;方式二: mapper标签:注解方式下配置映射配置接口 resource属性:指定接口的全限定名&ndash;&gt;-->
-<!--        &lt;!&ndash;        <mapper class ="com.one.mapper.CountryMapper"></mapper>&ndash;&gt;-->
-<!--        &lt;!&ndash;方式三: package 用包扫描的方法配置包中的所有映射配置文件或者映射注解接口-->
-<!--            注意:如果是注解开发的方式引入映射接口,name属性就写接口包名  用点分隔-->
-<!--                 如果是映射配置文件的方式引入xml文件,name属性就写文件的路径名  用正斜扛进行分隔-->
-<!--        &ndash;&gt;-->
-<!--        &lt;!&ndash;        <package name="com/one/mapper"></package>&ndash;&gt;-->
-<!--        &lt;!&ndash;        <package name="com.one.mapper"></package>&ndash;&gt;-->
+        <!--方式二: mapper标签:注解方式下配置映射配置接口 resource属性:指定接口的全限定名-->
+        <!--        <mapper class ="com.one.mapper.CountryMapper"></mapper>-->
+        <!--方式三: package 用包扫描的方法配置包中的所有映射配置文件或者映射注解接口
+            注意:如果是注解开发的方式引入映射接口,name属性就写接口包名  用点分隔
+                 如果是映射配置文件的方式引入xml文件,name属性就写文件的路径名  用正斜扛进行分隔
+        -->
+        <!--        <package name="com/one/mapper"></package>-->
+        <!--        <package name="com.one.mapper"></package>-->
 <!--    </mappers>-->
 
 

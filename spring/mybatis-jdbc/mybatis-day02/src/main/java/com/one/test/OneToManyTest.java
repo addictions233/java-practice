@@ -1,7 +1,7 @@
 package com.one.test;
 
 import com.one.bean.Classes;
-import com.one.one_to_many.OneToManyMapper;
+import com.one.one2many.OneToManyMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

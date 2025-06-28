@@ -11,7 +11,7 @@
 -->
 <mapper namespace="com.one.mapper.StudentMapper">
 <!-- sql片段, 可以通过id进行重复引用-->
-    <sql id="select" >SELECT * FROM student</sql>
+    <sql id="select">SELECT * FROM student</sql>
 
     <!--
         select：查询功能的标签
@@ -21,7 +21,7 @@
     -->
     <!--2) Mapper接口方法名和Mapper.xml中定义的每个statement的id相同-->
     <select id="selectAll" resultType="student">
-        <include refid="select"></include>
+        <include refid="select"/>
     </select>
 
     <select id="selectById" resultType="student" parameterType="int">

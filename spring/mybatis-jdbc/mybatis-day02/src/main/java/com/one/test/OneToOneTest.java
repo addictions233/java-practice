@@ -1,7 +1,7 @@
 package com.one.test;
 
 import com.one.bean.Card;
-import com.one.one_to_one.OneToOneMapper;
+import com.one.one2one.OneToOneMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
