@@ -1,15 +1,10 @@
 package com.one.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-import com.github.pagehelper.PageInterceptor;
 import com.one.domain.Student;
 import com.one.mapper.StudentMapper;
 import com.one.service.StudentService;
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -26,7 +21,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> selectAll() {
         //1,加载核心配置文件
-        InputStream is = StudentServiceImpl.class.getClassLoader().getResourceAsStream("sqlMapConfig.xml");
+        InputStream is = StudentServiceImpl.class.getClassLoader().getResourceAsStream("mybatis-config.xml");
         //2,获取 SqlSessionFactory工厂对象
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
         // 3,获取 SqlSession会话对象
@@ -56,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
         SqlSession sqlSession = null;
         try {
             // 1, 加载核心配置文件
-            is = Resources.getResourceAsStream("sqlMapConfig.xml");
+            is = Resources.getResourceAsStream("mybatis-config.xml");
             // 2, 获取SqlSessionFactory工厂对象
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
             // 3, 获取SqlSession对象 参数true表示自动提交事务
@@ -86,7 +81,7 @@ public class StudentServiceImpl implements StudentService {
         Student student = null;
         try {
             // 1, 加载核心配置文件
-            is = Resources.getResourceAsStream("sqlMapConfig.xml");
+            is = Resources.getResourceAsStream("mybatis-config.xml");
             // 2,创建 SqlSessionFactor工厂对象
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
             // 3, 获取SqlSession会话对象
@@ -116,8 +111,8 @@ public class StudentServiceImpl implements StudentService {
 
     public void before(){
         // 1,读取核心配置文件
-//        InputStream is = Resources.getResourceAsStream("sqlMapConfig.xml");
-        this.is = StudentServiceImpl.class.getClassLoader().getResourceAsStream("sqlMapConfig.xml");
+//        InputStream is = Resources.getResourceAsStream("mybatis-config.xml");
+        this.is = StudentServiceImpl.class.getClassLoader().getResourceAsStream("mybatis-config.xml");
         // 2, 获取SqlSessionFactory工厂对象
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(this.is);
         // 3,获取SqlSession会话对象

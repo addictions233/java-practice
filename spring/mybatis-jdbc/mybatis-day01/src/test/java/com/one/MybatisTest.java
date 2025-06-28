@@ -1,6 +1,6 @@
 package com.one;
 
-import com.one.bean.Student;
+import com.one.domain.Student;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -26,7 +26,7 @@ public class MybatisTest {
     @Before
     public void before() {
         //1.通过类加载器加载核心配置文件
-        is = MybatisTest.class.getClassLoader().getResourceAsStream("sqlMapConfig.xml");
+        is = MybatisTest.class.getClassLoader().getResourceAsStream("mybatis-config.xml");
 
         //2.获取SqlSessionFactory工厂对象
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
@@ -77,7 +77,7 @@ public class MybatisTest {
 
     @Test
     public void insert() throws Exception {
-        Student stu = new Student(null, "马七", 27);
+        Student stu = new Student(null, "马七", 27,null);
         // i表示影响的行数
         int i = sqlSession.insert("insert", stu);
         System.out.println("修改了:" + i);
@@ -91,7 +91,7 @@ public class MybatisTest {
         System.out.println("修改前:");
         Student student = sqlSession.selectOne("selectById", 5);
         System.out.println(student);
-        Student stu = new Student(5, "王大锤", 88);
+        Student stu = new Student(5, "王大锤", 88, null);
         int i = sqlSession.update("update", stu);
         System.out.println("修改了:" + i);
         System.out.println("修改后:");
