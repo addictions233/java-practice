@@ -22,7 +22,7 @@ public class SysUserServiceImpl implements SysUserService {
     public void before(){
         try {
             //1,加载核心配置文件mybatis-config.xml
-            is = Resources.getResourceAsStream("sqlMapConfig.xml");
+            is = Resources.getResourceAsStream("mybatis-config.xml.xml");
             // 2,获取SqlSessionFactory工厂对象
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
             // 3,获取SqlSession会话对象,并将事务设置为自动提交

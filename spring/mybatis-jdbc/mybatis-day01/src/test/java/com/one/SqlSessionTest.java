@@ -26,18 +26,13 @@ public class SqlSessionTest {
 
     @Before
     public void before() {
-        //1.通过类加载器加载核心配置文件
+        //1.通过类加载器加载mybatis-config核心配置文件
         is = SqlSessionTest.class.getClassLoader().getResourceAsStream("mybatis-config.xml");
-
         //2.获取SqlSessionFactory工厂对象
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-
         //3.通过SqlSessionFactory工厂对象获取SqlSession对象
-        /*
-            没写参数则参数默认为false,得手动提交事务,
-            查询不用提交事务
-            但是增,删,改必须调用commit()方法sql语句才能生效
-         */
+//        没写参数则参数默认为false,得手动提交事务,
+//        增,删,改必须调用commit()方法sql语句才能生效
         //sqlSession = sqlSessionFactory.openSession();
         //参数为true, 即为自动提交事务,还是隐式开启事务
         sqlSession = sqlSessionFactory.openSession(true);
@@ -90,7 +85,7 @@ public class SqlSessionTest {
     @Test
     public void update() throws Exception {
         System.out.println("修改前:");
-        Student student = sqlSession.selectOne("selectById", 5);
+        Student student = sqlSession.selectOne("com.one.mapper.StudentMapper.selectById", 5);
         System.out.println(student);
         Student stu = new Student(5, "王大锤", 88, null);
         int i = sqlSession.update("update", stu);

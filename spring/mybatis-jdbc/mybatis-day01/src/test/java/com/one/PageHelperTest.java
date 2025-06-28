@@ -16,7 +16,7 @@ import java.util.List;
  * @Date: 2021/05/21
  */
 
-public class StudentTest {
+public class PageHelperTest {
 
     /**
      * 测试使用分页插件进行分页查询
@@ -29,6 +29,7 @@ public class StudentTest {
         String pageInfoJSON = JSON.toJSONString(pageInfo);
         System.out.println("pageInfoJSON:" + pageInfoJSON);
         System.out.println("pageInfoToString" + pageInfo.getList());
+
         String listJSON = JSON.toJSONString(pageInfo.getList());
         System.out.println("listJSON:" + listJSON);
         long total = pageInfo.getTotal();
