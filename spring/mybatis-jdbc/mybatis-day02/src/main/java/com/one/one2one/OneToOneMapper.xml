@@ -7,6 +7,10 @@
     Mybatis接口代理方式下的namespace必须与接口的全类名一致
 -->
 <mapper namespace="com.one.one2one.OneToOneMapper">
+
+    <!-- 开启二级缓存  -->
+<!--    <cache/>-->
+
     <!--
         resultMap: 配置数据表字段和实体对象属性的映射关系
         id : 与下面的resultMap的值相对应

@@ -15,12 +15,12 @@
     <!--typeAlias 给实体类或者其他类取别名-->
     <typeAliases>
         <!--该包名下的所有类全部搜索,且取别名为类名(不区分大小写,建议小写)-->
-        <package name="com.one.bean"></package>
+        <package name="com.one.bean"/>
     </typeAliases>
     
     <!--plugin 集成分页插件助手 新版本用法-->
     <plugins>
-        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
     </plugins>
 
     <!--environments 配置数据环境,环境可以有多个,default属性指定默认环境-->
@@ -28,7 +28,7 @@
         <!--environment配置数据库环境,id属性为唯一标识-->
         <environment id="mysql">
             <!--transactionManager 事务管理, type属性:采用JDBC默认事务-->
-            <transactionManager type="JDBC"></transactionManager>
+            <transactionManager type="JDBC"/>
             <!--dataSource 数据源信息 type属性:连接池-->
             <dataSource type="POOLED">
                 <property name="driver" value="${jdbc.driver}"/>

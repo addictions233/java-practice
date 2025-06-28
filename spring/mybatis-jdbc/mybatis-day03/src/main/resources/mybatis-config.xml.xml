@@ -5,7 +5,7 @@
 <!--configuration mybatis核心配置文件根标签-->
 <configuration>
     <!--properties 加载mysql数据库连接的四要素属性配置文件-->
-    <properties resource="jdbc.properties"></properties>
+    <properties resource="jdbc.properties"/>
 
     <!--settings 设置log4j日志打印设置-->
     <settings>
@@ -15,13 +15,13 @@
     <!--typeAliases 给与数据库表映射的实体类取别名,这样在映射文件中使用实体类不用写全限定名称-->
     <typeAliases>
         <!--package 采用包扫描的方式给实体类取别名,直接用类名 name属性:指定实体类的包名-->
-        <package name="com.one.bean"></package>
+        <package name="com.one.bean"/>
     </typeAliases>
 
     <!--plugins 插件,这里配置分页插件助手-->
     <plugins>
         <!--interceptor属性 注意不同版本的分页插件助手interceptor的属性值不一样-->
-        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
     </plugins>
 
     <!--environments 配置数据环境变量,数据环境可以有多个 default属性 指定默认的数据环境-->
@@ -29,7 +29,7 @@
         <!--environment 配置数据库环境变量 id属性 唯一标识-->
         <environment id="mysql">
             <!--transactionManager 事务管理 type属性 采用JDBC默认的事务管理-->
-            <transactionManager type="JDBC"></transactionManager>
+            <transactionManager type="JDBC"/>
             <!--dataSource 数据源 type属性 连接池-->
             <dataSource type="POOLED">
                 <!--property mysql数据库连接 value属性 用${}字符串拼接进行对value属性赋值-->

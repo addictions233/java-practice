@@ -8,5 +8,5 @@ public interface ManyToManyMapper {
     /**
      *  多表查询多对多情况
      */
-    public List<Student> selectAll();
+    List<Student> selectAll();
 }
