@@ -42,11 +42,12 @@
 
     <!--mappers 引入Mybatis的映射配置文件-->
     <mappers>
-        <!--mapper 引入映射配置文件 resource属性 指定映射配置文件名称(注意相对路径), 不需要映射文件名称和接口名称一样-->
+        <!--mapper 使用resource属性引入xml映射配置文件  指定映射配置文件名称(注意相对路径), 不需要映射文件名称和接口名称一样-->
         <!-- mapper 引入指定的映射配置文件，resource属性指定映射配置文件的路径，mapper子标签可以写多个，表示多个映射配置文件 -->
+        <!-- 在默认maven打包的环境下，不要将接口文件和mapper文件全部放到src/main/java，这样也不会把mapper文件打包进去    -->
         <!--        <mapper resource="com/one/mapper/StudentMapper.xml"/>-->
 
-        <!-- mapper标签只能单个引入映射配置文件， 而package标签可以批量引入一个包下的所用的映射配置文件, name=包名-->
+        <!-- mapper标签只能单个引入映射配置文件， 而package标签可以批量引入一个包下的所有的mapper映射接口, name=包名-->
         <!-- 此种方法要求mapper接口和mapper映射文件的名称相同,且放在同一个目录下  -->
         <!--  注意:如果是注解开发的方式引入映射接口,name属性就写接口包名,用点分隔,
         如果是映射配置文件的方式引入xml文件,name属性就写文件的路径名 用正斜扛进行分隔-->

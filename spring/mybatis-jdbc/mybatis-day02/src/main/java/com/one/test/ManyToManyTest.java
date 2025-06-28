@@ -26,7 +26,7 @@ public class ManyToManyTest {
     public void before(){
         try {
             //1,加载核心配置文件
-            is = Resources.getResourceAsStream("sqlMapConfig.xml");
+            is = Resources.getResourceAsStream("mybatis-config.xml");
             //2,获取SqlSessionFactory工厂对象
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
             //3, 获取SqlSession会话对象
