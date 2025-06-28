@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- *  实现service层的接口,调用mapper层
+ *  实现service层的接口,调用mapper层, 生成mapper层接口的代码对象
  */
 public class StudentServiceImpl implements StudentService {
     @Override
@@ -26,9 +26,9 @@ public class StudentServiceImpl implements StudentService {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
         // 3,获取 SqlSession会话对象
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
-        // 4,获取StudentMapper接口的实现类对象
+        // 4,获取StudentMapper接口的代理对象
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
-        // 5, 用StudentMapper接口的实现类对象调用selectAll()方法
+        // 5, 用StudentMapper接口的代理对象调用selectAll()方法
         List<Student> list = studentMapper.selectAll();
         try {
             is.close();
@@ -56,7 +56,7 @@ public class StudentServiceImpl implements StudentService {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
             // 3, 获取SqlSession对象 参数true表示自动提交事务
             sqlSession = sqlSessionFactory.openSession(true);
-            // 4, 获取StudentMapper接口的实现类对象
+            // 4, 获取StudentMapper接口的代理对象
             StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
             // 使用PageHelper开启分页查询
             PageHelper.startPage(currentPage, pageSize);
@@ -86,9 +86,9 @@ public class StudentServiceImpl implements StudentService {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
             // 3, 获取SqlSession会话对象
             sqlSession = sqlSessionFactory.openSession(true);
-            // 4, 获取StudentService接口的实现类对象
+            // 4, 获取StudentService接口的代理对象
             StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
-            // 5, 用StudentService接口的实现类对象调用 selectById()方法
+            // 5, 用StudentService接口的代理对象调用 selectById()方法
            student = studentMapper.selectById(id);
 
         } catch (IOException e) {
@@ -117,7 +117,7 @@ public class StudentServiceImpl implements StudentService {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(this.is);
         // 3,获取SqlSession会话对象
          sqlSession = sqlSessionFactory.openSession(true);
-        // 4, 获取Mapper层接口的实现类，mybatis使用接口代理的方式获取了接口实现类
+        // 4, 获取Mapper层接口的代理对象，mybatis使用接口代理的方式获取了接口实现类
          studentMapper = sqlSession.getMapper(StudentMapper.class);
 
     }

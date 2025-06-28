@@ -12,12 +12,13 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * 用mybatis框架实现dao层数据处理, 直接在本测试类中测试,省去了分mapper层,service层,controller三层架构分层测试
- * 测试MyBatis框架只需要数据表对应的实体类,数据库表,核心配置文件,映射配置文件,本测试类就可以简单的执行MyBatis框架了
+ * 用mybatis框架实现dao层数据处理,
+ * 测试MyBatis框架只需要数据表对应的实体类,数据库表,核心配置文件,映射配置文件,
+ * 本测试类就可以简单的执行MyBatis框架了
  *
  * @author one
  */
-public class MybatisTest {
+public class SqlSessionTest {
 
     InputStream is;
     SqlSessionFactory sqlSessionFactory;
@@ -26,7 +27,7 @@ public class MybatisTest {
     @Before
     public void before() {
         //1.通过类加载器加载核心配置文件
-        is = MybatisTest.class.getClassLoader().getResourceAsStream("mybatis-config.xml");
+        is = SqlSessionTest.class.getClassLoader().getResourceAsStream("mybatis-config.xml");
 
         //2.获取SqlSessionFactory工厂对象
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
@@ -51,7 +52,7 @@ public class MybatisTest {
 
 
     /**
-     * 查询全部
+     * 查询全部: 直接使用sqlSession接口提供的方法
      */
     @Test
     public void selectAll() throws Exception {
