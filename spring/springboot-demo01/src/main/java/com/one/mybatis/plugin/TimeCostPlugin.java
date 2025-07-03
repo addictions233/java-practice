@@ -23,8 +23,6 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 
 /**
- * @author zhouxichao
- * @date 2020/5/16 5:01 下午
  */
 @Intercepts({
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class,
