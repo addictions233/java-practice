@@ -17,7 +17,7 @@
             property: 被包含对象的变量名
             ofType: 被包含对象的实际数据类型(全限定类名,如果取别名可以用简称)
         -->
-        <collection property="students" ofType="student">
+        <collection property="students" ofType="com.one.bean.Student">
             <id column="sid" property="id"/>
             <result column="sname" property="name"/>
             <result column="age" property="age"/>
@@ -30,7 +30,14 @@
     id: 与代理接口的方法名保持一致
     -->
     <select id="selectAll"  resultMap="OneToMany">
-        select c.id cid,c.name cname,s.id sid,s.name sname,age from student s, classes c where s.cid=c.id;
+        select
+            c.id cid,
+            c.name cname,
+            s.id sid,
+            s.name sname,
+            s.age
+        from tb_classes c
+            LEFT JOIN tb_student s on c.id = s.classes_id;
     </select>
 
 </mapper>

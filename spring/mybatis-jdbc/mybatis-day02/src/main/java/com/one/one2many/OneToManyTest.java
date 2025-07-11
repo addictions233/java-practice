@@ -1,7 +1,7 @@
-package com.one.test;
+package com.one.one2many;
 
-import com.one.bean.Student;
-import com.one.many2many.ManyToManyMapper;
+import com.one.bean.Classes;
+import com.one.one2many.OneToManyMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,12 +16,12 @@ import java.util.List;
 
 
 /**
- *  测试多表查询的一对一的查询结果
+ *  测试多表查询的一对多的查询结果
  */
-public class ManyToManyTest {
+public class OneToManyTest {
     private InputStream is = null;
     private SqlSession sqlSession = null;
-    private ManyToManyMapper mapper = null;
+    private OneToManyMapper mapper = null;
     @Before
     public void before(){
         try {
@@ -32,7 +32,7 @@ public class ManyToManyTest {
             //3, 获取SqlSession会话对象
             sqlSession = sqlSessionFactory.openSession(true);
             // 4, 获取代理接口的实现类对象
-            mapper = sqlSession.getMapper(ManyToManyMapper.class);
+             mapper = sqlSession.getMapper(OneToManyMapper.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,9 +51,9 @@ public class ManyToManyTest {
     @Test
     public void test(){
         // 5,用代理接口的实现类对象调用方法执行sql语句
-        List<Student> students = mapper.selectAll();
-        for (Student student : students) {
-            System.out.println(student);
+        List<Classes> classes = mapper.selectAll();
+        for (Classes aClass : classes) {
+            System.out.println(aClass);
         }
     }
 

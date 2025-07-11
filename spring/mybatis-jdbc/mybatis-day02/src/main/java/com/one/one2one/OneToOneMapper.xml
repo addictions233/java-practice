@@ -21,12 +21,12 @@
         <result column="number" property="number"/>
 
         <!--
-            association: 配置被包含对象的映射关系 配置Person类对象的映射关系
-            property: 被包含对象的变量名,即Card类中成员变量person的变量名
+            association: 配置被包含对象的映射关系 配置user类对象的映射关系
+            property: 被包含对象的变量名,即Card类中成员变量user的变量名
             javaType: 被包含对象的全限定类名, 由于bean包下的都设置了取别名,所以不用写全类名
          -->
-        <association property="person" javaType="person">
-            <id column="pid" property="id"/>
+        <association property="user" javaType="com.one.bean.User">
+            <id column="cid" property="id"/>
             <result column="name" property="name"/>
             <result column="age" property="age"/>
         </association>
@@ -36,6 +36,11 @@
     <!--关联查询时,不能有重名的列,如果重名就取别名-->
 
     <select id="selectAll" resultMap="oneToOne">
-        select c.id cid,number,pid,name,age from person p, card c where p.id=c.pid
+        select c.id as cid,
+               number,
+               c.uid as uid,
+               name,
+               age
+        from tb_card c INNER JOIN tb_user u where c.uid= u.id
     </select>
 </mapper>

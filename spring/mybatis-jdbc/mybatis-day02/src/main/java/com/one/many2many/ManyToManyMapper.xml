@@ -3,17 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.one.many2many.ManyToManyMapper">
-    <resultMap id="ManyToMany" type="student">
+    <resultMap id="ManyToMany" type="com.one.bean.Student">
         <id column="sid" property="id"/>
         <result column="sname" property="name"/>
         <result column="age" property="age"/>
-        <collection property="courses" ofType="course">
+        <collection property="courses" ofType="com.one.bean.Course">
             <id column="cid" property="id"/>
             <result column="cname" property="name"/>
         </collection>
 
     </resultMap>
     <select id="selectAll" resultMap="ManyToMany">
-        select s.id sid,s.name sname,age,c.id cid,c.name cname from student s,stu_cr,course c where s.id=stu_cr.sid and c.id=stu_cr.cid;
+        select s.id sid,
+               s.name sname,
+               s.age,
+               c.id cid,
+               c.course_name as cname
+        from tb_student s,
+             tb_course c,
+             tb_stu_course sc
+        where s.id=sc.sid and c.id=sc.cid;
     </select>
 </mapper>

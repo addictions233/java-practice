@@ -9,15 +9,16 @@ public class Card {
      * 身份证号
      */
     private String number;
-    private Person person;
+
+    private User user;
 
     public Card() {
     }
 
-    public Card(Integer id, String number, Person person) {
+    public Card(Integer id, String number, User user) {
         this.id = id;
         this.number = number;
-        this.person = person;
+        this.user = user;
     }
 
     public Integer getId() {
@@ -36,12 +37,12 @@ public class Card {
         this.number = number;
     }
 
-    public Person getPerson() {
-        return person;
+    public User getPerson() {
+        return user;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPerson(User user) {
+        this.user = user;
     }
 
     @Override
@@ -49,7 +50,7 @@ public class Card {
         return "Card{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
-                ", person=" + person +
+                ", person=" + user +
                 '}';
     }
 }
