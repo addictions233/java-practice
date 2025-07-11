@@ -21,6 +21,10 @@
             <id column="sid" property="id"/>
             <result column="sname" property="name"/>
             <result column="age" property="age"/>
+            <collection property="courses" ofType="com.one.bean.Course">
+                <id column="coid" property="id"/>
+                <result column="coname" property="name"/>
+            </collection>
         </collection>
 
     </resultMap>
@@ -35,9 +39,13 @@
             c.name cname,
             s.id sid,
             s.name sname,
-            s.age
+            s.age,
+            co.id coid,
+            co.course_name coname
         from tb_classes c
-            LEFT JOIN tb_student s on c.id = s.classes_id;
+            LEFT JOIN tb_student s on c.id = s.classes_id
+            LEFT JOIN tb_stu_course sc on s.id = sc.sid
+            LEFT JOIN tb_course co on sc.cid = co.id;
     </select>
 
 </mapper>
