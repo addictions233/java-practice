@@ -1,4 +1,4 @@
-package com.one.mybatisplus.datascope;
+package com.one.parser;
 
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Expression;

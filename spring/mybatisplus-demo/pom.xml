@@ -41,12 +41,6 @@
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>3.4.2</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.github.jsqlparser</groupId>
-					<artifactId>jsqlparser</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 <!--		&lt;!&ndash;mybatis plus 对多数据源起步依赖&ndash;&gt;-->
@@ -56,12 +50,7 @@
 <!--			<version>3.5.0</version>-->
 <!--		</dependency>-->
 
-		<!-- 拦截器中用来解析sql -->
-		<dependency>
-			<groupId>com.github.jsqlparser</groupId>
-			<artifactId>jsqlparser</artifactId>
-			<version>4.9</version>
-		</dependency>
+
 
 		<!-- druid连接池 -->
 		<dependency>
