@@ -34,7 +34,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 
 		<!-- mybatis plus的依赖已经引入了mybatis和jdbc的依赖-->
@@ -42,7 +41,14 @@
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
 			<version>3.4.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.github.jsqlparser</groupId>
+					<artifactId>jsqlparser</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
 <!--		&lt;!&ndash;mybatis plus 对多数据源起步依赖&ndash;&gt;-->
 <!--		<dependency>-->
 <!--			<groupId>com.baomidou</groupId>-->
@@ -51,11 +57,11 @@
 <!--		</dependency>-->
 
 		<!-- 拦截器中用来解析sql -->
-<!--		<dependency>-->
-<!--			<groupId>com.github.jsqlparser</groupId>-->
-<!--			<artifactId>jsqlparser</artifactId>-->
-<!--			<version>4.9</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.github.jsqlparser</groupId>
+			<artifactId>jsqlparser</artifactId>
+			<version>4.9</version>
+		</dependency>
 
 		<!-- druid连接池 -->
 		<dependency>
@@ -71,8 +77,9 @@
 
 
 		<!-- pagehelper分页查询 -->
-<!--  mybatisplus和pagehelper这两个依赖其实有三个冲突子依赖，分别是 mybatis 、mybatis-spring、jsqlparser，
-其中mybatis和mybatis-spring要用mybatisplus的，jsqlparser要用pagehelper的。-->
+		<!--  mybatis-plus和pagehelper这两个依赖其实有三个冲突子依赖，分别是 mybatis 、mybatis-spring、jsqlparser，-->
+		<!-- 其中mybatis和mybatis-spring要用mybatis-plus的，jsqlparser要用pagehelper的。-->
+		<!-- mybatis-plus有自己的分页插件, 不需要引入pagehelper -->
 <!--		<dependency>-->
 <!--			<groupId>com.github.pagehelper</groupId>-->
 <!--			<artifactId>pagehelper-spring-boot-starter</artifactId>-->
@@ -97,10 +104,6 @@
 			<version>3.12.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>
