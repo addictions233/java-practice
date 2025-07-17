@@ -18,7 +18,7 @@ import java.util.Date;
  *                              ....
  *   JSESSIONID是服务器创建的cookie,用来管理session的
  */
-@WebServlet("/servletDemo01")
+@WebServlet("/cookie/servletDemo01")
 public class CookieDemo01 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -14,7 +14,7 @@ import java.io.IOException;
  *  一个Cookie不能超过4kb,且受到生命周期时长的限制
  *  浏览器可以禁用cookie
  */
-@WebServlet("/servlet/servletDemo02")
+@WebServlet("/cookie/servletDemo02")
 public class CookieDemo02 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

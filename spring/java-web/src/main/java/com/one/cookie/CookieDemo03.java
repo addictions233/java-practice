@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * @author one
  */
-@WebServlet("/servlet/servletDemo03")
+@WebServlet("/cookie/servletDemo03")
 public class CookieDemo03 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
