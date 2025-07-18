@@ -88,6 +88,9 @@ public class ParamController {
 
     /**
      * 使用ModelAndView类型参数进行数据传递,将该对象作为返回值经过视图解析器传解析之后递给客户端
+     * Model: 模型, 用于封装数据
+     * View: 视图, 用于展示数据
+     * ModelAndView: 用于封装模型和视图
      * @param modelAndView modelAndView
      * @return
      */
