@@ -25,4 +25,11 @@ public class MybatisplusTest {
         System.out.println(tbUser);
 
     }
+
+    @Test
+    public void test02() {
+        TbUser user = userMapper.getById(1L);
+        System.out.println(user);
+
+    }
 }

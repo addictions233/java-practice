@@ -1,8 +1,11 @@
 package com.one.mybatisplus;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
+import org.springframework.context.annotation.Bean;
 
 /**
  * @author one
@@ -14,6 +17,11 @@ public class AppApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppApplication.class, args);
+	}
+
+	@Bean
+	public Jackson2ObjectMapperBuilderCustomizer customizer() {
+		return builder -> builder.featuresToEnable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);
 	}
 
 }

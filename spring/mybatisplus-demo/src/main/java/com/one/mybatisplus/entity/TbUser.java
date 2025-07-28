@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.one.mybatisplus.config.EnumJsonSerializer;
 import com.one.mybatisplus.enums.UserStatusEnum;
 import lombok.Data;
 
@@ -35,6 +37,7 @@ public class TbUser {
     /**
      *  优雅的使用枚举
      */
+    @JsonSerialize(using = EnumJsonSerializer.class)
     private UserStatusEnum userStatus;
 
     private String password;

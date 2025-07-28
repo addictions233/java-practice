@@ -20,4 +20,6 @@ import org.apache.ibatis.annotations.Param;
 //@DS("db_test")
 public interface UserMapper extends BaseMapper<TbUser> {
     IPage<TbUser> selectPageByCustom(@Param("page") Page<TbUser> page);
+
+    TbUser getById(@Param("id") Long id);
 }

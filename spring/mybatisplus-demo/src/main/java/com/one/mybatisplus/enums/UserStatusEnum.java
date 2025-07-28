@@ -13,9 +13,9 @@ public enum UserStatusEnum implements IEnum<Integer> {
     /**
      * 0表示已审核, 1表示未审核, 2表示审核未通过
      */
-    EXAMINED(0,"已审核"),
     EXAMINING(1,"未审核"),
-    NOT_PASS_EXAMINING(2,"未通过审核");
+    EXAMINED(2,"已审核"),
+    NOT_PASS_EXAMINING(3,"未通过审核");
     /**
      * mybatis plus的注解,指定枚举类和字段的对应值,效果等同于实现IEnum<Integer>接口
      */
