@@ -1,4 +1,4 @@
-package com.one.simpledateformate;
+package com.one.simpledateformat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,8 +12,14 @@ import java.util.Date;
  * 时间格式: yyyy:MM:dd HH:mm:ss
  * 解析时间字符串的方法:
  * Date parse(String time)
+ * SimpleDateFormat 主要支持java.util.Date 类型，
+ * 而DateTimeFormatter 支持LocalDate、LocalTime、LocalDateTime、ZonedDateTime、OffsetDateTime 等新的日期时间类型。
  */
 public class SimpleDateFormatDemo1 {
+
+    // SimpleDateFormat 是Java 早期日期时间API（java.util.Date）中的类，设计较为老旧。
+    // DateTimeFormatter 是Java 8 中引入的，遵循了新的日期时间API 设计，提供了更一致且易于使用的API，
+    // 支持更多的日期时间模式符号和灵活的格式化选项
     public static void main(String[] args) throws ParseException {
         //创建字符串时间
         String strDate = "1990年01月01日 00:00:00";

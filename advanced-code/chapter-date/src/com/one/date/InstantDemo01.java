@@ -13,9 +13,6 @@ import java.util.Date;
  */
 public class InstantDemo01 {
     public static void main(String[] args) throws InterruptedException {
-        /*
-            Instant类和Duration类
-         */
         Instant start = Instant.now();
         Thread.currentThread().sleep(1000);
         Instant end = Instant.now();
@@ -25,9 +22,7 @@ public class InstantDemo01 {
         long millis = between.toMillis();
         System.out.println(millis);
 
-        /*
-            静态方法 System.currentTimeMills()方法获取当前时刻距离时间原点的毫米值
-         */
+        // 静态方法 System.currentTimeMills()方法获取当前时刻距离时间原点的毫米值
         System.out.println("====================");
         long currentTimeMillis1 = System.currentTimeMillis();
         Thread.currentThread().sleep(1000);
@@ -37,11 +32,10 @@ public class InstantDemo01 {
         System.out.println(currentTimeMillis2-currentTimeMillis1);
 
 
-        /*
-            Date类的空参构造
-                Date类空参构造获取当前时间
-                Date类对象调用getTime()方法返回Date对象距离时间原点的毫秒值
-         */
+
+        // Date类的空参构造
+        // Date类空参构造获取当前时间
+        // Date类对象调用getTime()方法返回Date对象距离时间原点的毫秒值
         System.out.println("============");
         Date date1 = new Date();
         Thread.currentThread().sleep(1000);
