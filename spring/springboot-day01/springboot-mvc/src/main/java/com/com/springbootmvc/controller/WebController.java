@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author one
@@ -41,6 +42,14 @@ public class WebController {
     public String fileUpload(@RequestPart("file") MultipartFile file, @RequestPart("order") Order order) {
         System.out.println(file.getOriginalFilename());
         System.out.println(order);
+        return "success";
+    }
+
+
+    @GetMapping("/date")
+    public String handleDate(@RequestParam("date") Date date) {
+        // date 已经转换成 Date 对象
+        System.out.println("date: " + date);
         return "success";
     }
 }

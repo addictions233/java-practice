@@ -1,9 +1,12 @@
 package com.com.springbootmvc.config;
 
+import com.com.springbootmvc.converter.StringToDateConverter;
+import com.com.springbootmvc.httpmessageconverter.MultipartJackson2HttpMessageConverter;
+import com.com.springbootmvc.httpmessageconverter.MyJsonSupportHttpMessageConverter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.cbor.MappingJackson2CborHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.Resource;
@@ -24,5 +27,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(new MultipartJackson2HttpMessageConverter(objectMapper));
         converters.add(new MyJsonSupportHttpMessageConverter(objectMapper));
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new StringToDateConverter("yyyy-MM-dd"));
     }
 }

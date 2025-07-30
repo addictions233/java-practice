@@ -1,4 +1,4 @@
-package com.com.springbootmvc.config;
+package com.com.springbootmvc.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -11,7 +11,7 @@ import java.math.RoundingMode;
 
 /**
  * @author one
- * @description TODO
+ * @description 将对象序列化为json时,使用
  * @date 2023-3-14
  */
 public class BigDecimalSerializer extends JsonSerializer<BigDecimal> {

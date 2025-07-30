@@ -1,6 +1,8 @@
 package com.com.springbootmvc.entity;
 
-import com.com.springbootmvc.config.BigDecimalSerializer;
+import com.com.springbootmvc.serializer.BigDecimalSerializer;
+import com.com.springbootmvc.serializer.EnumJsonDeserilizer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -30,6 +32,7 @@ public class Order {
      * 总价
      */
     @JsonSerialize(using = BigDecimalSerializer.class)
+    @JsonDeserialize(using = EnumJsonDeserilizer.class)
     private BigDecimal totalAmount;
 
     /**
