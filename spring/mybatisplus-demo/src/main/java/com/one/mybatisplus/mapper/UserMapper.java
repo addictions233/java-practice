@@ -22,4 +22,6 @@ public interface UserMapper extends BaseMapper<TbUser> {
     IPage<TbUser> selectPageByCustom(@Param("page") Page<TbUser> page);
 
     TbUser getById(@Param("id") Long id);
+
+    TbUser getByUser(@Param("id") Long id, @Param("user")TbUser tbUser);
 }

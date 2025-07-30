@@ -10,4 +10,9 @@
     <select id="getById" resultType="com.one.mybatisplus.entity.TbUser">
         SELECT * FROM tb_user3 WHERE id = #{id}
     </select>
+
+    <select id="getByUser" resultType="com.one.mybatisplus.entity.TbUser">
+       <!--  SELECT * FROM tb_user3 WHERE id = #{user.id} -->
+        SELECT * FROM tb_user3 WHERE id = #{id}
+    </select>
 </mapper>

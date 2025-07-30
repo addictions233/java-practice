@@ -13,8 +13,6 @@ public class ContextParamInterceptor implements InnerInterceptor {
 
     @Override
     public void beforeQuery(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) throws SQLException {
-        if (!boundSql.hasAdditionalParameter("id")) {
-            boundSql.setAdditionalParameter("id", 2L);
-        }
+        boundSql.getAdditionalParameters().putIfAbsent("id", 2L);
     }
 }

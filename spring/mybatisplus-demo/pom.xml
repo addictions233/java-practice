@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>3.4.2</version>
+			<version>3.5.5</version>
 		</dependency>
 
 <!--		&lt;!&ndash;mybatis plus 对多数据源起步依赖&ndash;&gt;-->
