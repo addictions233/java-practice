@@ -12,9 +12,9 @@ import java.util.Date;
  * Converter接口
  * 用于将HTTP请求中的字符串参数转换为目标Java类型，例如将"123"转换为Integer或自定义对象‌
  * 它支持处理：
- * @RequestParam参数：如查询字符串或表单数据（application/x-www-form-urlencoded）。
- * @PathVariable参数：URL路径变量。
- * @ModelAttribute参数：表单绑定对象‌
+ * 注解@RequestParam参数：如查询字符串或表单数据（application/x-www-form-urlencoded）。
+ * 注解@PathVariable参数：URL路径变量。
+ * 注解@ModelAttribute参数：表单绑定对象‌
  * Converter不直接处理@RequestBody参数。@RequestBody用于请求体（如JSON或XML），
  * 由HttpMessageConverter（如MappingJackson2HttpMessageConverter）独立处理，而非ConversionService
  */
