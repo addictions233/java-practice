@@ -22,8 +22,9 @@ public class DateController {
     @PostMapping("/date")
     public String uploadDate(@RequestBody DateEntity dateEntity) {
         ZonedDateTime endTime = dateEntity.getEndTime();
-        LocalDateTime localDateTime = endTime.toLocalDateTime();
         System.out.println(endTime);
+        endTime = endTime.withZoneSameInstant(ZoneId.of("UTC+8"));
+        LocalDateTime localDateTime = endTime.toLocalDateTime();
         System.out.println(localDateTime);
         return "success";
     }
