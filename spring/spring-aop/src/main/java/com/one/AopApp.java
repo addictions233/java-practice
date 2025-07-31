@@ -25,7 +25,7 @@ public class AopApp {
 //        double money = userService.sell(200, 2);
 //        System.out.println("最后的总价:"+ money);
 
-
+        // 基于注解的方式启动IOC容器
         AnnotationConfigApplicationContext applicationContext1 = new AnnotationConfigApplicationContext(AopApp.class);
         UserService userService1 = (UserService) applicationContext1.getBean("userService");
         userService1.save();

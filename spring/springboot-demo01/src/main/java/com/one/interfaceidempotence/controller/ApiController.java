@@ -1,9 +1,8 @@
 package com.one.interfaceidempotence.controller;
 
 import com.one.interfaceidempotence.annotation.ApildempotentAnn;
-import com.one.interfaceidempotence.entity.UserActivity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import com.one.interfaceidempotence.entity.UserActivity;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;

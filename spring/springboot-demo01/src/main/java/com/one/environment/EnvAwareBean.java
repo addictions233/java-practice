@@ -1,4 +1,4 @@
-package com.one.envoriment;
+package com.one.environment;
 
 
 import org.springframework.context.EnvironmentAware;
