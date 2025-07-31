@@ -1,10 +1,10 @@
 package com.one.mybatis;
 
+import com.baomidou.mybatisplus.autoconfigure.ConfigurationCustomizer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.ibatis.plugin.Interceptor;
-import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

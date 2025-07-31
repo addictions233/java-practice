@@ -9,11 +9,14 @@
         <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>org.example</groupId>
+    <groupId>com.one</groupId>
     <artifactId>springboot-day02</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>redis-spring-boot-starter</module>
+        <module>redis-spring-boot-autoconfigure</module>
+        <module>springboot-condition</module>
         <module>Springboot-enable</module>
         <module>Springboot-enable-other</module>
     </modules>
