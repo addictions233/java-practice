@@ -5,8 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.one.dao.UserDao;
 import com.one.pojo.User;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -18,7 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @Date: 2022/04/14
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class TypeHandlerTest {
     @Autowired
     private UserDao userDao;

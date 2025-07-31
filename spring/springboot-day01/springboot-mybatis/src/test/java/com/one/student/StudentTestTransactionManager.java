@@ -3,7 +3,7 @@ package com.one.student;
 
 import com.one.service.impl.StudentsTransactionThread;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

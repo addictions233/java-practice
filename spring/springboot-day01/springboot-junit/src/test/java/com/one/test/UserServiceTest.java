@@ -4,17 +4,14 @@ import com.one.SpringbootJunitApplication;
 import com.one.mapper.SystemUserMapper;
 import com.one.pojo.SystemUser;
 import com.one.service.UserService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.internal.matchers.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.springframework.util.Assert;
 
 /**
@@ -23,7 +20,6 @@ import org.springframework.util.Assert;
  * @Author: one
  * @Date: 2020/12/17
  */
-@RunWith(SpringRunner.class)  // 是一个测试启动器, 可以加载springboot测试注解, 在测试在spring容器环境下执行, 如果没此注解,将导致userService等bean对象注入失败,
 // 高版本可不加此注解
 @SpringBootTest(classes = SpringbootJunitApplication.class) // 目的是加载ApplicationContext, 启动spring容器
 public class UserServiceTest {
@@ -35,7 +31,7 @@ public class UserServiceTest {
     @Mock
     private SystemUserMapper systemUserMapper;
 
-    @Before
+    @BeforeTestMethod
     public void setup() {
         //添加Mock注解初始化
         MockitoAnnotations.initMocks(this);
