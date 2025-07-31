@@ -28,6 +28,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!--数据库相关的三个起步依赖-->
         <dependency>
