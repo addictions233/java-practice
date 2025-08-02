@@ -10,7 +10,7 @@ camunda:
   bpm:
     database:
       type: mysql #可改成 mysql 默认使用h2数据库，启动时自动创建数据库。
-      schema-update: true # false 表示不自动执行数据库脚本
+      schema-update: false # false 表示不自动执行数据库脚本
     auto-deployment-enabled: false # 自动部署 resources 下的 bpmn文件
     admin-user: # 配置 camunda 管理员账号
       id: demo
