@@ -3,6 +3,7 @@ package com.one.camunda;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.camunda.bpm.engine.impl.cfg.StandaloneProcessEngineConfiguration;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
@@ -12,12 +13,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class ProcessEngineTest {
 
+    @Test
     public void testProcessEngine(){
         ProcessEngineConfigurationImpl configuration = new StandaloneProcessEngineConfiguration()
                 .setJdbcDriver("com.mysql.cj.jdbc.Driver")
-                .setJdbcUrl("jdbc:mysql://localhost:3306/camunda?useSSL=false&serverTimezone=UTC")
+                .setJdbcUrl("jdbc:mysql://localhost:3306/camunda_0719?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai")
                 .setJdbcUsername("root")
-                .setJdbcPassword("123456")
+                .setJdbcPassword("root")
                 .setDatabaseSchemaUpdate(ProcessEngineConfigurationImpl.DB_SCHEMA_UPDATE_TRUE)
                 .setHistory(ProcessEngineConfigurationImpl.HISTORY_FULL);
         ProcessEngine processEngine = configuration.buildProcessEngine();
