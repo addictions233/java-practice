@@ -1,7 +1,9 @@
 package com.one.mybatisplus;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.one.mybatisplus.entity.TbUser;
 import com.one.mybatisplus.mapper.UserMapper;
 import org.junit.Test;
@@ -28,8 +30,11 @@ public class MybatisplusTest {
 
     @Test
     public void test02() {
-        TbUser user = userMapper.getById(1L);
-        System.out.println(user);
+//        IPage<TbUser> page = new Page<>(1, 10);
+        // 如果传入-1表示查询全部
+        IPage<TbUser> page = new Page<>(-1, -1);
+        IPage<TbUser> tbUser = userMapper.selectPageByCustom(page);
+        System.out.println(tbUser);
 
     }
 
