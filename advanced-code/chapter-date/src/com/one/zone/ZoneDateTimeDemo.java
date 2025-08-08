@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 /**
  * @author one
@@ -18,8 +19,13 @@ import java.time.ZonedDateTime;
 public class ZoneDateTimeDemo {
 
     public static void main(String[] args) {
-        // Timestamp: 它表示「從 UTC+0 時區的 1970 年 1 月 1 號 0 時 0 分 0 秒開始，總共過了多少ms」
-        long timestamp = System.currentTimeMillis();  // 我的電腦現是 2022-07-28 17:03:54
+        // Timestamp: 它表示「从 UTC+0 时区的 1970 年 1 月 1 日 0 时 0 分 0 秒开始，总共过了多少ms」
+        long timestamp = System.currentTimeMillis();
+        // 几乎相等, Date类型的本质上也是从 UTC+0 时区的 1970 年 1 月 1 日 0 时 0 分 0 秒开始，总共过了多少ms
+        System.out.println(new Date().getTime() - timestamp);
+        // 几乎相等, Instant也是表示时间戳, 也是从 UTC+0 时区的 1970 年 1 月 1 日 0 时 0 分 0 秒开始，总共过了多少ms
+        Instant instant = ZonedDateTime.now().toInstant();
+        System.out.println(instant.toEpochMilli() - timestamp);
 
         System.out.println("取出 timestamp:\t" + timestamp);
 
@@ -28,6 +34,8 @@ public class ZoneDateTimeDemo {
         // 系统预设时区 : Asia/Shanghai
         System.out.println("系统预设时区 : " + ZoneId.systemDefault());
 
+        // LocalDateTime 在Java 中表示一个不带有时区信息的日期和时间。它代表的是一个具体的时间点，但没有指定是哪个时区的时间。
+        // 它适合用于处理不需要考虑时区差异的本地日期时间场景
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
 
         System.out.println("时区 - 日期时间格式如下:");

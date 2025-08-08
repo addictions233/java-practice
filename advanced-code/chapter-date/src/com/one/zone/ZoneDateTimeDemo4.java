@@ -13,6 +13,7 @@ public class ZoneDateTimeDemo4 {
 
         // 系统默认东八区 UTC+8
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
+        System.out.println("timestamp 转 LocalDateTime:"+ localDateTime);
 
         //ZoneDateTime 位移 到 UTC
         ZonedDateTime zonedDateTime = ZonedDateTime.of(localDateTime, ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));

@@ -24,40 +24,32 @@ public class ZoneDateTimeDemo2 {
         Long timestamp = 1564502400000L;
 
 
-/** LocalDateTime 轉 LocalDate */
-
+        /** LocalDateTime 轉 LocalDate */
         System.out.println("LocalDateTime 轉 LocalDate: " + localDateTime.toLocalDate());
 
-/** LocalDateTime 轉 Long */
-
+        /** LocalDateTime 轉 Long */
         System.out.println("LocalDateTime 轉 Long: " + localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
-/** LocalDateTime 轉 Date */
-
+        /** LocalDateTime 轉 Date */
         System.out.println("LocalDateTime 轉 Date: " + Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()));
 
-/** LocalDateTime 轉 String */
-
+        /** LocalDateTime 轉 String */
         System.out.println("LocalDateTime 轉 String: " + localDateTime.format(dateTimeFormatter1));
 
 
         System.out.println("-------------------------------");
 
 
-/** LocalDate 轉 LocalDateTime */
-
+        /** LocalDate 轉 LocalDateTime */
         System.out.println("LocalDate 轉 LocalDateTime: " + LocalDateTime.of(localDate, LocalTime.parse("00:00:00")));
 
-/** LocalDate 轉 Long */
-
+        /** LocalDate 轉 Long */
         System.out.println("LocalDate 轉 Long: " + localDate.atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli());
 
-/** LocalDate 轉 Date */
-
+        /** LocalDate 轉 Date */
         System.out.println("LocalDate 轉 Date: " + Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant()));
 
-/** LocalDate 轉 String */
-
+        /** LocalDate 轉 String */
         System.out.println("LocalDateTime 轉 String: " + localDateTime.format(dateTimeFormatter2));
 
 
@@ -90,24 +82,20 @@ public class ZoneDateTimeDemo2 {
 
         System.out.println("String 轉 LocalDate: " + LocalDate.parse(strDate, dateTimeFormatter2));
 
-/** String 轉 Date */
-
+        /** String 轉 Date */
         System.out.println("String 轉 Date: " + Date.from(LocalDateTime.parse(strDateTime, dateTimeFormatter1).atZone(ZoneId.systemDefault()).toInstant()));
 
 
         System.out.println("-------------------------------");
 
 
-/** Long 轉 LocalDateTime */
-
+        /** Long 轉 LocalDateTime */
         System.out.println("Long 轉 LocalDateTime:" + LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault()));
 
-/** Long 轉 LocalDate */
-
+        /** Long 轉 LocalDate */
         System.out.println("Long 轉 LocalDate:" + LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault()).toLocalDate());
 
-/** Long 轉 ZoneDateTime */
-
+        /** Long 轉 ZoneDateTime */
         localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
 
         System.out.println("Long 轉 ZoneDateTime:" + ZonedDateTime.of(localDateTime, ZoneId.systemDefault()).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)); // 可給 JS 使用
