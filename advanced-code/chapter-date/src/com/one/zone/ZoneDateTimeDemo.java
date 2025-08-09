@@ -36,14 +36,17 @@ public class ZoneDateTimeDemo {
 
         // LocalDateTime 在Java 中表示一个不带有时区信息的日期和时间。它代表的是一个具体的时间点，但没有指定是哪个时区的时间。
         // 它适合用于处理不需要考虑时区差异的本地日期时间场景
+        // 将时间戳转换为 LocalDateTime
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
 
         System.out.println("时区 - 日期时间格式如下:");
 
         // 2025-07-30T00:32:32.876+08:00[Asia/Shanghai]
-        System.out.println(localDateTime.atZone(ZoneId.systemDefault()));  //記得指定时区
+        // 将 LocalDateTime 指定时区就可以转换为 ZonedDateTime
+        ZonedDateTime zonedDateTime = localDateTime.atZone(ZoneId.systemDefault()); // 需要指定时区
+        System.out.println(zonedDateTime);
 
-        // 2025-07-30T00:32:32.876Z[UTC]
+        // 2025-07-30T00:32:32.876Z[UTC] 指定为 UTC 时区
         System.out.println(localDateTime.atZone(ZoneId.of("UTC"))); //指定时区, ex: Asia/Shanghai
 
         // 2025-07-30T00:32:32.876
@@ -51,12 +54,22 @@ public class ZoneDateTimeDemo {
 
         // localDateTime 指定 ZoneId 后变成 ZoneDateTime 就可位移
         ZonedDateTime zonedSys = localDateTime.atZone(ZoneId.systemDefault());
+        System.out.println("系统默认时区 = " + zonedSys);
 
-        // 使用ZoneDateTime 位移 到 UTC 後，觀察它們的小時部分，發現UTC 真的少了8小時
+        // 将东八区的ZonedDateTime 位移 到 UTC 後，觀察它們的小時部分，發現UTC 真的少了8小時
         ZonedDateTime utcZone = zonedSys.withZoneSameInstant(ZoneId.of("UTC")); //ZoneDateTime 位移 到 UTC
         System.out.println("位移 到 UTC = " + utcZone); // 位移 到 UTC = 2025-07-29T16:38:14.026Z[UTC]
 
-        // 不管时区怎么转换, timestamp时间戳不会变
+        // 不管时区怎么转换, timestamp时间戳不会变, 都是表示从 UTC+0 时区的 1970 年 1 月 1 日 0 时 0 分 0 秒开始，总共过了多少ms
+        System.out.println("位移 到 UTC, 转为 timestamp = " + zonedSys.toInstant().toEpochMilli()); // long
         System.out.println("位移 到 UTC, 转为 timestamp = " + utcZone.toInstant().toEpochMilli()); // long
+
+        // 将ZonedDateTime 转换为 LocalDateTime
+        LocalDateTime zonedSysLocalDateTime = zonedSys.toLocalDateTime();
+        // 系统默认时区的 LocalDateTime = 2025-08-09T10:11:14.603
+        System.out.println("系统默认时区的 LocalDateTime = " + zonedSysLocalDateTime);
+        LocalDateTime utcZoneLocalDateTime = utcZone.toLocalDateTime();
+        // UTC 时区的 LocalDateTime = 2025-08-09T02:11:14.603
+        System.out.println("UTC 时区的 LocalDateTime = " + utcZoneLocalDateTime);
     }
 }
