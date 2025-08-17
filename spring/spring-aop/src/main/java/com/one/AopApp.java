@@ -8,6 +8,7 @@ import org.springframework.aop.support.NameMatchMethodPointcut;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
  * @ClassName: App
@@ -16,7 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @Date: 2020/12/02
  */
 @ComponentScan("com.one")
-//@EnableAspectJAutoProxy(proxyTargetClass = true) // 使用@Enable*注解启用aspectj注解的支持, 本质上还是引入AnnotationAwareAspectJAutoProxyCreator
+@EnableAspectJAutoProxy(proxyTargetClass = true) // 启用aspectj注解的支持, 本质上还是引入AnnotationAwareAspectJAutoProxyCreator
 public class AopApp {
     public static void main(String[] args) {
 //        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");

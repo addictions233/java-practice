@@ -25,6 +25,7 @@ public class AdvisorTest {
 
         ProxyFactory proxyFactory = new ProxyFactory();
         proxyFactory.setTarget(target);
+        // Advisor = Advice 通知 + Pointcut 切入点
         proxyFactory.addAdvisor(new PointcutAdvisor() {
             /**
              * 定义Pointcut切入点

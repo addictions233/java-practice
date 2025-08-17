@@ -1,5 +1,6 @@
 package com.one.aspect;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2020/12/02
  */
 @Component
-@Aspect
+@Aspect  // spring的aop只是借用了aspectj的注解, 但是aop实现还是spring自己实现的
 public class AOPAdvice {
 
     /**
@@ -64,31 +65,31 @@ public class AOPAdvice {
      * @param point 切面
      * @return 结果
      */
-//    @Around("pt()")
-//    public double around(ProceedingJoinPoint point) {
-//        double sum =0;
-//        try {
-//            Object[] args = point.getArgs();
-//            double price = (double) args[0];
-//            double num = (double) args[1];
-//            System.out.println("客户买了" + num + "件商品" + "单价为:" + price);
-//            //对产品价格打八折
-//            args[0] = ((double) args[0]) * 0.8;
-//            System.out.println("该产品打8折之后的单格为:"+ args[0]);
-//            System.out.println("上述内容可以在前置通知中执行..");
-//            sum = (double) point.proceed(args);
-//            System.out.println("下述内容可以在后置通知中执行..");
-//            //如果客户总价满100,总价再打八折
-//            System.out.println("总价满200,总价将会打八折");
-//            if(sum > 200){
-//                sum = sum*0.8;
-//            }
-//        } catch (Throwable e) {
-//            System.out.println("执行异常通知执行了...");
-//            System.out.println("出异常了");
-//        } finally {
-//            System.out.println("最终返回通知执行了...");
-//        }
-//        return sum;
-//    }
+    @Around("pt()")
+    public double around(ProceedingJoinPoint point) {
+        double sum =0;
+        try {
+            Object[] args = point.getArgs();
+            double price = (double) args[0];
+            double num = (double) args[1];
+            System.out.println("客户买了" + num + "件商品" + "单价为:" + price);
+            //对产品价格打八折
+            args[0] = ((double) args[0]) * 0.8;
+            System.out.println("该产品打8折之后的单格为:"+ args[0]);
+            System.out.println("上述内容可以在前置通知中执行..");
+            sum = (double) point.proceed(args);
+            System.out.println("下述内容可以在后置通知中执行..");
+            //如果客户总价满100,总价再打八折
+            System.out.println("总价满200,总价将会打八折");
+            if(sum > 200){
+                sum = sum*0.8;
+            }
+        } catch (Throwable e) {
+            System.out.println("执行异常通知执行了...");
+            System.out.println("出异常了");
+        } finally {
+            System.out.println("最终返回通知执行了...");
+        }
+        return sum;
+    }
 }
