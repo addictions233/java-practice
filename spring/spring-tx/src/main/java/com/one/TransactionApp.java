@@ -2,7 +2,9 @@ package com.one;
 
 import com.one.service.AccountService;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @ClassName: TransfactionTest
@@ -10,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Author: one
  * @Date: 2021/06/08
  */
+@EnableTransactionManagement
 public class TransactionApp {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");

@@ -8,6 +8,9 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.sql.DataSource;
@@ -53,13 +56,13 @@ public class AccountServiceImpl implements AccountService {
         this.dataSource = dataSource;
     }
 
-//    /**
-//     * 1,第一种:没有进行事务控制的情况下进行转账
-//     *
-//     * @param outName 出账账户
-//     * @param inName  入账账户
-//     * @param money   金额
-//     */
+    /**
+     * 1,第一种:没有进行事务控制的情况下进行转账
+     *
+     * @param outName 出账账户
+     * @param inName  入账账户
+     * @param money   金额
+     */
 //    @Override
 //    public void transfer(String outName, String inName, Double money) {
 //        accountDao.inMoney(outName, money);
@@ -106,7 +109,7 @@ public class AccountServiceImpl implements AccountService {
 //    @Override
 //    public void transfer(String outName,String inName,Double money){
 //        accountDao.outMoney(inName,100.0);
-////        int i = 1/0;
+//        int i = 1/0;
 //        accountDao.inMoney(outName,100.0);
 //    }
 
@@ -126,7 +129,7 @@ public class AccountServiceImpl implements AccountService {
     //5,第五种: 使用Spring中的声明式事务控制    基于注解的开发方式
 //    @Override
 //    @Transactional(isolation = Isolation.DEFAULT,propagation = Propagation.REQUIRED)
-//    public void transfer(String outName,String inName, Double money){
+//    public void transferMoney(String outName,String inName, Double money){
 //        accountDao.outMoney(inName,100.0);
 //        int i = 1/0;
 //        accountDao.inMoney(outName,100.0);
