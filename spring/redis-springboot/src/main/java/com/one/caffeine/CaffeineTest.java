@@ -1,4 +1,4 @@
-package com.one.cache.impl;
+package com.one.caffeine;
 
 import com.github.benmanes.caffeine.cache.CacheLoader;
 import com.github.benmanes.caffeine.cache.Caffeine;
