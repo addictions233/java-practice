@@ -30,11 +30,10 @@ public class CaffeineAsyncLoadTest {
         asyncCache.put("name", CompletableFuture.supplyAsync(() -> "张三"));
         // 获取缓存中的数据
         System.out.println(asyncCache.getIfPresent("name").get(10, TimeUnit.SECONDS));
-        asyncCache.getAll(Collections.singleton("name")).thenApply((map) -> {
+        asyncCache.getAll(Collections.singleton("name")).thenAccept((map) -> {
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 System.out.println("key:" + entry.getKey() + ",value:" + entry.getValue());
             }
-            return null;
         });
     }
 }
