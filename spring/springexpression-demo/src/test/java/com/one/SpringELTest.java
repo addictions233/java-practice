@@ -33,4 +33,25 @@ public class SpringELTest {
         String value = expression.getValue(evaluationContext, String.class);
         System.out.println(value); // 输出hello, 张三
     }
+
+    @Test
+    public void test2() {
+        // 字符串截取方法: public String substring(int start, int end)
+        // 字符串转大写: public String toUpperCase()
+        // 定义字符串
+        String str = "(\"www.\" + \"baidu.com\").substring(#start, #end).toUpperCase()";
+        // 定义解析器
+        ExpressionParser expressionParser = new SpelExpressionParser();
+        // 表达式解析
+        Expression expression = expressionParser.parseExpression(str);
+        // 在表达式执行之前要考虑两个占位符的配置问题
+        // 定义表达式上下文
+        EvaluationContext evaluationContext = new StandardEvaluationContext();
+        // 配置占位符参数
+        evaluationContext.setVariable("start", 4);
+        evaluationContext.setVariable("end", 9);
+        // 表达式取值,可以从估值上下文中拿值
+        String value = expression.getValue(evaluationContext, String.class);
+        System.out.println(value); // 输出BAIDU
+    }
 }
