@@ -46,8 +46,9 @@ public class KafkaProducerDemo {
         // 封装消息 包含主题topic, key, 消息内容本身, 有partition用partition,没有partition用key的hash值确定partition,两个都没有用轮询的方式确定partition
         // 消息的分区partition保证了消息被顺序消费, 读取效率更高
         ProducerRecord<String,String> record = new ProducerRecord<>(TOPIC,"00001","hello kafka !");
+//        ProducerRecord<String,String> record = new ProducerRecord<>(TOPIC,0,"00001","hello kafka !");
 
-        // 1.单向发送消息,不关心服务器应答, 可靠性不高
+        // 1.单边发送消息,不关心服务器应答, 可靠性不高
 //        producer.send(record);
 
         // 2.同步发送, 获取服务端的响应之前会阻塞当前线程
