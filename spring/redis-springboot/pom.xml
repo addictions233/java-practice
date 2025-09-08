@@ -70,7 +70,7 @@
         <dependency>
             <groupId>org.redisson</groupId>
             <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.11.0</version>
+            <version>3.44.0</version>
         </dependency>
 
         <!-- 如果要使用jedis连接池. 要去掉lettuce,并将加上jedis的依赖,否则springboot2.x默认走lettuce连接池 -->
