@@ -6,9 +6,11 @@ import org.apache.kafka.common.PartitionInfo;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
- * @description: 测试kafka的分区路由机制
+ * @description:   自定义分区器
+ *          测试kafka的分区路由机制
  *                   1. Producer会根据消息的key选择Partition，具体如何通过key找Partition呢??
  *                   2. 一个消费者组会共同消费一个Topic下的多个Partition中的同一套消息副本，那Consumer节点是不是
  *                     可以决定自己消费哪些Partition的消息呢？
@@ -23,8 +25,14 @@ public class SinglePartitioner implements Partitioner {
      * Compute the partition for the given record.
      */
     @Override
-    public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
+    public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes,
+                         Cluster cluster) {
+        // 获取topic下的所有分区信息
         List<PartitionInfo> partitionInfoList = cluster.partitionsForTopic("topic");
+        int num = partitionInfoList.size();
+        // 随机选择一个分区
+//        int partition = new Random().nextInt(num);
+        // 选择第一个分区
         return 0;
     }
 

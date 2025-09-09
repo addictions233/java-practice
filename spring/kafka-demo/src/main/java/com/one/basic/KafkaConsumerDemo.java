@@ -38,7 +38,7 @@ public class KafkaConsumerDemo {
         consumer.subscribe(Collections.singletonList(TOPIC));
 
         while (true) {
-            // 消费者主动向broker拉消息, 也就是拉模式, 间隔时间1000ms
+            // 消费者主动向broker拉消息, 也就是拉模式, 超时时间1000ms
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
 
             // kafka消费有个问题: 消费进度偏移量offset是由consumer提交的, 但是是记录在broker的, 所以如果consumer提交消费进度失败或者错误

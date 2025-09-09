@@ -1,5 +1,6 @@
 package com.one.batch;
 
+import com.one.partition.SinglePartitioner;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -35,6 +36,8 @@ public class KafkaProducerBatch {
         prop.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,"org.apache.kafka.common.serialization.StringSerializer");
         // 配送发送消息的重试次数
         prop.put(ProducerConfig.RETRIES_CONFIG,10);
+        // 自定义分区器
+        prop.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, SinglePartitioner.class);
         this.kafkaProducer = new KafkaProducer<>(prop);
     }
 
