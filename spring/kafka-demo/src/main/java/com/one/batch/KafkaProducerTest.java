@@ -6,7 +6,7 @@ package com.one.batch;
  * @Author: one
  * @Date: 2022/03/22
  */
-public class ProducerTest {
+public class KafkaProducerTest {
     public static void main(String[] args) {
         KafkaProducerBatch kafkaProducerBatch = new KafkaProducerBatch();
         kafkaProducerBatch.sendMsg();
