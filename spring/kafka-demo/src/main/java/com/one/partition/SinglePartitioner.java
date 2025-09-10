@@ -9,11 +9,11 @@ import java.util.Map;
 import java.util.Random;
 
 /**
- * @description:   自定义分区器
- *          测试kafka的分区路由机制
- *                   1. Producer会根据消息的key选择Partition，具体如何通过key找Partition呢??
- *                   2. 一个消费者组会共同消费一个Topic下的多个Partition中的同一套消息副本，那Consumer节点是不是
- *                     可以决定自己消费哪些Partition的消息呢？
+ * @description:   自定义Partition分区器
+ * 测试kafka的分区路由机制
+ *          1. Producer会根据消息的key选择Partition，具体如何通过key找Partition呢??
+ *          2. 一个消费者组会共同消费一个Topic下的多个Partition中的同一套消息副本，那Consumer节点是不是
+ *            可以决定自己消费哪些Partition的消息呢？
  * @author: wanjunjie
  * @date: 2024/10/28
  */
