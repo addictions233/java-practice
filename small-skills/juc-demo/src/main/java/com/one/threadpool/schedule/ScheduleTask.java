@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
- * @ClassName: ScheduleTask
+ * @ClassName: ScheduleTask: Spring提供的定时任务
  * @Description: 异步线程执行 + scheduled定时任务
  * @Author: one
  * @Date: 2021/05/08

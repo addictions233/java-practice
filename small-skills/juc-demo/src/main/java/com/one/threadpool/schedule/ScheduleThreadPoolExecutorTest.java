@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * @description: TODO
+ * @description: JDK 提供的定时任务线程池
  * @author: wanjunjie
  * @date: 2024/05/24
  */
