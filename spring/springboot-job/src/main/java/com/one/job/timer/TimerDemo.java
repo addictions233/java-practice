@@ -3,6 +3,9 @@ package com.one.job.timer;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * JDK提供的定时器
+ */
 public class TimerDemo {
 
     public static void main(String[] args) throws InterruptedException {
