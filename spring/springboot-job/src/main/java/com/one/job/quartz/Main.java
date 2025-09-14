@@ -1,14 +1,12 @@
 package com.one.job.quartz;
 
+import com.one.job.quartz.job.MyJob;
+import com.one.job.quartz.listener.MyJobListener;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+import org.quartz.impl.matchers.EverythingMatcher;
 
-public class MyJob implements Job {
-
-    @Override
-    public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        System.out.println("MyJob execute");
-    }
+public class Main {
 
     public static void main(String[] args) throws SchedulerException {
         // 把 Job 进一步包装成 JobDetail。
@@ -37,7 +35,12 @@ public class MyJob implements Job {
         Scheduler scheduler = schedulerFactory.getScheduler();
         // 注册 JobDetail 和 Trigger
         // 绑定关系是 1: N, 一个 JobDetail 可以对应多个 Trigger
+        // 可以通过多个 Trigger 触发同一个 JobDetail, 实现更灵活的任务触发
         scheduler.scheduleJob(jobDetail, trigger);
+
+        // 注册 JobListener
+        MyJobListener myJobListener = new MyJobListener("myJobListener");
+        scheduler.getListenerManager().addJobListener(myJobListener, EverythingMatcher.allJobs());
 
         try {
             // 启动调度器
