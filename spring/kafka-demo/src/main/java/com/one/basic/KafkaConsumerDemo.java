@@ -21,15 +21,15 @@ public class KafkaConsumerDemo {
     private static final String TOPIC = "kafka-one";
 
     public static void main(String[] args) {
-
         // 添加配置信息, ConsumerConfig服务端的配置类
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        // 设置key和value的反序列化器
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         // 设置consumer的群组, Consumer是按照消费者组记录消费进度的
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group2");
-
+        properties.put("auto.offset.rest", "earliest");
         // 创建消费者
         // 一个Partition最多只能同时被一个Consumer消费。
         // 也就是说，如果有四个Partition的Topic，那么同一个消费者组中最多就只能配置四个消费者实例。

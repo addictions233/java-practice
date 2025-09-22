@@ -1,5 +1,6 @@
 package com.one.basic;
 
+import com.one.partition.SinglePartitioner;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -32,6 +33,8 @@ public class KafkaProducerDemo {
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         // 配置重试次数
         properties.put(ProducerConfig.RETRIES_CONFIG, 10);
+        // 配置使用自定义分区器
+        properties.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, SinglePartitioner.class);
         // 配置生产者的拦截器
         properties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, "com.one.interceptor.KafkaProducerInterceptor");
 
