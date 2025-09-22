@@ -1,4 +1,4 @@
-package com.one.concurrent;
+package com.one.rebalance;
 
 import com.one.serializer.User;
 import org.apache.kafka.clients.producer.Callback;
@@ -15,10 +15,9 @@ import java.util.concurrent.Executors;
 /**
  * 类说明：多线程下使用生产者
  */
-public class KafkaConProducer {
-
+public class RebalanceProducer {
     //发送消息的个数
-    private static final int MSG_SIZE = 1000;
+    private static final int MSG_SIZE = 50;
     //负责发送消息的线程池
     private static ExecutorService executorService = Executors.newFixedThreadPool(
             Runtime.getRuntime().availableProcessors());
@@ -74,11 +73,12 @@ public class KafkaConProducer {
         // 构建kafka生产者对象
         KafkaProducer<String,String> producer  = new KafkaProducer<String, String>(properties);
         try {
-            for (int i = 0; i < MSG_SIZE; i++) {
+            for(int i=0;i<MSG_SIZE;i++){
                 User user = makeUser(i);
-                ProducerRecord<String, String> record = new ProducerRecord<String, String>("concurrent-ConsumerOffsets", null,
-                        System.currentTimeMillis(), user.getId() + "", user.toString());
-                executorService.submit(new ProduceWorker(record, producer));
+                ProducerRecord<String,String> record = new ProducerRecord<String,String>("rebalance",null,
+                        System.currentTimeMillis(), user.getId()+"", user.toString());
+                executorService.submit(new ProduceWorker(record,producer));
+                Thread.sleep(600);
             }
             countDownLatch.await();
         } catch (Exception e) {
@@ -88,8 +88,6 @@ public class KafkaConProducer {
             executorService.shutdown();
         }
     }
-
-
 
 
 }

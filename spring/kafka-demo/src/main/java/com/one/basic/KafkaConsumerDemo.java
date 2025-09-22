@@ -29,7 +29,7 @@ public class KafkaConsumerDemo {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         // 设置consumer的群组, Consumer是按照消费者组记录消费进度的
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group2");
-        properties.put("auto.offset.rest", "earliest");
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         // 创建消费者
         // 一个Partition最多只能同时被一个Consumer消费。
         // 也就是说，如果有四个Partition的Topic，那么同一个消费者组中最多就只能配置四个消费者实例。
