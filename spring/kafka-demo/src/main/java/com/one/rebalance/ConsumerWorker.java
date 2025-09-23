@@ -35,7 +35,7 @@ public class ConsumerWorker implements Runnable{
         this.consumer = new KafkaConsumer<String, String>(properties);
         this.currOffsets = new HashMap<TopicPartition, OffsetAndMetadata>();  //保存  每个分区的消费偏移量
         System.out.println("consumer-hashcode:"+consumer.hashCode());
-        consumer.subscribe(Collections.singletonList("rebalance"), new HandlerRebalance(currOffsets,consumer));
+        consumer.subscribe(Collections.singletonList("rebalance"), new RebalanceHandler(currOffsets,consumer));
     }
 
     public void run() {
@@ -63,7 +63,7 @@ public class ConsumerWorker implements Runnable{
                 }
                 if(currOffsets.size()>0){
                     for(TopicPartition topicPartitionkey:currOffsets.keySet()){
-                        HandlerRebalance.partitionOffsetMap.put(topicPartitionkey, currOffsets.get(topicPartitionkey).offset());
+                        RebalanceHandler.partitionOffsetMap.put(topicPartitionkey, currOffsets.get(topicPartitionkey).offset());
                     }
                     //提交事务,同时将业务和偏移量入库（使用HashMap替代）
                 }

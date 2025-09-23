@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * 类说明：再均衡监听器
  */
-public class HandlerRebalance implements ConsumerRebalanceListener {
+public class RebalanceHandler implements ConsumerRebalanceListener {
 
     /*模拟一个保存分区偏移量的数据库表*/
     public final static ConcurrentHashMap<TopicPartition,Long>
@@ -22,7 +22,7 @@ public class HandlerRebalance implements ConsumerRebalanceListener {
     private final KafkaConsumer<String,String> consumer;
     //private final Transaction  tr事务类的实例
 
-    public HandlerRebalance(Map<TopicPartition, OffsetAndMetadata> currOffsets,
+    public RebalanceHandler(Map<TopicPartition, OffsetAndMetadata> currOffsets,
                             KafkaConsumer<String, String> consumer) {
         this.currOffsets = currOffsets;
         this.consumer = consumer;
