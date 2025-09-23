@@ -35,13 +35,14 @@ public class KafkaConConsumer {
             consumer.subscribe(Collections.singletonList(topic));
         }
 
+        @Override
         public void run() {
-            final String ThreadName = Thread.currentThread().getName();
+            final String threadName = Thread.currentThread().getName();
             try {
                 while(true){
                     ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(1));
                     for(ConsumerRecord<String, String> record:records){
-                        System.out.println(ThreadName+"|"+String.format(
+                        System.out.println(threadName+"|"+String.format(
                                 "主题：%s，分区：%d，偏移量：%d，" +
                                         "key：%s，value：%s",
                                 record.topic(),record.partition(),

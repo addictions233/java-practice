@@ -42,8 +42,9 @@ public class KafkaConProducer {
             this.producer = producer;
         }
 
+        @Override
         public void run() {
-            final String ThreadName = Thread.currentThread().getName();
+            final String threadName = Thread.currentThread().getName();
             try {
                 producer.send(record, new Callback() {
                     public void onCompletion(RecordMetadata metadata, Exception exception) {
@@ -51,7 +52,7 @@ public class KafkaConProducer {
                             exception.printStackTrace();
                         }
                         if(null!=metadata){
-                            System.out.println(ThreadName+"|" +String.format("偏移量：%s,分区：%s", metadata.offset(),
+                            System.out.println(threadName+"|" +String.format("偏移量：%s,分区：%s", metadata.offset(),
                                     metadata.partition()));
                         }
                     }
