@@ -66,6 +66,7 @@ public class KafkaConConsumer {
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
 
         for(int i = 0; i<CONCURRENT_PARTITIONS_COUNT; i++){
+            // Kafka中Producer是线程安全的, 但是Consumer不是线程安全的, 所有一个线程一个消费者Consumer
             //一个线程一个消费者
             executorService.submit(new ConsumerWorker(properties, "concurrent-ConsumerOffsets"));
         }
