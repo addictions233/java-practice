@@ -39,7 +39,7 @@ public class Main {
         scheduler.scheduleJob(jobDetail, trigger);
 
         // 注册 JobListener
-        MyJobListener myJobListener = new MyJobListener("myJobListener");
+        MyJobListener myJobListener = new MyJobListener();
         scheduler.getListenerManager().addJobListener(myJobListener, EverythingMatcher.allJobs());
 
         try {
