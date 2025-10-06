@@ -31,6 +31,7 @@ public class ConsumerWorker implements Runnable{
         properties.put(ConsumerConfig.GROUP_ID_CONFIG,RebalanceConsumer.GROUP_ID);
         /*取消自动提交*/
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG,false);
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         this.isStop = isStop;
         this.consumer = new KafkaConsumer<String, String>(properties);
         this.currOffsets = new HashMap<TopicPartition, OffsetAndMetadata>();  //保存  每个分区的消费偏移量

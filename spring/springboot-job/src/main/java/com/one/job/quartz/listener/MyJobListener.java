@@ -4,37 +4,28 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobListener;
 
+
 public class MyJobListener implements JobListener {
 
-    private String name;
-
-    public MyJobListener(String name) {
-        this.name = name;
-    }
-
-    @Override
     public String getName() {
-        return this.name;
+        String name = getClass().getSimpleName();
+        System.out.println( "Method 111111 :"+ "获取到监听器名称："+name);
+        return name;
     }
 
-
-    @Override
     public void jobToBeExecuted(JobExecutionContext context) {
         String jobName = context.getJobDetail().getKey().getName();
-        System.out.println("jobToBeExecuted: " + jobName + "任务即将执行");
+        System.out.println("Method 222222 :"+ jobName + " ——任务即将执行 ");
     }
 
-
-    @Override
     public void jobExecutionVetoed(JobExecutionContext context) {
         String jobName = context.getJobDetail().getKey().getName();
-        System.out.println("jobExecutionVetoed: " + jobName + "任务执行被否决");
+        System.out.println("Method 333333 :"+ jobName + " ——任务被否决 ");
     }
 
-
-    @Override
     public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) {
         String jobName = context.getJobDetail().getKey().getName();
-        System.out.println("jobWasExecuted: " + jobName + "任务执行完成");
+        System.out.println("Method 444444 :"+ jobName + " ——执行完毕 ");
+        System.out.println("------------------");
     }
 }
