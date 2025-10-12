@@ -7,7 +7,7 @@ public class MyJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        System.out.println("MyJob execute");
+        System.out.println("My Quartz Job execute...");
     }
 
 

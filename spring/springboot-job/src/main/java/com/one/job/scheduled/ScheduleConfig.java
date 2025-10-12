@@ -10,8 +10,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.config.Task;
 
-@Configuration
-@EnableScheduling
+//@Configuration
+//@EnableScheduling
 public class ScheduleConfig implements SchedulingConfigurer {
 
     @Override
