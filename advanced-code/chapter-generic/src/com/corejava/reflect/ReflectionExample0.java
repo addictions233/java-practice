@@ -3,6 +3,9 @@ package com.corejava.reflect;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * 通过反射获取泛型类型
+ */
 public class ReflectionExample0 {
 
     public static void main(String[] args) {
