@@ -51,7 +51,7 @@
 	</select>
 	
 	<!-- 根据bean查询定时任务详情  -->
-	<select id="selectByBean" parameterType="com.msb.demo.entity.SysJob" resultMap="BaseResultMap">
+	<select id="selectByBean" parameterType="com.one.job.dynamicjob.entity.SysJob" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from sys_job where 1=1
@@ -95,7 +95,7 @@
 	</delete>
 
 	<!-- 新增定时任务 -->
-	<insert id="insertSelective" parameterType="com.msb.demo.entity.SysJob">
+	<insert id="insertSelective" parameterType="com.one.job.dynamicjob.entity.SysJob">
 		insert into sys_job
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -152,7 +152,7 @@
 	</insert>
 
 	<!-- 更新定时任务信息 -->
-	<update id="updateByPrimaryKeySelective" parameterType="com.msb.demo.entity.SysJob">
+	<update id="updateByPrimaryKeySelective" parameterType="com.one.job.dynamicjob.entity.SysJob">
 		update sys_job
 		<set>
 			<if test="jobDescribe != null">
