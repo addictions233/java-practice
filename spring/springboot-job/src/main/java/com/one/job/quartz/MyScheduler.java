@@ -32,10 +32,8 @@ public class MyScheduler {
 
         // 绑定关系是1：N
         scheduler.scheduleJob(jobDetail, trigger);
+        // 启动任务
         scheduler.start();
-
-
-
     }
 
 }
