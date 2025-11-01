@@ -1,4 +1,4 @@
-package com.one.job.quartzjob;
+package com.one.job.springquartz;
 
 import com.one.job.quartz.job.MyJob;
 import org.quartz.*;
@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 在spring项目中使用Quartz创建定时任务
+ * 在spring项目中使用Quartz创建定时任务:
+ *    只需要定义JobDetail和Trigger的Bean对象交给spring管理即可
  */
 @Configuration
 public class QuartzConfig {
