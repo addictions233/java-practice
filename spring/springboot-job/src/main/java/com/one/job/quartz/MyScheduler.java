@@ -5,6 +5,9 @@ import com.one.job.quartz.job.MyJob;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
+/**
+ * 直接使用Quartz创建定时任务
+ */
 public class MyScheduler {
     public static void main(String[] args) throws SchedulerException {
 

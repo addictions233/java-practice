@@ -5,6 +5,9 @@ import org.quartz.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * 在spring项目中使用Quartz创建定时任务
+ */
 @Configuration
 public class QuartzConfig {
 
