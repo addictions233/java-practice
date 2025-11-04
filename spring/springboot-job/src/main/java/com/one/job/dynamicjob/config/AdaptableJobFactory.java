@@ -1,6 +1,7 @@
 package com.one.job.dynamicjob.config;
 
 import org.quartz.Job;
+import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.spi.JobFactory;
@@ -11,10 +12,10 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Method;
 
 /**
- *
  * 将Spring的对象注入到Quartz Job 1
  */
 public class AdaptableJobFactory implements JobFactory {
+
 	@Override
 	public Job newJob(TriggerFiredBundle bundle, Scheduler arg1) throws SchedulerException {
 		 return newJob(bundle);
@@ -33,7 +34,7 @@ public class AdaptableJobFactory implements JobFactory {
 
 	    // 通过反射的方式创建实例
 	    protected Object createJobInstance(TriggerFiredBundle bundle) throws Exception {
-	        Method getJobDetail = bundle.getClass().getMethod("getJobDetail");
+			Method getJobDetail = bundle.getClass().getMethod("getJobDetail");
 	        Object jobDetail = ReflectionUtils.invokeMethod(getJobDetail, bundle);
 	        Method getJobClass = jobDetail.getClass().getMethod("getJobClass");
 	        Class jobClass = (Class) ReflectionUtils.invokeMethod(getJobClass, jobDetail);

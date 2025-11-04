@@ -65,6 +65,7 @@ public class InitStartSchedule implements CommandLineRunner {
                     jobDetail.getJobDataMap().put(m.getKey(),m.getValue());
                 }
             }
+
             //表达式调度构建器(即任务执行的时间)
             CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(sysJob.getJobCron());
             //按新的cronExpression表达式构建一个新的trigger
