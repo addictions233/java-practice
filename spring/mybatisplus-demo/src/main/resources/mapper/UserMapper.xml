@@ -2,6 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.one.mybatisplus.mapper.UserMapper">
 
+    <!-- 定义结果映射, 指定JSON字段的处理器   -->
+    <resultMap id="UserResultMap" type="com.one.mybatisplus.entity.TbUser">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="age" property="age" />
+        <result column="email" property="email" />
+        <result column="extend" property="extend" typeHandler="com.one.mybatisplus.handler.JsonbTypeHandler" />
+    </resultMap>
 
     <select id="selectPageByCustom" resultType="com.one.mybatisplus.entity.TbUser">
         SELECT * FROM tb_user3
@@ -11,7 +19,7 @@
         SELECT * FROM tb_user3 WHERE id = #{id}
     </select>
 
-    <select id="getByUser" resultType="com.one.mybatisplus.entity.TbUser">
+    <select id="getByUser" resultType="UserResultMap">
        <!--  SELECT * FROM tb_user3 WHERE id = #{user.id} -->
         SELECT * FROM tb_user3 WHERE id = #{id}
     </select>

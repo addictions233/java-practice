@@ -7,7 +7,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.one.mybatisplus.config.EnumJsonSerializer;
 import com.one.mybatisplus.enums.UserStatusEnum;
+import com.one.mybatisplus.handler.JsonbTypeHandler;
 import lombok.Data;
+import org.json.JSONObject;
 
 /**
  * @ClassName: User
@@ -20,7 +22,7 @@ import lombok.Data;
  * @Date: 2020/12/23
  */
 @Data
-@TableName("tb_user3") //mybatis plus注解,解决pojo类名和数据表名不一致
+@TableName(value = "tb_user3", autoResultMap = true) //mybatis plus注解,解决pojo类名和数据表名不一致
 public class TbUser {
     /**
      * 设置id生成策略,AUTO数据表字段自增
@@ -53,4 +55,12 @@ public class TbUser {
      */
     @TableField(exist = false)
     private String info;
+
+    /**
+     * 扩展字段,存储用户的其他信息,如手机号,地址等, 对应数据库中的json类型
+     *
+     */
+//    @TableField(typeHandler = FastjsonTypeHandler.class) // 使用mybatis plus的fastjson类型处理器
+    @TableField(typeHandler = JsonbTypeHandler.class) // 使用自定义的类型处理器
+    private JSONObject extend;
 }
