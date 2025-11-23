@@ -19,7 +19,7 @@
         SELECT * FROM tb_user3 WHERE id = #{id}
     </select>
 
-    <select id="getByUser" resultType="UserResultMap">
+    <select id="getByUser" resultMap="UserResultMap">
        <!--  SELECT * FROM tb_user3 WHERE id = #{user.id} -->
         SELECT * FROM tb_user3 WHERE id = #{id}
     </select>
