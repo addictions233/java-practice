@@ -12,6 +12,8 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       # 对value进行序列化的方式
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      batch-size: 4096
+      buffer-memory: 40960
     consumer:
       # 消费者的组名
       group-id: test-consumer-group
@@ -19,3 +21,5 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       # 对value进行反序列化方式
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: true
+      auto-offset-reset: latest
