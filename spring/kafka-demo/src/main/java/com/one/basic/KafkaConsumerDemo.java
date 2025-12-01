@@ -29,6 +29,7 @@ public class KafkaConsumerDemo {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         // 设置consumer的群组, Consumer是按照消费者组记录消费进度的
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group2");
+        // earliest: 无提交的偏移量：从分区最早的消息开始消费（包括历史数据）
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         // 创建消费者
         // 一个Partition最多只能同时被一个Consumer消费。
