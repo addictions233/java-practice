@@ -17,9 +17,9 @@ import java.util.Optional;
 @Component
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "kafka-topic")
-    public void receiveMessage(ConsumerRecord record){
-        Optional<ConsumerRecord> optional = Optional.ofNullable(record);
+    @KafkaListener(topics = "kafka-topic", containerFactory = "kafkaListenerContainerFactory")
+    public void receiveMessage(ConsumerRecord<String, String> record){
+        Optional<ConsumerRecord<String, String>> optional = Optional.ofNullable(record);
         if(optional.isPresent()){
             Object value = record.value();
             System.out.println(value);
@@ -31,8 +31,8 @@ public class KafkaConsumer {
      * @param record
      */
     @KafkaListener(topics = "kafka-object-topic")
-    public void receiveObject(ConsumerRecord record){
-        Optional<ConsumerRecord> optional = Optional.ofNullable(record);
+    public void receiveObject(ConsumerRecord<String, String> record){
+        Optional<ConsumerRecord<String, String>> optional = Optional.ofNullable(record);
         if(optional.isPresent()){
             String jsonValue = (String)record.value();
             Person person = JSON.parseObject(jsonValue, Person.class);

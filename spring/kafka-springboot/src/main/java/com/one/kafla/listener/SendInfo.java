@@ -6,9 +6,11 @@ import org.springframework.stereotype.Component;
 
 /**
  * 类说明：
+ * @author one
  */
 @Component
-public class SendInfo implements ProducerListener {
+public class SendInfo implements ProducerListener<String, String> {
+
     public void onSuccess(String topic, Integer partition,
                           Object key, Object value,
                           RecordMetadata recordMetadata) {

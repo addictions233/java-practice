@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class KafkaProducer {
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
+
     // 发送消息
     @GetMapping("/kafka/normal/{message}")
     public void sendMessage1(@PathVariable("message") String normalMessage) {
