@@ -12,6 +12,9 @@ import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
+import org.springframework.retry.backoff.ExponentialRandomBackOffPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +60,25 @@ public class KafkaConsumerConfig {
     @Bean
     public MyListener listener() {
         return new MyListener();
+    }
+
+    /**
+     * 重试模板, 在高版本中已废弃, 建议使用 RetryableTopic 注解进行重试
+     * @return
+     */
+    @Bean
+    public RetryTemplate retryTemplate() {
+        RetryTemplate retryTemplate = new RetryTemplate();
+        // 设置退避策略
+        ExponentialRandomBackOffPolicy backOffPolicy = new ExponentialRandomBackOffPolicy();
+        backOffPolicy.setInitialInterval(1000); // 初始退避时间间隔，单位毫秒
+        backOffPolicy.setMaxInterval(10000); // 最大退避时间间隔，单位毫秒
+        backOffPolicy.setMultiplier(2.0); // 退避时间间隔的倍数
+        retryTemplate.setBackOffPolicy(backOffPolicy);
+        // 设置重试策略
+        SimpleRetryPolicy retryPolicy = new SimpleRetryPolicy(3); // 最大重试次数
+        retryTemplate.setRetryPolicy(retryPolicy);
+        return retryTemplate;
     }
 
     @Bean
