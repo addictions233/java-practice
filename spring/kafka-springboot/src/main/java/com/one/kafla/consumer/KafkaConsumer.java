@@ -7,7 +7,7 @@ import org.apache.kafka.common.errors.SerializationException;
 import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
-import org.springframework.kafka.retrytopic.SameIntervalTopicReuseStrategy;
+//import org.springframework.kafka.retrytopic.SameIntervalTopicReuseStrategy;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.stereotype.Component;
 
@@ -45,7 +45,7 @@ public class KafkaConsumer {
     @RetryableTopic(
             backoff = @Backoff(delay = 1000, multiplier = 2.0), // 退避时间: 用于确定处理消息的时间间隔。从 Backoff 类获取一个值。
             attempts = "3",  // 尝试处理消息的次数。它的默认值为 3。如果完成所有尝试后仍然收到错误，则消息将发送到 DLT 队列。
-            sameIntervalTopicReuseStrategy = SameIntervalTopicReuseStrategy.SINGLE_TOPIC, // 用于确定要创建的重试主题策略。创建 (SINGLE_TOPIC) 或尽可能多的尝试值 (MULTIPLE_TOPICS) 重试主题。
+//            sameIntervalTopicReuseStrategy = SameIntervalTopicReuseStrategy.SINGLE_TOPIC, // 用于确定要创建的重试主题策略。创建 (SINGLE_TOPIC) 或尽可能多的尝试值 (MULTIPLE_TOPICS) 重试主题。
             kafkaTemplate = "kafkaTemplate", // 将消息发送到重试topic或者死信队列时使用的 KafkaTemplate bean 名称。
             exclude = {SerializationException.class, IllegalArgumentException.class,
             NullPointerException.class} // 允许您排除指定的异常类。当您添加到列表中的任何错误被抛出时，重试机制将不会被激活。
