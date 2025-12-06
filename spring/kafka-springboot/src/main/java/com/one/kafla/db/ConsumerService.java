@@ -26,9 +26,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Component
 public class ConsumerService {
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private static final ExecutorService executorService = new ThreadPoolExecutor(2, 2, 60, TimeUnit.SECONDS, new SynchronousQueue<>());
-    private static final List<KafkaConsumer<String,String>> consumers = new ArrayList<KafkaConsumer<String,String>>();
+    private static final ExecutorService executorService = new ThreadPoolExecutor(3, 3, 60, TimeUnit.SECONDS, new SynchronousQueue<>());
+    private static final List<KafkaConsumer<String,String>> consumers = new ArrayList<>();
 
     @Autowired
     private DBService dbService;
