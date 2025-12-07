@@ -46,8 +46,9 @@ public class KafkaConsumerDemo {
             // 会导致broker记录错误的consumer消费进度, 造成消息消费的丢失或者重复
             // 如果我们要避免消费进度offset在consumer和broker的管理不一致, 可以客户端在保存一份自己的消费进度偏移量,对比broker端的消费进度
             records.partitions().forEach(topicPartition -> {
-                String redisKey = topicPartition.topic() + topicPartition.partition();
                 List<ConsumerRecord<String, String>> partitionRecords = records.records(topicPartition);
+                String redisKey = topicPartition.topic() + "#" + topicPartition.partition();
+                // 获取最后一条消息的偏移量
                 long redisValue = partitionRecords.get(partitionRecords.size() - 1).offset();
                 // TODO 将 redisKey和redisValue放入缓存中, 这样就可以在客户端记录自己真实消费的偏移量
                 // TODO 后续消费对比自己记录的消费偏移量和broker给的消息的偏移量进行对比, 如果不一致以自己记录的为主, 丢掉重复消费的

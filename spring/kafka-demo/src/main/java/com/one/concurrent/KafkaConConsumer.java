@@ -30,7 +30,7 @@ public class KafkaConConsumer {
         public ConsumerWorker(Map<String, Object> config, String topic) {
             Properties properties = new Properties();
             properties.putAll(config);
-            //一个线程一个消费者
+            //一个线程一个消费者Consumer, Consumer是线程不安全的, 所以每个线程都需要一个消费者
             this.consumer = new KafkaConsumer<String, String>(properties);
             consumer.subscribe(Collections.singletonList(topic));
         }
@@ -68,7 +68,7 @@ public class KafkaConConsumer {
 
         for(int i = 0; i<CONCURRENT_PARTITIONS_COUNT; i++){
             // Kafka中Producer是线程安全的, 但是Consumer不是线程安全的, 所有一个线程一个消费者Consumer
-            //一个线程一个消费者
+            //一个线程一个消费者Consumer
             executorService.submit(new ConsumerWorker(properties, "concurrent-ConsumerOffsets"));
         }
     }
