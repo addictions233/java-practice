@@ -44,9 +44,11 @@ public class KafkaConsumerDemo {
 
             // kafka消费有个问题: 消费进度偏移量offset是由consumer提交的, 但是是记录在broker的, 所以如果consumer提交消费进度失败或者错误
             // 会导致broker记录错误的consumer消费进度, 造成消息消费的丢失或者重复
-            // 如果我们要避免消费进度offset在consumer和broker的管理不一致, 可以客户端在保存一份自己的消费进度偏移量,对比broker端的消费进度
             records.partitions().forEach(topicPartition -> {
+                // 从records中获取当前topicPartition的全部消息记录
                 List<ConsumerRecord<String, String>> partitionRecords = records.records(topicPartition);
+                // 如果我们要避免消费进度offset在consumer和broker的管理不一致, 可以客户端在保存一份自己的消费进度偏移量,对比broker端的消费进度
+                // 使用topic + partition 作为key, 记录当前partition的消费进度偏移量
                 String redisKey = topicPartition.topic() + "#" + topicPartition.partition();
                 // 获取最后一条消息的偏移量
                 long redisValue = partitionRecords.get(partitionRecords.size() - 1).offset();
