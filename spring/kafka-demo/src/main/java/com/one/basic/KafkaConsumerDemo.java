@@ -31,6 +31,9 @@ public class KafkaConsumerDemo {
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group2");
         // earliest: 无提交的偏移量：从分区最早的消息开始消费（包括历史数据）
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        // 开启自动提交offset
+        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
         // 创建消费者
         // 一个Partition最多只能同时被一个Consumer消费。
         // 也就是说，如果有四个Partition的Topic，那么同一个消费者组中最多就只能配置四个消费者实例。
