@@ -15,6 +15,7 @@
     <dependencies>
 
         <!-- 这个依赖引入Kafka源码，只是为了演示Kafka官方的ExactlyOnce示例。-->
+        <!-- 2.13是Kafka的Scala版本，3.4.0是Kafka的版本 -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.13</artifactId>
