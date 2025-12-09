@@ -7,6 +7,8 @@ import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.MappedJdbcTypes;
 import org.apache.ibatis.type.MappedTypes;
 
+import java.lang.reflect.Field;
+
 
 /**
  * 注意：MyBatisPlus中没有在YML文件中配置全局JSON序列化器的方法，所以需要要使用的话，
@@ -21,13 +23,21 @@ import org.apache.ibatis.type.MappedTypes;
 public class JsonbTypeHandler extends AbstractJsonTypeHandler<JSONObject> {
 
 
+    public JsonbTypeHandler(Class<?> type) {
+        super(type);
+    }
+
+    public JsonbTypeHandler(Class<?> type, Field field) {
+        super(type, field);
+    }
+
     @Override
-    protected JSONObject parse(String json) {
+    public JSONObject parse(String json) {
             return JSON.parseObject(json);
     }
 
     @Override
-    protected String toJson(JSONObject obj) {
+    public String toJson(JSONObject obj) {
         return JSON.toJSONString(obj);
     }
 }
