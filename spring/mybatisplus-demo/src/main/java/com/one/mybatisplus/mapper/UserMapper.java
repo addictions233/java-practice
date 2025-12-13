@@ -24,4 +24,9 @@ public interface UserMapper extends BaseMapper<TbUser> {
     TbUser getById(@Param("id") Long id);
 
     TbUser getByUser(@Param("id") Long id, @Param("user")TbUser tbUser);
+
+    /**
+     * 自己实现了扩充BaseMapper的查询方法, 默认方法名: mySelectOne
+     */
+    TbUser mySelectOne();
 }

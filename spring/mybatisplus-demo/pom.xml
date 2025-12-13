@@ -52,11 +52,11 @@
 		</dependency>
 
 		<!--mybatis plus 对多数据源起步依赖-->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-			<version>${dynamic-datasource.version}</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.baomidou</groupId>-->
+<!--			<artifactId>dynamic-datasource-spring-boot-starter</artifactId>-->
+<!--			<version>${dynamic-datasource.version}</version>-->
+<!--		</dependency>-->
 
 		<!-- druid连接池 -->
 		<dependency>
