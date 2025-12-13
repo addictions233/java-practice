@@ -6,16 +6,20 @@ import com.one.mybatisplus.mapper.UserMapper;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Service;
 
 /**
  * 测试mybatis的批量操作
  */
-public class MybatisBatchInsertTest {
+@Service
+public class MybatisBatchInsert {
 
-    public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppApplication.class);
-        SqlSessionFactory sqlSessionFactory = context.getBean(SqlSessionFactory.class);
+    @Autowired
+    private SqlSessionFactory sqlSessionFactory;
+
+    public void batchInsert() {
         // 开启批量操作
         try (SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false)) {
             UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
@@ -26,6 +30,13 @@ public class MybatisBatchInsertTest {
             sqlSession.flushStatements(); // 刷新缓存, 提交到数据库
             // 手动提交
             sqlSession.commit();
+
+            // 3、执行SQL
+//          sqlSession.insert("com.zhouyu.mapper.UserMapper.insertUser", new UserInfo("zhouyu111"));
+//          sqlSession.insert("com.zhouyu.mapper.UserMapper.insertUser", new UserInfo("zhouyu222"));
+//          sqlSession.insert("com.zhouyu.mapper.UserMapper.insertUser", new UserInfo("zhouyu333"));
+//          sqlSession.flushStatements();
+//          sqlSession.commit();
         }
     }
 }
