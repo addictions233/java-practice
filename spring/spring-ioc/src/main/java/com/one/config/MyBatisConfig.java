@@ -18,7 +18,7 @@ public class MyBatisConfig {
     @Bean   //如果该Bean对象是供spring调用,可以不指定Bean对象的id值,默认id值为方法名
     public SqlSessionFactoryBean getSqlSessionFactoryBean(@Autowired DataSource dataSource){
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setTypeAliasesPackage("com.itheima.domain");
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.one.domain");
         sqlSessionFactoryBean.setDataSource(dataSource);
         return sqlSessionFactoryBean;
     }
