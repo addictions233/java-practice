@@ -21,6 +21,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--  SpringBoot测试起步依赖, 包含了JUnit, Mockito, AssertJ等测试框架   -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

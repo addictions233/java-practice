@@ -5,6 +5,7 @@ import com.one.mapper.SystemUserMapper;
 import com.one.pojo.SystemUser;
 import com.one.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -12,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.event.annotation.BeforeTestMethod;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.Assert;
 
 /**
@@ -22,6 +24,7 @@ import org.springframework.util.Assert;
  */
 // 高版本可不加此注解
 @SpringBootTest(classes = SpringbootJunitApplication.class) // 目的是加载ApplicationContext, 启动spring容器
+@ExtendWith(SpringExtension.class)
 public class UserServiceTest {
 
     @Autowired
