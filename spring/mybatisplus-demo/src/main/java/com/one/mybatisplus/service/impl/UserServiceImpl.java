@@ -59,8 +59,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, TbUser> implements 
 
 //    @DS("write")
 //    @DSTransactional
-    public void createUser(TbUser user) {
+    public void updateUser(TbUser user) {
         jdbcTemplate.update("insert into tb_user values(?,?,?,?,?)", user.getUserName(), user.getUserStatus(), user.getName(), user.getInfo());
         int i = 1/0;
+    }
+
+    @Override
+    public int insertUser(TbUser user) {
+        user.insert(); // mybatis plus在实体类中提供了insert方法
+//        user.insertOrUpdate(); // mybatis plus在实体类中提供了insertOrUpdate方法
+
+        LambdaQueryWrapper<TbUser> wrapper = Wrappers.lambdaQuery(TbUser.class).eq(TbUser::getUserName, user.getUserName());
+        TbUser tbUser = user.selectOne(wrapper);
+        return 1;
     }
 }

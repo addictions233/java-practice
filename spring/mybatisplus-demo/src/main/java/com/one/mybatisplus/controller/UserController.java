@@ -1,6 +1,5 @@
 package com.one.mybatisplus.controller;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.one.mybatisplus.entity.TbUser;
 import com.one.mybatisplus.mapper.UserMapper;
 import com.one.mybatisplus.service.UserService;
@@ -64,7 +63,7 @@ public class UserController {
     @RequestMapping("/createCourse")
     public String createCourse(TbUser user){
 //        courseMapper.insert(course);
-        userService.createUser(user);
+        userService.updateUser(user);
         return "SUCCESS BY DS";
     }
 

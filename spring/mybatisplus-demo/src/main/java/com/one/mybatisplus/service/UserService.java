@@ -31,5 +31,7 @@ public interface UserService extends IService<TbUser> {
     List<?> selectUser();
 
 
-    void createUser(TbUser user);
+    void updateUser(TbUser user);
+
+    int insertUser(TbUser user);
 }

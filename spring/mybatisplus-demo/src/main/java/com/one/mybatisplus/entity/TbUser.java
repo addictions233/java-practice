@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @TableName(value = "tb_user3", autoResultMap = true) //mybatis plus注解,解决pojo类名和数据表名不一致
 // autoResultMap = true 开启自动映射
-public class TbUser extends Model<TbUser> {
+public class TbUser extends Model<TbUser> {  // model类是mybatis plus的基类,提供了一些常用的方法
     /**
      * 设置id生成策略,AUTO数据表字段自增
      */
