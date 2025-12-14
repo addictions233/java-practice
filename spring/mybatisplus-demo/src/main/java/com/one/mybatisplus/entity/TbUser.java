@@ -1,17 +1,17 @@
 package com.one.mybatisplus.entity;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.one.mybatisplus.config.EnumJsonSerializer;
 import com.one.mybatisplus.enums.UserStatusEnum;
 import com.one.mybatisplus.handler.JsonbTypeHandler;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.json.JSONObject;
 
 /**
  * @ClassName: User
@@ -26,7 +26,8 @@ import org.json.JSONObject;
 @Data
 @NoArgsConstructor
 @TableName(value = "tb_user3", autoResultMap = true) //mybatis plus注解,解决pojo类名和数据表名不一致
-public class TbUser {
+// autoResultMap = true 开启自动映射
+public class TbUser extends Model<TbUser> {
     /**
      * 设置id生成策略,AUTO数据表字段自增
      */

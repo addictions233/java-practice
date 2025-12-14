@@ -5,6 +5,12 @@ import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @ClassName: MybatisPlusConfig
+ * @Description: MybatisPlus配置类
+ * @Author: one
+ * @Date: 2025/12/14
+ */
 @Configuration
 public class MybatisPlusConfig {
 

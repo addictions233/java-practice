@@ -9,6 +9,12 @@ import org.apache.ibatis.session.RowBounds;
 
 import java.sql.SQLException;
 
+/**
+ * @ClassName: ContextParamInterceptor
+ * @Description: 自定义拦截器, 为sql语句添加上下文参数
+ * @Author: one
+ * @Date: 2025/12/14
+ */
 public class ContextParamInterceptor implements InnerInterceptor {
 
     @Override

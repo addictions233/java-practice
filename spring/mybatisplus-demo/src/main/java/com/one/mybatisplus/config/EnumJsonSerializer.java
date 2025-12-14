@@ -7,6 +7,12 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import java.io.IOException;
 
+/**
+ * @ClassName: EnumJsonSerializer
+ * @Description: 枚举类型序列化器
+ * @Author: one
+ * @Date: 2025/12/14
+ */
 public class EnumJsonSerializer extends JsonSerializer<IEnum<?>> {
     /**
      * Method that can be called to ask implementation to serialize

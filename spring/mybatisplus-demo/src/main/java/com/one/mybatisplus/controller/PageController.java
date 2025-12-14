@@ -18,6 +18,9 @@ public class PageController {
     @Resource
     private UserMapper userMapper;
 
+    /**
+     * 分页查询用户列表
+     */
     @GetMapping("/queryByPage")
     public Page<TbUser> queryByPage(@RequestParam("pageNum") Integer pageNum,
                                     @RequestParam("pageSize") Integer pageSize) {

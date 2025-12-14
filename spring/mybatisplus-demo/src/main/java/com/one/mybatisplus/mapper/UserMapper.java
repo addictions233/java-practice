@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 /**
  * @InterfaceName: UserMapper
- * @Description: TODO
+ * @Description: 继承BaseMapper接口, 提供CRUD操作
  * @Author: one
  * @Date: 2020/12/23
  */
