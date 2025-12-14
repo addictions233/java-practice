@@ -1,4 +1,4 @@
-package com.one.mybatisplus;
+package com.one.mybatisplus.injector;
 
 
 import com.one.mybatisplus.entity.TbUser;

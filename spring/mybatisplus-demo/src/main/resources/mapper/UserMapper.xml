@@ -11,6 +11,7 @@
         <result column="extend" property="extend" typeHandler="com.one.mybatisplus.handler.JsonbTypeHandler" />
     </resultMap>
 
+
     <select id="selectPageByCustom" resultType="com.one.mybatisplus.entity.TbUser">
         SELECT * FROM tb_user3
     </select>
@@ -23,4 +24,10 @@
        <!--  SELECT * FROM tb_user3 WHERE id = #{user.id} -->
         SELECT * FROM tb_user3 WHERE id = #{id}
     </select>
+
+
+    <insert id="insertUser" parameterType="com.one.mybatisplus.entity.TbUser">
+        INSERT INTO tb_user3 (name, age, email)
+        VALUES (#{name}, #{age}, #{email})
+    </insert>
 </mapper>
