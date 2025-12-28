@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 
 public class ReflectionExample1 {
     public static void main(String[] args) {
+        // 类是单继承的，所以只能获取到一个泛型类型
         Type type = MyGenericClass.class.getGenericSuperclass(); // 获取父类的泛型类型
         if (type instanceof ParameterizedType) {
             ParameterizedType ptype = (ParameterizedType) type;
