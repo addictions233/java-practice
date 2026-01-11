@@ -27,7 +27,7 @@ public class SysUserServiceImpl implements SysUserService {
             SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
             // 3,获取SqlSession会话对象,并将事务设置为自动提交
             sqlSession = sqlSessionFactory.openSession(true);
-            // 4,获取mapper持久层接口的实现类对象
+            // 4,获取mapper持久层接口的代理对象
             mapper = sqlSession.getMapper(UserMapper.class);
         } catch (IOException e) {
             e.printStackTrace();
