@@ -46,6 +46,7 @@ public class MybatisTest {
         // 3.获取SqlSession对象
         SqlSession sqlSession = sqlSessionFactory.openSession();
         // 4.通过sqlSession获取我们接口对应的代理对象,通过代理对象来执行sql
+        // 基于代理模式, 我们只需要在mapper层定义接口就能执行sql语句
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
         Student student = mapper.selectById(10);
         System.out.println(student);

@@ -25,6 +25,7 @@ public class PageHelperTest {
     public void selectByPage() {
         StudentService studentService = new StudentServiceImpl();
         List<Student> students = studentService.selectByPage(1, 2);
+        // pagerHelper分页查询的结果本质是一个PageInfo对象,
         PageInfo<Student> pageInfo = new PageInfo<>(students);
         String pageInfoJSON = JSON.toJSONString(pageInfo);
         System.out.println("pageInfoJSON:" + pageInfoJSON);
