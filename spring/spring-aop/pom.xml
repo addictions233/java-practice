@@ -18,11 +18,24 @@
             <version>5.1.9.RELEASE</version>
         </dependency>
 
+        <!--导入Spring专门用于测试的jar包-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.1.9.RELEASE</version>
+        </dependency>
+
         <!--  由于spring aop借用了 AspectJ定义的AOP注解 @Before, @After等, 所以要引入这个依赖   -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>1.9.4</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
