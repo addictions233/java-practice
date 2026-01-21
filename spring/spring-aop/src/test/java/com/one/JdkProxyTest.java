@@ -1,6 +1,5 @@
 package com.one;
 
-import com.one.base.proxy.JDKProxy;
 import com.one.service.UserService;
 import com.one.service.impl.UserServiceImpl;
 import org.junit.Test;
