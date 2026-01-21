@@ -16,16 +16,18 @@ import java.lang.reflect.Method;
 public class AopTest {
     public static void main(String[] args) {
         UserService userService = new UserServiceImpl();
+
+        System.out.println("---------------------------Jdk动态代理-------------------------");
         // 使用jdk动态代理生成代理对象
         UserService userService1 =  (UserService) JDKProxy.createUserServiceJDKProxy(userService);
         userService1.save();
 
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("--------------------------CGLIB动态代理--------------------------");
         // 使用CGLIB动态代理生成代理对象
         UserServiceImpl userService2 = CGLIBProxy.createUserServiceCglibProxy(UserServiceImpl.class);
         userService2.save();
 
-        System.out.println("------------------------------------------");
+        System.out.println("-----------------Spring动态代理-------------------------");
         // spring为了集成上述两种动态代理选择了代理工厂
         ProxyFactory proxyFactory = new ProxyFactory();
         proxyFactory.setTarget(userService);

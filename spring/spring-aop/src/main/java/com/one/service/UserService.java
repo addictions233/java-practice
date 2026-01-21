@@ -10,5 +10,7 @@ public interface UserService {
 
     void save();
 
+    void save2();
+
     double sell(double price, double numb);
 }

@@ -31,8 +31,8 @@ public class CGLIBProxy {
                     public Object intercept(Object proxy, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
                         System.out.println("cglib proxy before ...");
                         // 调用目标对象的方法, 调用代理对象的父类的这个方法,就是被代理方法
-//                        Object result = methodProxy.invokeSuper(proxy, args);
-                        Object result = methodProxy.invoke(proxy, args); // 会进入死循环, 无限自调用
+                        Object result = methodProxy.invokeSuper(proxy, args);
+//                        Object result = methodProxy.invoke(proxy, args); // 会进入死循环, 无限自调用
 //                        Object result = method.invoke(proxy, args); // 会进入死循环
                         System.out.println("cglib proxy after ...");
                         return result;

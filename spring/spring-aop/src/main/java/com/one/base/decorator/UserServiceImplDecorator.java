@@ -35,6 +35,14 @@ public class UserServiceImplDecorator implements UserService {
     }
 
     @Override
+    public void save2() {
+        if(userService != null){
+            userService.save2();
+        }
+        System.out.println("墙上摸了白灰");
+    }
+
+    @Override
     public double sell(double price, double numb) {
         return 0;
     }

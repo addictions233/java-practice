@@ -19,6 +19,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void save2() {
+        System.out.println("user service is running save2");
+    }
+
+    @Override
     public double sell(double price,double numb){
         double sum = price*numb;
         return sum;

@@ -27,8 +27,8 @@ public class JDKProxy {
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 System.out.println("jdk proxy before...");
-//                Object result = method.invoke(target, args);
-                Object result = method.invoke(proxy, args); // 会进入死循环
+                Object result = method.invoke(target, args);
+//                Object result = method.invoke(proxy, args); // 会进入死循环
                 System.out.println("jdk proxy after...");
                 return result;
             }

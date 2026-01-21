@@ -10,7 +10,7 @@ public class AopTest {
     @Test
     public void testAop() {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AopApp.class);
-        UserService userService = applicationContext.getBean(UserService.class);
+        UserService userService = applicationContext.getBean("userService",UserService.class);
         userService.save();
     }
 }
