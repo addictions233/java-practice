@@ -16,9 +16,12 @@ public class AdviceTest {
         // 使用spring提供的proxyFactory生成代理对象
         ProxyFactory proxyFactory = new ProxyFactory();
         proxyFactory.setTarget(target);
-        proxyFactory.addAdvice(new CustomBeforeAdvice());
+        // 设置方法执行之前的通知
+        proxyFactory.addAdvice(new CustomMethodBeforeAdvice());
+        // 设置方法正常执行后的通知
         proxyFactory.addAdvice(new CustomAfterReturningAdvice());
-        proxyFactory.addAdvice(new CustomAroundAdvice());
+        // 设置方法执行环绕通知
+        proxyFactory.addAdvice(new CustomMethodAroundAdvice());
 
         UserService proxy = (UserService) proxyFactory.getProxy();
         proxy.save();

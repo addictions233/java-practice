@@ -1,6 +1,6 @@
 package com.one;
 
-import com.one.advice.CustomAroundAdvice;
+import com.one.advice.CustomMethodAroundAdvice;
 import com.one.service.UserService;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
@@ -53,7 +53,7 @@ public class AopApp {
         // Advisor = Advice + Pointcut
         DefaultPointcutAdvisor advisor = new DefaultPointcutAdvisor();
         advisor.setPointcut(pointcut);
-        advisor.setAdvice(new CustomAroundAdvice());
+        advisor.setAdvice(new CustomMethodAroundAdvice());
         return advisor;
     }
 }

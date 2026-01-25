@@ -1,8 +1,6 @@
 package com.one.advisor;
 
-import com.one.advice.CustomAfterReturningAdvice;
-import com.one.advice.CustomAroundAdvice;
-import com.one.advice.CustomBeforeAdvice;
+import com.one.advice.CustomMethodAroundAdvice;
 import com.one.service.UserService;
 import com.one.service.impl.UserServiceImpl;
 import org.aopalliance.aop.Advice;
@@ -47,7 +45,7 @@ public class AdvisorTest {
              */
             @Override
             public Advice getAdvice() {
-                return new CustomAroundAdvice();
+                return new CustomMethodAroundAdvice();
             }
 
             @Override
