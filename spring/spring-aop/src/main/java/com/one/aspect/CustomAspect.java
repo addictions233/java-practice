@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2020/12/02
  */
 @Component
+// 最终还是转换为Advisor对象来进行处理
 @Aspect  // spring的aop只是借用了aspectj的注解, 但是aop实现还是spring自己实现的
 public class CustomAspect {
 
@@ -18,7 +19,7 @@ public class CustomAspect {
      * 定义切点表达式
      */
     @Pointcut("execution(* *.save(..))")
-    public void pt(){
+    public void pointcutMethod(){
 
     }
     public void function(){
@@ -28,7 +29,7 @@ public class CustomAspect {
     /**
      * 前置通知: 当前通知方法在原始切入点方法前运行
      */
-    @Before("pt()")
+    @Before("pointcutMethod()")
     public void before(){
         System.out.println("前置通知方法执行了..");
     }
@@ -37,7 +38,7 @@ public class CustomAspect {
      * 最终返回通知: 无论原始切入点方法是否正常执行, 当前通知方法都会执行, 但是它在 正常返回通知/异常返回通知之前执行
      * 相当于finally中的内容
      */
-    @After("pt()")
+    @After("pointcutMethod()")
     public void after(){
         System.out.println("最终返回通知方法执行了..");
     }
@@ -45,7 +46,7 @@ public class CustomAspect {
     /**
      * 正常返回通知: 当前通知方法在原始切入点方法正常执行后执行
      */
-    @AfterReturning("pt()")
+    @AfterReturning("pointcutMethod()")
     public void afterReturning(){
         System.out.println("正常返回后通知方法执行了..");
     }
@@ -53,7 +54,7 @@ public class CustomAspect {
     /**
      * 抛出异常后通知: 当前通知方法在原始切入点方法执行抛出异常时执行
      */
-    @AfterThrowing("pt()")
+    @AfterThrowing("pointcutMethod()")
     public void afterThrowing(){
         System.out.println("抛出异常后通知方法执行了..");
     }
