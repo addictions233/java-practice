@@ -6,6 +6,8 @@ import com.one.service.impl.UserServiceImpl;
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.PointcutAdvisor;
+import org.springframework.aop.aspectj.annotation.BeanFactoryAspectInstanceFactory;
+import org.springframework.aop.aspectj.annotation.ReflectiveAspectJAdvisorFactory;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.StaticMethodMatcherPointcut;
 

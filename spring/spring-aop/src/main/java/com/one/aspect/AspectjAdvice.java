@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Aspect  // spring的aop只是借用了aspectj的注解, 但是aop实现还是spring自己实现的
-public class AOPAdvice {
+public class AspectjAdvice {
 
     /**
      * 定义切点表达式
@@ -65,7 +65,7 @@ public class AOPAdvice {
      * @param point 切面
      * @return 结果
      */
-    @Around("pt()")
+//    @Around("pt()")
     public double around(ProceedingJoinPoint point) {
         double sum =0;
         try {
