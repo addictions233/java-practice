@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Aspect  // spring的aop只是借用了aspectj的注解, 但是aop实现还是spring自己实现的
-public class AspectjAdvice {
+public class CustomAspect {
 
     /**
      * 定义切点表达式
