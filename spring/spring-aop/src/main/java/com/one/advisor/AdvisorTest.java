@@ -24,35 +24,7 @@ public class AdvisorTest {
         ProxyFactory proxyFactory = new ProxyFactory();
         proxyFactory.setTarget(target);
         // Advisor = Advice 通知 + Pointcut 切入点
-        proxyFactory.addAdvisor(new PointcutAdvisor() {
-            /**
-             * 定义Pointcut切入点
-             * @return Pointcut
-             */
-            @Override
-            public Pointcut getPointcut() {
-                return new StaticMethodMatcherPointcut() {
-                    @Override
-                    public boolean matches(Method method, Class<?> targetClass) {
-                        return method.getName().equals("save");
-                    }
-                };
-            }
-
-            /**
-             * 定义Advice通知
-             * @return Advice
-             */
-            @Override
-            public Advice getAdvice() {
-                return new CustomMethodAroundAdvice();
-            }
-
-            @Override
-            public boolean isPerInstance() {
-                return false;
-            }
-        });
+        proxyFactory.addAdvisor(new CustomPointcutAdvisor());
 
         UserService proxy = (UserService) proxyFactory.getProxy();
         proxy.save();
