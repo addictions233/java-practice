@@ -99,4 +99,6 @@ public class AopApp {
         advisor.setAdvice(new CustomMethodAroundAdvice());
         return advisor;
     }
+
+    /***-------------------- Spring是用AnnotationAwareAspectJAutoProxyCreator来创建代理对象的 ----------------------------------- ***/
 }
