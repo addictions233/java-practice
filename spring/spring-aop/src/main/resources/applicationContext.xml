@@ -16,7 +16,7 @@
     <!--3,开启AOP的命名空间-->
     <bean id="userService" class="com.one.service.impl.UserServiceImpl"/>
     <!--2.配置共性功能,成为spring控制的资源-->
-    <bean id="myAdvice" class="com.one.aspect.CustomAspect" />
+    <bean id="myAdvice" class="com.one.aspect.CustomAspectJ" />
 
     <!--用IOC配置通知所属的通知类的Bean对象-->
     <bean id="logger" class="com.one.aspect.Logger"/>
