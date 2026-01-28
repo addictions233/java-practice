@@ -4,6 +4,7 @@ package com.one.service.impl;
 import com.one.dao.AccountDao;
 import com.one.service.AccountService;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
@@ -33,6 +34,7 @@ import javax.sql.DataSource;
  * 4,事务的超时时间 int getTimeOut()   默认  int TIMEOUT_DEFAULT = -1 永不超时
  * 5,事务的传播行为  int getPropagationBehavior()
  */
+@Service
 public class AccountServiceImpl implements AccountService {
 
     /**

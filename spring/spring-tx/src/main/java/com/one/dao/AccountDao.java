@@ -1,10 +1,12 @@
 package com.one.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
  * @author one
  */
+@Mapper
 public interface AccountDao {
     /**
      * 入账操作
