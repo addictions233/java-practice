@@ -61,25 +61,25 @@
     </aop:config>
 
     <!--使用空参构造,并创建Spring事务管理需要的DataSourceTransactionManager类Bean对象-->
-<!--    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-<!--        &lt;!&ndash;用构造方法进行DI注入进行属性赋值&ndash;&gt;-->
-<!--        <constructor-arg name="dataSource" ref="dataSource"/>-->
-<!--    </bean>-->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--用构造方法进行DI注入进行属性赋值-->
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
 
     <!--用Spring中声明式事务控制, 创建进行事务管理的通知类的Bean对象, 注意: 本类是一个通知类,包含通知Advice-->
-<!--    <tx:advice id="txAdvice" transaction-manager="txManager">-->
-<!--        <tx:attributes>-->
-<!--            &lt;!&ndash;因为事务管理只在Service层进行,只用在name属性中指定需要进行事务管理的切入点方法即可&ndash;&gt;-->
-<!--            <tx:method name="transfer" isolation="DEFAULT" read-only="false" propagation="REQUIRED"/>-->
-<!--        </tx:attributes>-->
-<!--    </tx:advice>-->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <!--因为事务管理只在Service层进行,只用在name属性中指定需要进行事务管理的切入点方法即可-->
+            <tx:method name="transfer" isolation="DEFAULT" read-only="false" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
 
     <!--开启AOP,配置事务的织入, 用Spring进行事务管理依赖的底层就是AOP,所以必须开启AOP-->
-<!--    <aop:config>-->
-<!--        <aop:pointcut id="pt" expression="execution(* com.one.service.impl.*.*(..))"/>-->
-<!--        &lt;!&ndash; advice-ref属性指定通知类, 这里有问题: 到底对哪些方法进行事务管理???&ndash;&gt;-->
-<!--       <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>-->
-<!--    </aop:config>-->
+    <aop:config>
+        <aop:pointcut id="pt" expression="execution(* com.one.service.impl.*.*(..))"/>
+        <!-- advice-ref属性指定通知类, 这里有问题: 到底对哪些方法进行事务管理???-->
+       <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>
+    </aop:config>
 
     <!--&lt;!&ndash;IOC注解开发方式, 需要指定创建Bean对象的类所属的包名&ndash;&gt;-->
     <!--<context:component-scan base-package="com.one"/>-->
