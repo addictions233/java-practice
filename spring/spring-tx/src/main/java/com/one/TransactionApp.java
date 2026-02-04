@@ -1,6 +1,7 @@
 package com.one;
 
 import com.one.service.AccountService;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @Date: 2021/06/08
  */
 @ComponentScan("com.one")
+@MapperScan("com.one.dao")
 @EnableTransactionManagement //作用是用来引入 InfrastructureAdvisorAutoProxyCreator 这个 BeanPostProcessor 来生成代理对象
 // 还会引入 TransactionInterceptor 这个 Advisor 来处理事务
 public class TransactionApp {

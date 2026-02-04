@@ -76,13 +76,13 @@
 
     <!--开启AOP,配置事务的织入, 用Spring进行事务管理依赖的底层就是AOP,所以必须开启AOP-->
 <!--    <aop:config>-->
-<!--        <aop:pointcut id="pt" expression="execution(* com.itheima.service.impl.*.*(..))"/>-->
+<!--        <aop:pointcut id="pt" expression="execution(* com.one.service.impl.*.*(..))"/>-->
 <!--        &lt;!&ndash; advice-ref属性指定通知类, 这里有问题: 到底对哪些方法进行事务管理???&ndash;&gt;-->
 <!--       <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"/>-->
 <!--    </aop:config>-->
 
     <!--&lt;!&ndash;IOC注解开发方式, 需要指定创建Bean对象的类所属的包名&ndash;&gt;-->
-    <!--<context:component-scan base-package="com.itheima"/>-->
+    <!--<context:component-scan base-package="com.one"/>-->
 
     <!--&lt;!&ndash;AOP注解开发方式,开启AOP注解驱动支持&ndash;&gt;-->
     <!--<aop:aspectj-autoproxy/>-->
