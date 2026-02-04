@@ -26,8 +26,7 @@ import javax.sql.DataSource;
  * Mybatis只能实现在Dao层的事务控制,如果想要在service层对多个数据进行操作,就需要在service层进行事务控制,
  * 将数据库的多个操作组成一个共同事务,要不同时完成,要不同时回滚,达到一致性
  *
- * @author one
- * @description 学习spring在数据层面的事务控制
+ * 学习spring在数据层面的事务控制
  * 事务的五个要素都定义在了 TransactionDefinition类中:
  * 1,事务名称   String getName()
  * 2,只读事务或者读写事务 boolean isReadOnly()
@@ -77,6 +76,7 @@ public class AccountServiceImpl implements AccountService {
     /**
      * 第二种: 用Spring的编程式事务管理器,即用java代码实现Service层事务管理
      */
+    @Override
     public void transferMoney2(String outName, String inName, Double money) {
         PlatformTransactionManager platformTransactionManager = null;
         TransactionStatus transactionStatus = null;
@@ -107,6 +107,7 @@ public class AccountServiceImpl implements AccountService {
     /**
      * 第三种:用AOP和自己手写通知类TxAdvice来进行事务控制  编程式事务控制
      */
+    @Override
     public void transferMoney3(String outName, String inName, Double money) {
         accountDao.outMoney(inName, 100.0);
         int i = 1 / 0;
@@ -117,6 +118,7 @@ public class AccountServiceImpl implements AccountService {
      * 第四种: 使用Spring中的声明式事务控制   xml配置方式
      * Spring中事务控制就是这用XML方式下声明式注解开发方式
      */
+    @Override
     public void transferMoney4(String outName, String inName, Double money) {
         accountDao.outMoney(inName, 100.0);
         int i = 1 / 0;
@@ -126,10 +128,11 @@ public class AccountServiceImpl implements AccountService {
     /**
      * 第五种: 使用Spring中的声明式事务控制  基于@Transactional注解的开发方式
      */
+    @Override
     @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED)
     public void transferMoney5(String outName, String inName, Double money) {
         accountDao.outMoney(inName, 100.0);
-        int i = 1 / 0;
+//        int i = 1 / 0;
         accountDao.inMoney(outName, 100.0);
     }
 

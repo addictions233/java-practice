@@ -15,4 +15,12 @@ public interface AccountService {
       * @param money 金额
       */
     void transferMoney(String outName, String inName, Double money);
+
+    void transferMoney2(String outName, String inName, Double money);
+
+    void transferMoney3(String outName, String inName, Double money);
+
+    void transferMoney4(String outName, String inName, Double money);
+
+    void transferMoney5(String outName, String inName, Double money);
 }
