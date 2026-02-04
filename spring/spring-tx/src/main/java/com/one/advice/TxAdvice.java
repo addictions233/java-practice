@@ -43,12 +43,12 @@ public class TxAdvice {
             // 2,提交事务
             platformTransactionManager.commit(transactionStatus);
 
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (Throwable e) {
             //3, 回滚事务
             if( platformTransactionManager != null && transactionStatus != null) {
                 platformTransactionManager.rollback(transactionStatus);
             }
+            e.printStackTrace();
         }
     }
 }
