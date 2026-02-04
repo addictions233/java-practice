@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 /**
- * @ClassName: TransfactionTest
+ * @ClassName: TransactionTest
  * @Description: 对Spring的编程式事务控制和声明式事务控制进行测试
  * @Author: one
  * @Date: 2021/06/08
