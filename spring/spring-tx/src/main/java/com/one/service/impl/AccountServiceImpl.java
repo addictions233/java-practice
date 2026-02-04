@@ -3,6 +3,7 @@ package com.one.service.impl;
 
 import com.one.dao.AccountDao;
 import com.one.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -42,6 +43,7 @@ public class AccountServiceImpl implements AccountService {
      */
     private AccountDao accountDao;
 
+    @Autowired
     public void setAccountDao(AccountDao accountDao) {
         this.accountDao = accountDao;
     }
@@ -54,6 +56,7 @@ public class AccountServiceImpl implements AccountService {
      */
     private DataSource dataSource;
 
+    @Autowired
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
