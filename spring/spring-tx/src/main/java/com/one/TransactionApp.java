@@ -4,10 +4,7 @@ import com.one.service.AccountService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -22,7 +19,8 @@ import javax.sql.DataSource;
  */
 @ComponentScan("com.one")
 @MapperScan("com.one.dao")
-@EnableTransactionManagement //作用是用来引入 InfrastructureAdvisorAutoProxyCreator 这个 BeanPostProcessor 来生成代理对象
+//作用是用来引入 InfrastructureAdvisorAutoProxyCreator 这个 BeanPostProcessor 来生成代理对象
+@EnableTransactionManagement(mode = AdviceMode.PROXY, proxyTargetClass = true)
 // 还会引入 TransactionInterceptor 这个 Advisor 来处理事务
 public class TransactionApp {
     public static void main(String[] args) {
