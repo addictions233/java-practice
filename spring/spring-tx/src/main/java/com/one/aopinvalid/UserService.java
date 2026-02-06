@@ -1,7 +1,6 @@
 package com.one.aopinvalid;
 
 import com.one.dao.AccountDao;
-import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
