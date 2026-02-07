@@ -1,3 +1,5 @@
+package com.one;
+
 import com.one.config.SpringConfig;
 import com.one.domain.Account;
 import com.one.service.AccountService;
