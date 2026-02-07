@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * 事务失效的几种场景:
+ *  1. 事务是基于AOP实现的, 如果AOP不生效, 事务肯定不会生效
+ *  2. 平台事务管理器使用的dataSource和mybatis执行sql使用的dataSource不是同一个, 也会事务管理失效
+ *  3. 多数据源操作的情况下, 使用@Transactional注解会报错, 可以使用mybatis-plus提供的@DSTransactional进行多数据源事务管理
+ */
 @Service
 public class UserService implements InjectSelf<UserService>{
 
