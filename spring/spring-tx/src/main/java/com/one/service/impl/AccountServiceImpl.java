@@ -84,8 +84,9 @@ public class AccountServiceImpl implements AccountService {
             // 获取平台事务管理器: 包括dataSourceTransactionManager, jpaTra
             platformTransactionManager = new DataSourceTransactionManager(dataSource);
             // 获取事务定义对象: 采用默认的事务定义对象
-            // DefaultTransactionDefinition类是一个默认的TransactionDefinition接口的实现, 它的传播行为是PROPAGATION_REQUIRED(如果当前没有事务,就创建一个,
-            // 如果当前有事务,就加入当前事务), 隔离级别是数据库的隔离级别, getTransaction()方法中会调用startTransaction()来开启事务
+            // DefaultTransactionDefinition类是一个默认的TransactionDefinition接口的实现,
+            // 它的传播行为是PROPAGATION_REQUIRED(如果当前没有事务,就创建一个,如果当前有事务,就加入当前事务)
+            // 隔离级别是数据库的隔离级别, getTransaction()方法中会调用startTransaction()来开启事务
             TransactionDefinition transactionDefinition = new DefaultTransactionDefinition();
             // 1, 获取事务(开启事务): getTransaction()方法: 返回一个已经存在的事务或者创建一个新的事务
             transactionStatus = platformTransactionManager.getTransaction(transactionDefinition);
