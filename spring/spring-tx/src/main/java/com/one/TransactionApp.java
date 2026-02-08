@@ -1,5 +1,6 @@
 package com.one;
 
+import com.one.async.AsyncService;
 import com.one.service.AccountService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -22,6 +24,7 @@ import javax.sql.DataSource;
 //作用是用来引入 InfrastructureAdvisorAutoProxyCreator 这个 BeanPostProcessor 来生成代理对象
 @EnableTransactionManagement(mode = AdviceMode.PROXY, proxyTargetClass = true)
 // 还会引入 TransactionInterceptor 这个 Advisor 来处理事务
+@EnableAsync // 开启异步支持
 public class TransactionApp {
     public static void main(String[] args) {
 
@@ -32,10 +35,16 @@ public class TransactionApp {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
         applicationContext.register(TransactionApp.class);
         applicationContext.refresh();
-        AccountService accountService = applicationContext.getBean(AccountService.class);
+
+        // 测试事务
+//        AccountService accountService = applicationContext.getBean(AccountService.class);
 //        accountService.transferMoney("rose","lucus",100.0);
 //        accountService.transferMoney2("rose","lucus",100.0);
-        accountService.transferMoney5("rose","lucus",100.0);
+//        accountService.transferMoney5("rose","lucus",100.0);
+
+        // 测试异步
+        AsyncService asyncService = applicationContext.getBean(AsyncService.class);
+        asyncService.asyncExec();
     }
 
     /**

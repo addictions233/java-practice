@@ -13,15 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
  *  3. 多数据源操作的情况下, 使用@Transactional注解会报错, 可以使用mybatis-plus提供的@DSTransactional进行多数据源事务管理
  */
 @Service
-public class UserService implements InjectSelf<UserService>{
+public class AccountService implements InjectSelf<AccountService>{
 
     @Autowired
     private AccountDao accountDao;
 
-    private UserService self;
+    private AccountService self;
 
     @Override
-    public void setSelf(UserService self) {
+    public void setSelf(AccountService self) {
         this.self = self;
     }
 
