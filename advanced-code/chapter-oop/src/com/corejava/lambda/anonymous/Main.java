@@ -10,16 +10,15 @@ package com.corejava.lambda.anonymous;
 public class Main {
     public static void main(String[] args) {
         String str = "aaa";
-        /**
-         * 在方法中使用匿名内部类,必然有可能用到该方法中的局部变量
-         */
+        // 在方法中使用匿名内部类,必然有可能用到该方法中的局部变量
         new Thread() {
             @Override
             public void run() {
+                // str在匿名内部类中使用了
                 System.out.println(str + "bbbb");
             }
         }.start();
         // 匿名内部中使用的局部变量必须是用final修饰的常量或者根据上下文判断值不会改变的局部变量
-//        str  ="ccccc";  // 这样写编译会报错, str在匿名内部类中使用了,所用地址值不能发生变化
+        //  str  ="ccccc";  // 这样写编译会报错, str在匿名内部类中使用了,所用地址值不能发生变化
     }
 }
