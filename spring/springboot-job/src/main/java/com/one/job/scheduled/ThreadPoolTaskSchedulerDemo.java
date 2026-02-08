@@ -19,6 +19,7 @@ public class ThreadPoolTaskSchedulerDemo {
         taskScheduler.setPoolSize(5);
         taskScheduler.initialize();
 
+        // 底层还是依赖JUC提供的ScheduledThreadPoolExecutor来执行定时任务
         taskScheduler.schedule(new Runnable() {
             @Override
             public void run() {
@@ -27,7 +28,9 @@ public class ThreadPoolTaskSchedulerDemo {
         }, new Trigger() {
             @Override
             public Date nextExecutionTime(TriggerContext triggerContext) {
+                // 获取上一次任务执行成功的时间
                 Date lastCompletion = triggerContext.lastCompletionTime();
+                // 返回下一次任务执行的时间
                 return lastCompletion != null ? Date.from(lastCompletion.toInstant().plusMillis(1000)) : new Date();
             }
         });
