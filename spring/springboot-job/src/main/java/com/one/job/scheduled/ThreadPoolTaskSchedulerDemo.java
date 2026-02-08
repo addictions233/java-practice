@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * Spring基于ScheduledThreadPoolExecutor 提供了一个 定时任务调度工具类 ThreadPoolTaskScheduler
- * 增加了触发器的功能, 例如 Cron表达式
+ * 增加了触发器Trigger等更高级的功能, 例如 Cron表达式
  */
 public class ThreadPoolTaskSchedulerDemo {
 
