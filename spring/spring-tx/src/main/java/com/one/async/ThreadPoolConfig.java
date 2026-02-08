@@ -1,5 +1,8 @@
 package com.one.async;
 
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
+import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskDecorator;
@@ -9,16 +12,26 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 @Configuration
 public class ThreadPoolConfig {
 
+    /**
+     * 如果配置了AsyncConfigurer, @Async执行优先使用AsyncConfigurer中配置的线程池
+     * @return
+     */
     @Bean
     public AsyncConfigurer asyncConfigurer() {
         return new AsyncConfigurer() {
             @Override
             public Executor getAsyncExecutor() {
                 return Executors.newFixedThreadPool(5);
+            }
+
+            @Override
+            public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+                return new SimpleAsyncUncaughtExceptionHandler();
             }
         };
     }
