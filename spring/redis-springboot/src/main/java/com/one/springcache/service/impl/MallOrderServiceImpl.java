@@ -1,7 +1,7 @@
-package com.one.springcache.impl;
+package com.one.springcache.service.impl;
 
 import com.one.springcache.entity.MallOrder;
-import com.one.springcache.MallOrderService;
+import com.one.springcache.service.MallOrderService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

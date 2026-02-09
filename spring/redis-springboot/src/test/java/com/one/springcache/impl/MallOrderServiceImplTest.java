@@ -1,7 +1,7 @@
 package com.one.springcache.impl;
 
 import com.one.springcache.entity.MallOrder;
-import com.one.springcache.MallOrderService;
+import com.one.springcache.service.MallOrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

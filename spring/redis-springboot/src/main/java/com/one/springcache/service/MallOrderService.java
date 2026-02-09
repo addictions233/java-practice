@@ -1,4 +1,4 @@
-package com.one.springcache;
+package com.one.springcache.service;
 
 import com.one.springcache.entity.MallOrder;
 
