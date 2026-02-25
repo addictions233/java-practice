@@ -23,7 +23,7 @@ public class MallOrderServiceImpl implements MallOrderService {
      * 更新缓存
      */
     @Override
-    // 用于在方法执行后更新缓存
+    // 用于在方法执行后更新缓存, 每次执行都会更新缓存
     @CachePut(cacheNames = "mallOrder", key = "#mallOrder.oderNo")
     public MallOrder save(MallOrder mallOrder) {
         // 模拟数据库保存mallOrder
@@ -47,7 +47,7 @@ public class MallOrderServiceImpl implements MallOrderService {
      */
     @Override
     // 标注在需要清除缓存元素的方法或者类上
-    @CacheEvict(cacheNames = "mallOrder", key = "#orderNo", allEntries = false)
+    @CacheEvict(cacheNames = "mallOrder", key = "#orderNo", allEntries = false, beforeInvocation = true)
     public void deleteByNo(String orderNo) {
 
     }

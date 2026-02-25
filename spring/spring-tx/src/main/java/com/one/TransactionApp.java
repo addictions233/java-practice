@@ -4,11 +4,13 @@ import com.one.async.AsyncService;
 import com.one.service.AccountService;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -25,6 +27,8 @@ import javax.sql.DataSource;
 @EnableTransactionManagement(mode = AdviceMode.PROXY, proxyTargetClass = true)
 // 还会引入 TransactionInterceptor 这个 Advisor 来处理事务
 @EnableAsync // 开启异步支持
+@EnableScheduling // 开启定时调度支持
+@EnableCaching(proxyTargetClass = true)  // 开启Spring 缓存支持
 public class TransactionApp {
     public static void main(String[] args) {
 
