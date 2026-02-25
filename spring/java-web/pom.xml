@@ -1,64 +1,64 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.one</groupId>
-  <artifactId>java-web</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>java-web Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.16.2</version>
-    </dependency>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.one</groupId>
+    <artifactId>java-web</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>java-web Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.16.2</version>
+        </dependency>
 
-    <!--javax.servlet-api是Java Servlet API的Maven依赖。Servlet API的版本也在不断更新，以支持新的Java EE版本和特性。-->
-    <!--javax.servlet-api:3.1.0：对应于 Servlet 3.1 规范，这是 Java EE 7 的一部分，对应Tomcat 8版本-->
-    <!--javax.servlet-api:4.0.0：对应于 Servlet 4.0 规范，这是 Java EE 8 的一部分，对应Tomcat 9版本-->
-    <!--javax.servlet-api:5.0.0：对应于 Servlet 5.0 规范，这是 Jakarta EE 9 的一部分（之前称为 Java EE），对应Tomcat 10版本-->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
-      <scope>compile</scope>
-    </dependency>
+        <!--javax.servlet-api是Java Servlet API的Maven依赖。Servlet API的版本也在不断更新，以支持新的Java EE版本和特性。-->
+        <!--javax.servlet-api:3.1.0：对应于 Servlet 3.1 规范，这是 Java EE 7 的一部分，对应Tomcat 8版本-->
+        <!--javax.servlet-api:4.0.0：对应于 Servlet 4.0 规范，这是 Java EE 8 的一部分，对应Tomcat 9版本-->
+        <!--javax.servlet-api:5.0.0：对应于 Servlet 5.0 规范，这是 Jakarta EE 9 的一部分（之前称为 Java EE），对应Tomcat 10版本-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>compile</scope>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
-    <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
-      <version>1.9.4</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
+        </dependency>
 
-    <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
-    <dependency>
-      <groupId>commons-logging</groupId>
-      <artifactId>commons-logging</artifactId>
-      <version>1.2</version>
-    </dependency>
+        <!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
 
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.1</version>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
-  <build>
-    <finalName>java-web</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.2</version>
-        <configuration>
-          <source>8</source>
-          <target>8</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>java-web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
