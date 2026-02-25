@@ -14,14 +14,14 @@ import java.util.List;
 @Controller
 public class AjaxController {
 
-//    @RequestMapping("/ajaxController")
-//    public String ajaxController(){
-//        System.out.println("ajax request is running...");
-//        return "page.jsp";
-//    }
-
-
     @RequestMapping("/ajaxController")
+    public String ajaxController(){
+        System.out.println("ajax request is running...");
+        return "page.jsp";
+    }
+
+
+    @RequestMapping("/ajaxController2")
     //使用@RequestBody注解，可以将请求体内容封装到指定参数中
     public String ajaxController(@RequestBody String message){
         System.out.println("ajax request is running..."+message);
