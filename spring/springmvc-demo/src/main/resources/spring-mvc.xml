@@ -16,27 +16,12 @@
        http://www.springframework.org/schema/aop
        https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <!--配置SpringMVC的组件扫描的包路径-->
-    <context:component-scan base-package="com.one"/>
 
-    <!--配置注解驱动 即HandlerMapping + HandlerAdapter-->
-    <mvc:annotation-driven/>
-
-    <!--方式2: SpringMVC提供的通用资源放行,让浏览器可以访问的静态资源, 这里放行jquery-->
-    <mvc:default-servlet-handler/>
-
-    <!--<mvc:interceptors>-->
-    <!--<mvc:interceptor>-->
-    <!--<mvc:mapping path="/showPage"/>-->
-    <!--<bean class="com.one.interceptor.MyInterceptor"/>-->
-    <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
-
-    <!-- 配置文件上处理器,加载文件上传的类CommonsMultipartResolver的Bean对象-->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!--设置属性参数值, 限制上传文件大小, 参数单位是byte: 1m=1024*1024byte-->
-        <property name="maxUploadSize" value="1024000"/>
-    </bean>
+    <!--依赖注解驱动 annotation-driven = 处理器映射器 + 处理器适配器(处理请求参数和响应结果(包括将返回的对象转为json字符串)) + 异常处理器
+        默认注册一个RequestMappingHandlerMapping, 一个RequestMappingHandlerAdapter, 一个ExceptionHandler, 以支持使用了
+        @RequestMapping, @ExceptionHandler及其他注解的控制器方法的请求处理
+    -->
+    <mvc:annotation-driven conversion-service="conversionService"/>
 
     <!--
    第一种:扫描com.one包路径下的, 仅包含Controller的注解,
@@ -59,12 +44,6 @@
     <!--方式2: SpringMVC提供的通用资源放行,让浏览器可以访问的静态资源js, image等-->
     <mvc:default-servlet-handler/>
 
-    <!--依赖注解驱动 annotation-driven = 处理器映射器 + 处理器适配器(处理请求参数和响应结果(包括将返回的对象转为json字符串)) + 异常处理器
-        默认注册一个RequestMappingHandlerMapping, 一个RequestMappingHandlerAdapter, 一个ExceptionHandler, 以支持使用了
-        @RequestMapping, @ExceptionHandler及其他注解的控制器方法的请求处理
-    -->
-    <mvc:annotation-driven conversion-service="conversionService"/>
-
 
     <!--自定义数据类型转换器-->
     <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
@@ -76,12 +55,27 @@
         </property>
     </bean>
 
-    <!--配置视图器解析器 ViewResolver-->
+    <!--5. 配置视图器解析器 ViewResolver-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--访问路径的前缀-->
         <property name="prefix" value="/WEB-INF/pages/"/>
         <!--访问路径的后缀-->
         <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 6. 拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/showPage"/>
+            <bean class="com.one.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 配置文件上处理器,加载文件上传的类CommonsMultipartResolver的Bean对象-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--设置属性参数值, 限制上传文件大小, 参数单位是byte: 1m=1024*1024byte-->
+        <property name="maxUploadSize" value="1024000"/>
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
 </beans>
