@@ -21,6 +21,6 @@
 
     <mvc:interceptors>
         <!-- 配置自定义拦截器 -->
-        <bean class="com.one.controller.interceptor.SimpleAuthenticationInterceptor"></bean>
+        <bean class="com.one.interceptor.SimpleAuthenticationInterceptor"></bean>
     </mvc:interceptors>
 </beans>

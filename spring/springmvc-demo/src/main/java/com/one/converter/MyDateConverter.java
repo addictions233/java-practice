@@ -1,4 +1,4 @@
-package com.one.config;
+package com.one.converter;
 
 import org.springframework.core.convert.converter.Converter;
 

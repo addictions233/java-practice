@@ -1,8 +1,8 @@
 package com.one.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.one.controller.results.Code;
-import com.one.controller.results.Result;
+import com.one.system.results.Code;
+import com.one.system.results.Result;
 import com.one.domain.User;
 import com.one.service.UserService;
 import com.one.system.exception.BusinessException;

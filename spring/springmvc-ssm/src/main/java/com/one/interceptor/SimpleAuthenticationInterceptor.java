@@ -1,4 +1,4 @@
-package com.one.controller.interceptor;
+package com.one.interceptor;
 
 import com.alibaba.fastjson2.JSON;
 import com.one.domain.UserDetail;

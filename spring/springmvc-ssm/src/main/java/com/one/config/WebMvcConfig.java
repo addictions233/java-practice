@@ -1,9 +1,8 @@
-package com.one.controller.config;
+package com.one.config;
 
 
-import com.one.controller.interceptor.SimpleAuthenticationInterceptor;
+import com.one.interceptor.SimpleAuthenticationInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

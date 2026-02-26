@@ -1,4 +1,4 @@
-package com.one.controller.results;
+package com.one.system.results;
 
 /**
  * @ClassName: Code

@@ -50,7 +50,7 @@
         <property name="converters">
             <!--由于Conversion转换器存储在set集合中,新添加的转化器会覆盖之前的转换器-->
             <set>
-                <bean class="com.one.config.MyDateConverter"/>
+                <bean class="com.one.converter.MyDateConverter"/>
             </set>
         </property>
     </bean>

@@ -1,4 +1,4 @@
-package com.one.controller.interceptor;
+package com.one.interceptor;
 
 import com.one.system.exception.BusinessException;
 import com.one.system.exception.SystemException;
