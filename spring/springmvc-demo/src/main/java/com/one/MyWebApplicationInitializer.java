@@ -12,6 +12,7 @@ import javax.servlet.ServletRegistration;
 /**
  * @author one
  * 使用Tomcat提供的SPI机制, 替代web.xml配置文件. 来使用零配置方式启动springmvc
+ * 采用SPI机制启动需要删除web.xml配置文件, 否则Tomcat还是会优先读web.xml文件
  */
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
