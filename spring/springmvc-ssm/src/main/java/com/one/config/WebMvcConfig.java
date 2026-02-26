@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * @description 对拦截器进行注册, 手动实现一个简单的认证和授权可以使用拦截器
  * @date 2022-9-18
  */
-@EnableWebMvc // 基于注解的mvc配置
+@EnableWebMvc // 基于注解的mvc配置, 会自动注册常用的 HandlerMapping 和 HandlerAdapter
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     /**
