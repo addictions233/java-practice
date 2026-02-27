@@ -13,6 +13,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * 采用零配置的方式来使用springmvc, 可以添加一些自定义的springmvc核心组件
  */
 @Configuration
+// @EnableWebMvc 在 springmvc 用来替代<mvc:annotation-driven>, 而在springboot项目中, 直接使用 WebMvcConfigurer
 @EnableWebMvc // 在配置类上添加 @EnableWebMvc 注解, 会自动注册常用的 HandlerMapping 和 HandlerAdapter
 @ComponentScan("com.one.controller")
 public class WebMvcConfig implements WebMvcConfigurer {
