@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
 </head>
 <body>
     <a href="javascript:void(0)" id="testAjax">测试Ajax实现异步请求中的json格式数据传递</a>

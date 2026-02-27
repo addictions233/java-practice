@@ -2,6 +2,6 @@
 <html>
 <body>
 <h1>第一个spring-mvc页面</h1>
-<img src="img/img001.jpg"/>
+<img src="../../img/img001.jpg"/>
 </body>
 </html>
