@@ -7,12 +7,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -37,11 +40,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return resolver;
     }
 
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        WebMvcConfigurer.super.addFormatters(registry);
-    }
-
     /**
      * 添加自定义的拦截器
      * @param registry 拦截器注册器
@@ -49,5 +47,21 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new MyHandlerInterceptor());
+    }
+
+    /**
+     * 配置自定义的消息转换器
+     * @param converters the list of configured converters to extend.
+     */
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+        // 消息转换器支持中文响应的编码
+        stringHttpMessageConverter.setDefaultCharset(StandardCharsets.UTF_8);
+        converters.add(1, stringHttpMessageConverter);
+
+        // 执行响应体返回JSON数据
+        MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
+        converters.add(jackson2HttpMessageConverter);
     }
 }

@@ -13,7 +13,7 @@ import java.util.Date;
  * @Author: one
  * @Date: 2020/12/06
  */
-public class MyDateConverter  implements Converter<String,Date> {
+public class MyDateConverter implements Converter<String,Date> {
     /**
      * 通常前端页面传递过来都是String字符串类型,然后我们在本方法类需要
      * 将字符串类型转换为我们需要的java数据类型
