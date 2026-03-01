@@ -80,7 +80,7 @@ public class JsonController {
 
 
     /**
-     * 导入Jackon依赖,不经过 ViewResolving视图解析器,
+     * 导入Jackson依赖,不经过 ViewResolving视图解析器,
      * HandlerAdapter直接将对象转换为json字符串放入响应体中写出到浏览器页面,
      * @return json
      */

@@ -54,7 +54,7 @@ public class AjaxController {
 
     @RequestMapping("/ajaxReturnJson")
     @ResponseBody
-    //基于jackon技术，使用@ResponseBody注解可以将返回的POJO对象转成json格式数据
+    //基于jackson技术，使用@ResponseBody注解可以将返回的POJO对象转成json格式数据
     public User ajaxReturnJson(){
         System.out.println("controller return json pojo...");
         User user = new User();
@@ -65,7 +65,7 @@ public class AjaxController {
 
     @RequestMapping("/ajaxReturnJsonList")
     @ResponseBody
-    //基于jackon技术，使用@ResponseBody注解可以将返回的保存POJO对象的集合转成json数组格式数据
+    //基于jackson技术，使用@ResponseBody注解可以将返回的保存POJO对象的集合转成json数组格式数据
     public List ajaxReturnJsonList(){
         System.out.println("controller return json list...");
         User user1 = new User();

@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName: MyInterceptor
- * @Description: TODO
+ * @Description: 自定义拦截器
  * @Author: one
  * @Date: 2020/12/08
  */
-public class MyInterceptor implements HandlerInterceptor {
+public class MyHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("02前置拦截方法执行了.....");

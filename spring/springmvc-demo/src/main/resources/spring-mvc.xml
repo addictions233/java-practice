@@ -67,7 +67,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/showPage"/>
-            <bean class="com.one.interceptor.MyInterceptor"/>
+            <bean class="com.one.interceptor.MyHandlerInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
