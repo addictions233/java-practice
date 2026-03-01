@@ -12,7 +12,7 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
  */
 //@SpringBootApplication(exclude= {SecurityAutoConfiguration.class })  // 关闭spring security
 @SpringBootApplication
-@EnableWebSecurity
+//@EnableWebSecurity  // 在 Spring Boot 2.7+ / 3.x 项目中，不需要显式添加 @EnableWebSecurity
 public class MainApplication {
 
 	public static void main(String[] args) {
