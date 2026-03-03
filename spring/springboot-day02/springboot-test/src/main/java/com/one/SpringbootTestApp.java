@@ -36,12 +36,12 @@ public class SpringbootTestApp {
 
 
 
-//        Jedis jedis = context.getBean(Jedis.class);
-//        //输出: redis.clients.jedis.Jedis@169da7f2 可以正确获取到jedis的bean对象
-//        System.out.println(jedis);
+        Jedis jedis = context.getBean(Jedis.class);
+        //输出: redis.clients.jedis.Jedis@169da7f2 可以正确获取到jedis的bean对象
+        System.out.println(jedis);
 
-//        jedis.set("username","zhangsan");
-//        System.out.println(jedis.get("username"));
+        jedis.set("username","zhangsan");
+        System.out.println(jedis.get("username"));
     }
 
     /**
@@ -50,8 +50,8 @@ public class SpringbootTestApp {
      * 因为配置类中使用了@ConditionOnmissBean注解
      * @return redis.clients.jedis.Jedis
      */
-    @Bean
-    public Jedis jedis(){
-        return new Jedis();
-    }
+//    @Bean
+//    public Jedis jedis(){
+//        return new Jedis();
+//    }
 }
