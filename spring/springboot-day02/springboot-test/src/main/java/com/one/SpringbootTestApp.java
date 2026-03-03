@@ -3,13 +3,9 @@ package com.one;
 import com.one.domain.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import redis.clients.jedis.Jedis;
-
-import javax.swing.*;
-import java.net.SocketTimeoutException;
 
 /**
  * @author one
@@ -17,11 +13,11 @@ import java.net.SocketTimeoutException;
  * @EnableAutoConfiguration: 在满足bean对象创建的条件下,为我们自动创建spring.factories配置中定义的一百多个bean对象
  */
 @SpringBootApplication
-public class SpringbootConditionApplication {
+public class SpringbootTestApp {
 
     public static void main(String[] args) {
         //启动SpringBoot的应用,返回IOC容器对象context
-        ConfigurableApplicationContext context = SpringApplication.run(SpringbootConditionApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(SpringbootTestApp.class, args);
 
         //获取容器中的Bean对象, redisTemplate
         //当pom文件中没有导入redis依赖是无法获取到redisTemplate对象的

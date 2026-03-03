@@ -13,7 +13,7 @@ import redis.clients.jedis.Jedis;
  * 需求: 自定义redis-starter, 要求当导入redis坐标时,SpringBoot会自动创建Jedis的bean对象
  * 步骤:  1, 创建redis-spring-boot-autoconfigure模块, 并在该模块中初始化Jedis的bean,并将配置类的名称定义spring.factories文件中
  *       2, 创建redis-spring-boot-starter模块并引入redis-spring-boot-autoconfigure的模块依赖
- *       3,在测试模块中引入自定义的redis-spring-boot-starter依赖,测试模块会扫描spring.factories文件并创建bean对象
+ *       3, 在测试模块中引入自定义的redis-spring-boot-starter依赖,测试模块会扫描spring.factories文件并创建bean对象
  *
  * @author one
  */
