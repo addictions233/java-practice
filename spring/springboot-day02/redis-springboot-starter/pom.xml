@@ -9,15 +9,18 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>redis-springboot-starter</artifactId>
-
+    <name>redis-springboot-starter</name>
     <dependencies>
-        <!--SpringBoot工程的起步依赖-->
+
+        <!--假如我们要将自己的项目整合到springboot, 都需要创建一个start模块-->
+
+        <!-- 1.在starter模块要引入springboot starter模块 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <!--在本模块中引入对redis-spring-boot-autoconfigure模块的依赖-->
+        <!--2. 在本模块中引入对redis-spring-boot-autoconfigure模块的依赖-->
         <dependency>
             <groupId>com.one</groupId>
             <artifactId>redis-springboot-autoconfigure</artifactId>

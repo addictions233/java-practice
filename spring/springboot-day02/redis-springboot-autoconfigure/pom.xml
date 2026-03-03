@@ -10,7 +10,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>redis-springboot-autoconfigure</artifactId>
-
+    <name>redis-springboot-autoconfigure</name>
     <dependencies>
         <!--SpringBoot工程的起步依赖-->
         <dependency>
