@@ -27,7 +27,7 @@
 <!--            <artifactId>spring-boot-starter-data-redis</artifactId>-->
 <!--        </dependency>-->
 
-        <!--导入自己定义的redis-springboot-starter模块依赖,这样会自动加载RedisAutoConfiguration配置类-->
+        <!--在测试模块中导入自己定义的starter模块依赖,这样会自动加载RedisAutoConfiguration配置类-->
         <dependency>
             <groupId>com.one</groupId>
             <artifactId>redis-springboot-starter</artifactId>

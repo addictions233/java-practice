@@ -1,3 +1,4 @@
-# 测试配置redis是否生效
-#redis:
-#  port: 6666
+
+
+server:
+  port: 9095

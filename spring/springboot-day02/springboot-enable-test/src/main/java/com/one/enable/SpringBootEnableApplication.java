@@ -10,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
-import redis.clients.jedis.Jedis;
 
 /**
  * @ClassName: EnableApplication
@@ -36,7 +35,7 @@ import redis.clients.jedis.Jedis;
 //@Import(User.class)   // 2, 第二种方式: 使用@Import注解主动加载第三方类,并创建其对应的bean对象
 //@Import(UserConfig.class) // 这两种情况原理是一样的, 只适合导入单个的Bean对象,使用不方便, SpringBoot框架没有这么使用
 
-//@EnableUser // 3,第三种方式:使用@Enable*注解开启某些功能,因为使用了@Import注解修饰了@EnableUser注解,所以本质上是@Import注解生效
+@EnableUser // 3,第三种方式:使用@Enable*注解开启某些功能,因为使用了@Import注解修饰了@EnableUser注解,所以本质上是@Import注解生效
 
 //@Import(MyImportSelector.class) //4,第四种方式: 注入ImportSelector接口的实现类对象,批量的创建bean对象,SpringBoot框架使用的就是这种方式,读取Spring.factories文件中的配置类
 
@@ -73,10 +72,10 @@ public class SpringBootEnableApplication {
      * @return bean
      */
 //    @Primary // 同类型的多个bean对象,使用@Primary会优先注入使用
-    @Bean(name = "user2")
-    public User user() {
-        return new User();
-    }
+//    @Bean(name = "user2")
+//    public User user() {
+//        return new User();
+//    }
 
 
 }
