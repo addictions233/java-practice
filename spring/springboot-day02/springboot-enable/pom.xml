@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.one</groupId>
-    <artifactId>Springboot-enable</artifactId>
+    <artifactId>springboot-enable</artifactId>
     <dependencies>
 
         <!--导入自己定义的redis-spring-boot-starter模块依赖,这样会自动加载RedisAutoConfiguration配置类-->
@@ -39,7 +39,7 @@
         <!--引入第三方jar包的坐标,即Springboot-enable-other模块-->
         <dependency>
             <groupId>org.one</groupId>
-            <artifactId>Springboot-enable-other</artifactId>
+            <artifactId>springboot-enable-other</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
