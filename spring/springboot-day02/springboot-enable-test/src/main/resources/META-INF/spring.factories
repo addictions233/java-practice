@@ -3,4 +3,4 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.one.config.UserAutoConfig
 
 org.springframework.context.ApplicationContextInitializer=\
-  com.one.contextinitializer.MyApplicationContextInitializer
+  com.one.enable.contextinitializer.MyApplicationContextInitializer
