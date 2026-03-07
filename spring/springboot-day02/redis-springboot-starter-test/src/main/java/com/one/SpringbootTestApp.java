@@ -4,7 +4,6 @@ import com.one.domain.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import redis.clients.jedis.Jedis;
 
 /**
@@ -54,4 +53,5 @@ public class SpringbootTestApp {
 //    public Jedis jedis(){
 //        return new Jedis();
 //    }
+
 }

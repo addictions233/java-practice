@@ -8,7 +8,16 @@ package com.one.domain;
  */
 public class User {
     private String name;
-    private String age;
+    private Integer age;
+
+    public User(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public User() {
+    }
+
     public void say(){
         System.out.println("hello,this is User");
     }
