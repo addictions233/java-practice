@@ -1,5 +1,6 @@
-package com.one.enable.contextinitializer;
+package com.one.applicationcontextinitializer;
 
+import com.one.controller.UserController;
 import org.springframework.boot.context.TypeExcludeFilter;
 import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext;
 import org.springframework.context.ApplicationContextInitializer;

@@ -1,4 +1,4 @@
-package com.one.enable.contextinitializer;
+package com.one.controller;
 
 import com.one.domain.User;
 import org.springframework.web.bind.annotation.GetMapping;

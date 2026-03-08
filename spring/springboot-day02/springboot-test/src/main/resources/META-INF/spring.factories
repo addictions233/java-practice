@@ -1,0 +1,8 @@
+
+# ApplicationContext的初始化器,
+org.springframework.context.ApplicationContextInitializer=\
+  com.one.applicationcontextinitializer.MyApplicationContextInitializer
+
+
+org.springframework.boot.SpringApplicationRunListener=\
+  com.one.springapplicationrunlistener.MySpringApplicationRunListener
