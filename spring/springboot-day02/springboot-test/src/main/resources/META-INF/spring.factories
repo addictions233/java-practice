@@ -4,5 +4,5 @@ org.springframework.context.ApplicationContextInitializer=\
   com.one.applicationcontextinitializer.MyApplicationContextInitializer
 
 
-org.springframework.boot.SpringApplicationRunListener=\
-  com.one.springapplicationrunlistener.MySpringApplicationRunListener
+#org.springframework.boot.SpringApplicationRunListener=\
+#  com.one.springapplicationrunlistener.MySpringApplicationRunListener
