@@ -6,3 +6,6 @@ org.springframework.context.ApplicationContextInitializer=\
 
 #org.springframework.boot.SpringApplicationRunListener=\
 #  com.one.springapplicationrunlistener.MySpringApplicationRunListener
+
+org.springframework.boot.BootstrapRegistryInitializer=\
+  com.one.bootstrapregistryinitializer.MyBootstrapRegistryInitializer
