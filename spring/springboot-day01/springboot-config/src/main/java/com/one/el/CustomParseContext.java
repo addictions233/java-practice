@@ -7,7 +7,7 @@ import org.springframework.expression.ParserContext;
  * @author: wanjunjie
  * @date: 2024/04/30
  */
-public class customParseContext {
+public class CustomParseContext {
 
     public static void main(String[] args) {
         ParserContext parserContext = new ParserContext() {
