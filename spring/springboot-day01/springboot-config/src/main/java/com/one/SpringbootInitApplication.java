@@ -5,10 +5,21 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootApplication
 public class SpringbootInitApplication {
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(SpringbootInitApplication.class, args);
+        SpringApplication springApplication = new SpringApplication(SpringbootInitApplication.class);
+
+        // 设置默认配置, 优先级是最低的
+        Map<String, Object> map = new HashMap<>();
+        map.put("server.port", 8086);
+        springApplication.setDefaultProperties(map);
+
+        ConfigurableApplicationContext context = springApplication.run(args);
+
         // 根据名称获取bean对象
 //        Object person2 = context.getBean("person2");
 //        System.out.println(person2);
