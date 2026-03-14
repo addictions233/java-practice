@@ -20,7 +20,6 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping
-@EnableConfigurationProperties(Person.class)
 public class PersonController {
     /**
      * 这里使用field反射注入bean对象, 共有三种注入方式:
