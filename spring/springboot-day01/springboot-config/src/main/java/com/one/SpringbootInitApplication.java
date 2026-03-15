@@ -1,6 +1,7 @@
 package com.one;
 
 import com.one.config.Person;
+import com.one.config.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -10,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication
-@EnableConfigurationProperties(Person.class)
+@EnableConfigurationProperties({Person.class, User.class})
 public class SpringbootInitApplication {
     public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(SpringbootInitApplication.class);

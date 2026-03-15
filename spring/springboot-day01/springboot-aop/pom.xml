@@ -20,7 +20,8 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--引入aop的依赖-->
+
+        <!--引入aop的依赖, 其实是引入对Aspectj注解的AOP支持-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
