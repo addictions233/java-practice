@@ -22,7 +22,7 @@ import java.util.List;
  * @Date: 2021/02/22
  */
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService  {
+public class DataBaseUserDetailsService implements UserDetailsService  {
 
     @Autowired
     private UserDetailMapper userMapper;

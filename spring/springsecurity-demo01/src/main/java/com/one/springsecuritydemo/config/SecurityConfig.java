@@ -1,6 +1,6 @@
 package com.one.springsecuritydemo.config;
 
-import com.one.springsecuritydemo.filter.JsonAuthenticationFilter;
+import com.one.springsecuritydemo.filter.JsonBodyAuthenticationFilter;
 import com.one.springsecuritydemo.handler.MyAuthenticationFailHandler;
 import com.one.springsecuritydemo.handler.MyAuthenticationSuccessHandler;
 import com.one.springsecuritydemo.handler.MyLogoutSuccessHandler;
@@ -32,7 +32,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        // 前后端不分离的情况下, 后端自定义登录页面
+        // 前后端不分离的情况下, 后端自定义表单登录页面
 //        http.formLogin()
 //                .loginPage("/login.html") // 自定义登录页面
 //                .loginProcessingUrl("/login") // 登录访问路径
@@ -40,15 +40,15 @@ public class SecurityConfig {
 
         // 前后端分离的情况下, 后端对请求返回json
         http.formLogin()
-                .loginProcessingUrl("/login")
-                .successHandler(new MyAuthenticationSuccessHandler())
-                .failureHandler(new MyAuthenticationFailHandler());
+                .loginProcessingUrl("/login") // 定义登录的请求路径
+                .successHandler(new MyAuthenticationSuccessHandler()) // 登录成功的Handler
+                .failureHandler(new MyAuthenticationFailHandler()); // 登录失败的Handler
 
-        // 添加自定义拦截器, 在登录之前获取用户名和密码
-        http.addFilterBefore(new JsonAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        // 添加自定义过滤器, 在登录时获取用户名和密码, 替换spring security默认的UsernamePasswordAuthenticationFilter
+        http.addFilterAt(new JsonBodyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 自定义登出逻辑
-        http.logout().logoutSuccessHandler(new MyLogoutSuccessHandler());
+        http.logout().logoutSuccessHandler(new MyLogoutSuccessHandler()); // 登出的Handler
 
         // 自定义权限管理
         http.authorizeRequests()  // 学习web授权方式
@@ -81,8 +81,11 @@ public class SecurityConfig {
         // 默认的基于内存的用户管理
         InMemoryUserDetailsManager userDetailsManager = new InMemoryUserDetailsManager();
         // 角色必须是ROLE_开头, 而权限不需要如此
-        userDetailsManager.createUser(User.withUsername("zhangsan").password("123").authorities("ROLE_USER").build());
-//        userDetailsManager.createUser(User.withUsername("zhangsan").password(new BCryptPasswordEncoder().encode("123")).authorities("visit").build());
+        userDetailsManager.createUser(User.withUsername("zhangsan")
+                .password("123").authorities("ROLE_USER").build());
+//        userDetailsManager.createUser(User.withUsername("zhangsan")
+//                .password(new BCryptPasswordEncoder().encode("123"))
+//                .authorities("visit").build());
         return userDetailsManager;
     }
 

@@ -1,7 +1,7 @@
 package com.one.springsecuritydemo.config;
 
 
-import com.one.springsecuritydemo.filter.JsonAuthenticationFilter;
+import com.one.springsecuritydemo.filter.JsonBodyAuthenticationFilter;
 import com.one.springsecuritydemo.handler.MyAuthenticationFailHandler;
 import com.one.springsecuritydemo.handler.MyAuthenticationSuccessHandler;
 import com.one.springsecuritydemo.handler.MyLogoutSuccessHandler;
@@ -144,16 +144,16 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .httpBasic(Customizer.withDefaults());
     }
 
-    private JsonAuthenticationFilter restAuthenticationFilter() throws Exception {
-        JsonAuthenticationFilter jsonAuthenticationFilter = new JsonAuthenticationFilter();
+    private JsonBodyAuthenticationFilter restAuthenticationFilter() throws Exception {
+        JsonBodyAuthenticationFilter jsonUsernamePasswordAuthenticationFilter = new JsonBodyAuthenticationFilter();
         // 指定登录成功的处理器
-        jsonAuthenticationFilter.setAuthenticationSuccessHandler(new MyAuthenticationSuccessHandler());
+        jsonUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(new MyAuthenticationSuccessHandler());
         // 指定登录失败的处理器
-        jsonAuthenticationFilter.setAuthenticationFailureHandler(new MyAuthenticationFailHandler());
+        jsonUsernamePasswordAuthenticationFilter.setAuthenticationFailureHandler(new MyAuthenticationFailHandler());
         // 设置认证管理器
-        jsonAuthenticationFilter.setAuthenticationManager(authenticationManager());
-        jsonAuthenticationFilter.setFilterProcessesUrl("/authorize/login"); // 指定处理登录请求的虚拟url
-        return jsonAuthenticationFilter;
+        jsonUsernamePasswordAuthenticationFilter.setAuthenticationManager(authenticationManager());
+        jsonUsernamePasswordAuthenticationFilter.setFilterProcessesUrl("/authorize/login"); // 指定处理登录请求的虚拟url
+        return jsonUsernamePasswordAuthenticationFilter;
     }
 
 }

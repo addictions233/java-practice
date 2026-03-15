@@ -18,12 +18,14 @@ import java.io.IOException;
  * @description spring security自定义Json登录认证过滤器, 继承自UsernamePasswordAuthenticationFilter,
  * @date 2023-2-27
  */
-public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JsonBodyAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
-     * 自定义过滤器, 在登录认证之前, 先获取请求中的用户名和密码
+     * spring security默认提供的UsernamePasswordAuthenticationFilter只能获取表单中的用户名和密码,
+     * 无法获取请求体JSON中的用户名和密码
+     * 这里自定义过滤器, 在登录时, 获取请求中的用户名和密码进行认证
      */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
