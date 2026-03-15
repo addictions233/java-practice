@@ -14,7 +14,7 @@ import java.util.List;
  * @author one
  */
 @Component
-public class UserDetailsServiceImpl  implements UserDetailsService {
+public class DatabaseUserDetailsService implements UserDetailsService {
 
 
     @Override

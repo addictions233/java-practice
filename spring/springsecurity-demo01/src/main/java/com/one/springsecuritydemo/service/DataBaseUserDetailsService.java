@@ -16,7 +16,8 @@ import java.util.List;
 
 /**
  * @ClassName: SecurityUserDetailsService
- * @Description: 自定义登录认证service,必须实现UserDetailsService接口, 默认的采用内存的认证方式进行用户名密码登录(不适用生产)
+ * @Description: 基于数据库的自定义登录认证service,必须实现UserDetailsService接口,
+ *               默认的采用内存 InMemoryUserDetailsManager的认证方式进行用户名密码登录(不适用生产)
  *               使用自定义的数据库比对方式进行认证实现,去数据库中查询用户名和密码,并返回对应的User对象
  * @Author: one
  * @Date: 2021/02/22

@@ -1,7 +1,7 @@
 package com.one.web;
 
 import com.one.basic.UserAuth;
-import com.one.constant.SecurityConstant;
+import com.one.util.SecurityConstant;
 import com.one.util.JWTUtils;
 import com.one.util.TimeUnit;
 import org.springframework.beans.factory.annotation.Autowired;

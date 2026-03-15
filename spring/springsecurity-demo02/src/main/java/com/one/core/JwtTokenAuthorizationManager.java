@@ -2,7 +2,7 @@ package com.one.core;
 
 import com.alibaba.fastjson2.JSON;
 import com.one.basic.UserAuth;
-import com.one.constant.SecurityConstant;
+import com.one.util.SecurityConstant;
 import com.one.util.JWTUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

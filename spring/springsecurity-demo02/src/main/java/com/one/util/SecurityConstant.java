@@ -1,4 +1,4 @@
-package com.one.constant;
+package com.one.util;
 
 public class SecurityConstant {
 
