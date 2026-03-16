@@ -2,7 +2,7 @@ package com.one.springsecuritydemo.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.one.springsecuritydemo.mapper.UserDetailMapper;
-import com.one.springsecuritydemo.domain.pojo.UserDetail;
+import com.one.springsecuritydemo.domain.pojo.MyUserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -41,15 +41,15 @@ public class DataBaseUserDetailsService implements UserDetailsService  {
 //        List<GrantedAuthority> authorization  = AuthorityUtils.commaSeparatedStringToAuthorityList("ADMIN,USER");
         // 自定义基于数据库用户表的用户管理
         // 用户名和密码从数据表中读取
-        LambdaQueryWrapper<UserDetail> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(UserDetail::getUsername,username);
-        UserDetail userDetail = this.userMapper.selectOne(queryWrapper);
-        if( null != userDetail){
+        LambdaQueryWrapper<MyUserDetail> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(MyUserDetail::getUsername,username);
+        MyUserDetail myUserDetail = this.userMapper.selectOne(queryWrapper);
+        if( null != myUserDetail){
             // 如果根据用户输入的用户名可用查询到用户, 然后封装为Spring Security中的User对象并返回
             // User对象实现了UserDetails接口, 我们可自定义UserDetails接口的实现类
             return User.builder()
-                    .username(userDetail.getUsername())
-                    .password(userDetail.getPassword())
+                    .username(myUserDetail.getUsername())
+                    .password(myUserDetail.getPassword())
                     // 设置用户的权限
                     .authorities(authorization)
                     .build();
