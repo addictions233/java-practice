@@ -56,6 +56,7 @@ public class SecurityConfig {
                 .antMatchers("/css/**","/images/**").permitAll() // 对web静态资源进行放行
                 .anyRequest().authenticated();
 
+
         // 跨站请求伪造,关闭csrf防护
         http.csrf().disable();
 

@@ -44,7 +44,7 @@ public class JsonBodyAuthenticationFilter extends UsernamePasswordAuthentication
         }
         // 构建认证对象
         UsernamePasswordAuthenticationToken authRequest = new UsernamePasswordAuthenticationToken(username, password);
-        setDetails(request, authRequest);
+        super.setDetails(request, authRequest);
         return this.getAuthenticationManager().authenticate(authRequest);
     }
 }

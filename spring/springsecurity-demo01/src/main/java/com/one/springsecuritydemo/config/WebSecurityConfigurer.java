@@ -135,6 +135,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                         .mvcMatchers("/index").permitAll()  // 所有的 /index 的请求直接放行
                         .mvcMatchers("/hello").authenticated() // 所有的 /hello 的请求都必须认证通过
                         .anyRequest().authenticated()) // 除此之外所有请求进行拦截
+                // 添加自定义过滤器
                 .addFilterAt(restAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class) // 使用自定义的filter过滤器获取用户名和密码
                 .formLogin(AbstractHttpConfigurer::disable) // 前后端分离的时候, 禁止表单登录
                 .logout(logout -> logout.invalidateHttpSession(true) // 退出登录的配置. 默认为true, 注销登录关闭session
