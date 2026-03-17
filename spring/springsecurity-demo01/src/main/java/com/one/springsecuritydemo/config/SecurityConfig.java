@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .successHandler(new MyAuthenticationSuccessHandler()) // 登录成功的Handler
                 .failureHandler(new MyAuthenticationFailHandler()); // 登录失败的Handler
 
-        // 添加自定义过滤器, 在登录时获取用户名和密码, 替换spring security默认的UsernamePasswordAuthenticationFilter
+        // 添加自定义认证过滤器, 在登录时获取用户名和密码, 替换spring security默认的UsernamePasswordAuthenticationFilter
         http.addFilterAt(new JsonBodyAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         // 自定义登出逻辑
