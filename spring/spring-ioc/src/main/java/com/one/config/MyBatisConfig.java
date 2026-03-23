@@ -1,5 +1,6 @@
 package com.one.config;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,12 @@ import javax.sql.DataSource;
  */
 public class MyBatisConfig {
 
-    @Bean   //如果该Bean对象是供spring调用,可以不指定Bean对象的id值,默认id值为方法名
+    /**
+     * 需要将 SqlSessionFactoryBean 交给spring 管理, 用来创建 sqlSession 的单例对象
+     * @param dataSource 数据源
+     * @return SqlSessionFactoryBean
+     */
+    @Bean
     public SqlSessionFactoryBean getSqlSessionFactoryBean(@Autowired DataSource dataSource){
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setTypeAliasesPackage("com.one.domain");
@@ -30,7 +36,10 @@ public class MyBatisConfig {
     @Bean
     public MapperScannerConfigurer getMapperScannerConfigurer(){
         MapperScannerConfigurer msc = new MapperScannerConfigurer();
+        // 配置扫描的包路径
         msc.setBasePackage("com.one.dao");
+        // 开启mapper层接口的注解扫描
+//        msc.setAnnotationClass(Mapper.class); // 如果开启, mapper层接口必须添加mapper接口
         return msc;
     }
 }
