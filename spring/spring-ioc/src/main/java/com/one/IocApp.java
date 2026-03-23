@@ -13,14 +13,11 @@ import java.util.List;
 
 @ComponentScan("com.one")  //指定spring在初始化容器时要扫描的包,指定纯注解方式下扫描的包路径(该路径下包含有所有注解的Bean类)
 @PropertySource("classpath:jdbc.properties")  //引入资源文件
-@MapperScan("com.one.dao") // 扫描mapper层接口
+//@MapperScan("com.one.dao") // 扫描mapper层接口, 效果等同于在IOC容器中注册 MapperScannerConfigurer 的Bean对象
 @Import({JDBCConfig.class, MyBatisConfig.class}) //引入第三方Bean作为被spring控制的资源
 public class IocApp {
     public static void main(String[] args) {
 //        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
-//
-//
-//
 //        UserService userService = (UserService) ctx.getBean("userService");
 //        userService.save();
 

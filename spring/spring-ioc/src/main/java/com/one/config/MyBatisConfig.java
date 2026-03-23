@@ -23,6 +23,10 @@ public class MyBatisConfig {
         return sqlSessionFactoryBean;
     }
 
+    /**
+     * 用来替代 @MapperScan 注解的作用
+     * @return 进行mapper接口扫描
+     */
     @Bean
     public MapperScannerConfigurer getMapperScannerConfigurer(){
         MapperScannerConfigurer msc = new MapperScannerConfigurer();

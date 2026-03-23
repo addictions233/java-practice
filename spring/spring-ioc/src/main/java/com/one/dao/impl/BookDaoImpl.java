@@ -11,8 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("bookDaoImpl")
 // @PropertySource引入资源文件
-@PropertySource(value={"classpath:jdbc.properties"},ignoreResourceNotFound = true)
-@Ignore
+@PropertySource(value={"classpath:jdbc.properties"}, ignoreResourceNotFound = true)
 public class BookDaoImpl implements BookDao {
     //用EL表达式对资源文件取值
     @Value("${jdbc.username}")
