@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author one
+ */
 @Repository("bookDaoImpl")
 // @PropertySource引入资源文件
 @PropertySource(value={"classpath:jdbc.properties"},ignoreResourceNotFound = true)
@@ -17,6 +20,7 @@ public class BookDaoImpl implements BookDao {
     @Value("${jdbc.password}")
     private String password;
 
+    @Override
     public void save() {
         System.out.println("book dao running..."+username+password);
     }

@@ -7,5 +7,5 @@ package com.one.dao;
  * @Date: 2020/12/02
  */
 public interface UserDao {
-    public abstract void  save();
+    void save();
 }

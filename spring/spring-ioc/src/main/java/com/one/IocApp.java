@@ -1,14 +1,20 @@
 package com.one;
 
-import com.one.config.SpringConfig;
+import com.one.config.JDBCConfig;
+import com.one.config.MyBatisConfig;
 import com.one.domain.Account;
 import com.one.service.AccountService;
 import com.one.service.impl.AccountServiceImpl;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.*;
 
 import java.util.List;
 
+@ComponentScan("com.one")  //指定spring在初始化容器时要扫描的包,指定纯注解方式下扫描的包路径(该路径下包含有所有注解的Bean类)
+@PropertySource("classpath:jdbc.properties")  //引入资源文件
+@MapperScan("com.one.dao") // 扫描mapper层接口
+@Import({JDBCConfig.class, MyBatisConfig.class}) //引入第三方Bean作为被spring控制的资源
 public class IocApp {
     public static void main(String[] args) {
 //        ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -29,7 +35,7 @@ public class IocApp {
 //        bookDao.save();
 
         // 纯注解开发方式下获取ApplicationContext对象
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(IocApp.class);
         AccountService accountService = ctx.getBean("accountService", AccountServiceImpl.class);
         Account account = accountService.findById(1);
         System.out.println(account);

@@ -1,6 +1,6 @@
 package com.one.service;
 
-import com.one.config.SpringConfig;
+import com.one.IocApp;
 import com.one.domain.Account;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,7 +20,7 @@ import java.util.List;
 //设置spring专用的类加载器
 @RunWith(SpringJUnit4ClassRunner.class)
 //设置上下文配置
-@ContextConfiguration(classes = SpringConfig.class)
+@ContextConfiguration(classes = IocApp.class)
 public class AccountServiceTest {
     //用注解的方式进行DI注入
     @Autowired
