@@ -16,7 +16,8 @@ public class UserTest {
         SysUser sysUser = userService.findById((long)1);
         System.out.println(sysUser);
 
-        userService.getSystemUsers(null);
+        // 测试ResultHandler的使用
+//        userService.getSystemUsers(null);
 
     }
 }

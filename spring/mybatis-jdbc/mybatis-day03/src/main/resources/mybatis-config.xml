@@ -27,7 +27,10 @@
     <!--plugins 插件,这里配置分页插件助手-->
     <plugins>
         <!--interceptor属性 注意不同版本的分页插件助手interceptor的属性值不一样-->
-        <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="someProperty" value="100"/>
+        </plugin>
+        <plugin interceptor="com.one.interceptor.MyPlugin"/>
     </plugins>
 
     <!--environments 配置数据环境变量,数据环境可以有多个 default属性 指定默认的数据环境-->
