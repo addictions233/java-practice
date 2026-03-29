@@ -11,9 +11,7 @@ import java.util.Date;
 @Data
 public class SysUser {
     // 实体类中不要使用基本数据类型
-//    private Long userId;
-
-    private String userId;
+    private Long userId;
 
     private String userName;
 
