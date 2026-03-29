@@ -17,7 +17,7 @@ public class UserTest {
         System.out.println(sysUser);
 
         // 测试ResultHandler的使用
-//        userService.getSystemUsers(null);
+        userService.getSystemUsers(null);
 
     }
 }
