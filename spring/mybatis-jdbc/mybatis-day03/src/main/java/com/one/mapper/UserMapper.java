@@ -14,7 +14,7 @@ public interface UserMapper {
     /**
      * 根据ID查询用户
      */
-    SysUser findById(Long id);
+    SysUser findById(String id);
 
     /**
      * 查询所有

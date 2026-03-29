@@ -56,7 +56,7 @@ public class SysUserServiceImpl implements SysUserService {
     public SysUser findById(Long id) {
         before();
         // mapper层接口调用其成员方法,本质是执行sql语句并将查询结果封装到sql表的映射实体类中
-        SysUser country = mapper.findById(id);
+        SysUser country = mapper.findById(String.valueOf(id));
         return country;
     }
 

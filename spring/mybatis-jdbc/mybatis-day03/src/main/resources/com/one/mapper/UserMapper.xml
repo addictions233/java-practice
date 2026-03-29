@@ -22,7 +22,8 @@
 
 
     <select id="findById" parameterType="long" resultMap="BaseResultMap">
-        select * from system_user where id = #{id}
+        <!-- 只要这里使用 jdbcType 和 javaType 和我们自定义的 TypeHandler 一致就会使用我们的TypeHandler-->
+        select * from system_user where id = #{id, jdbcType=BIGINT, javaType=String}
     </select>
 
     <select id="findAll" resultMap="BaseResultMap">

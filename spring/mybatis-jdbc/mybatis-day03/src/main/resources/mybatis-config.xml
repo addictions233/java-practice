@@ -18,6 +18,12 @@
         <package name="com.one.bean"/>
     </typeAliases>
 
+    <!-- typeHandler: 对javaType和jdbcType进行转换的一个处理器   -->
+    <typeHandlers>
+        <!--  定义TypeHandler扫描的包路径  -->
+        <package name="com.one.typehandler"/>
+    </typeHandlers>
+
     <!--plugins 插件,这里配置分页插件助手-->
     <plugins>
         <!--interceptor属性 注意不同版本的分页插件助手interceptor的属性值不一样-->
@@ -44,7 +50,7 @@
     <!--mappers 引入映射配置文件-->
     <mappers>
         <!--package 采用包扫描的方式引入映射配置文件 name属性 指定映射配置文件的相对路径,如果是注解开发指定的就是接口的包名-->
-        <package name="com/one/mapper"></package>
+        <package name="com/one/mapper"/>
     </mappers>
 
 
