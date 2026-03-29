@@ -15,5 +15,8 @@ public class UserTest {
         SysUserService userService = new SysUserServiceImpl();
         SysUser sysUser = userService.findById((long)1);
         System.out.println(sysUser);
+
+        userService.getSystemUsers(null);
+
     }
 }

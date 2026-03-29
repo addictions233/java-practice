@@ -2,6 +2,7 @@ package com.one.service.impl;
 
 import com.one.bean.SysUser;
 import com.one.mapper.UserMapper;
+import com.one.resulthandler.MyResultHandler;
 import com.one.service.SysUserService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -56,8 +57,16 @@ public class SysUserServiceImpl implements SysUserService {
     public SysUser findById(Long id) {
         before();
         // mapper层接口调用其成员方法,本质是执行sql语句并将查询结果封装到sql表的映射实体类中
-        SysUser country = mapper.findById(String.valueOf(id));
-        return country;
+        return mapper.findById(String.valueOf(id));
+    }
+
+    /**
+     * 测试ResultHandler处理结果
+     * @param sysUser sysUser
+     */
+    @Override
+    public void getSystemUsers(SysUser sysUser) {
+        mapper.getSysUsers(sysUser, new MyResultHandler());
     }
 
     @Override

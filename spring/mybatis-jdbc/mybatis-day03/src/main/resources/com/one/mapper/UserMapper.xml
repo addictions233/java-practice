@@ -29,4 +29,8 @@
     <select id="findAll" resultMap="BaseResultMap">
         select * from system_user
     </select>
+
+    <select id="getSysUsers" resultMap="BaseResultMap" fetchSize="2">
+        select * from system_user
+    </select>
 </mapper>
