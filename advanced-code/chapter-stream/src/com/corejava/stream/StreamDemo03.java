@@ -1,6 +1,6 @@
 package com.corejava.stream;
 
-public class StreamDemo1_2 {
+public class StreamDemo03 {
     public static void main(String[] args) {
 
     }

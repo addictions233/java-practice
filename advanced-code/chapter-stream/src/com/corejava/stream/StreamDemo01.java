@@ -8,7 +8,7 @@ import java.util.List;
  *      1,常规实现方法
  *      2.Stream流实现方法
  */
-public class StreamDemo1 {
+public class StreamDemo01 {
     public static void main(String[] args) {
         String str = "java is a difficult programming language";
         /*

@@ -4,11 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 /**
  * 案例需求:
@@ -20,7 +16,7 @@ import java.util.stream.Stream;
  *      Paths类 :  static Path	get​(String first, String... more)
  *          Converts a path string, or a sequence of strings that when joined form a path string, to a Path
  */
-public class StreamDemo1_1 {
+public class StreamDemo02 {
     public static void main(String[] args) throws IOException {
         String contents = new String(Files.readAllBytes(Paths.get("Charpter_Stream\\alice.txt")), StandardCharsets.UTF_8);
         String[] strings = contents.split("\\PL+");
