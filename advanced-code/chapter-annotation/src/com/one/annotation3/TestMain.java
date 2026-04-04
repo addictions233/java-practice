@@ -9,7 +9,7 @@ package com.one.annotation3;
 @HelloAnnotation(say="Do it!")
 public class TestMain {
     public static void main(String[] args) {
-        System.setProperty("itheima.misc.ProxyGenerator.saveGeneratedFiles","true");
+        System.setProperty("com.one.ProxyGenerator.saveGeneratedFiles","true");
         // 获取类上的注解
         HelloAnnotation helloAnnotation = TestMain.class.getAnnotation(HelloAnnotation.class);
         String say = helloAnnotation.say();
