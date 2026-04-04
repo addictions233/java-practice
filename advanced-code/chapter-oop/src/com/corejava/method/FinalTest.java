@@ -19,7 +19,7 @@ public class FinalTest {
         System.out.println(num);
         ArrayList<String> list = new ArrayList<>();
         list.add("张三");
-        // 测试indexof方法的使用
+        // 测试index of方法的使用
         System.out.println(list.indexOf("李四"));
         System.out.println(list.indexOf("张三"));
         System.out.println(list.indexOf(null));
