@@ -12,6 +12,9 @@ import javax.validation.constraints.Size;
  */
 @Data
 public class SystemUser {
+
+    private Long id;
+
     @Size(max = 10, message = "最大长度不能超过10")
     private String name;
 
@@ -21,4 +24,13 @@ public class SystemUser {
 
     @NotBlank(message = "性别不能为空")
     private String gender;
+
+    public SystemUser() {
+    }
+
+    public SystemUser(Long id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 }

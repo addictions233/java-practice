@@ -24,4 +24,8 @@ public class UserService {
     public Integer insertSystemUser(SystemUser systemUser) {
         return systemUserMapper.insertUser(systemUser);
     }
+
+    public SystemUser selectById(Long id) {
+        return systemUserMapper.selectById(id);
+    }
 }

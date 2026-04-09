@@ -1,6 +1,6 @@
 package com.one.test;
 
-import com.one.SpringbootJunitApplication;
+import com.one.JunitApplication;
 import com.one.mapper.SystemUserMapper;
 import com.one.pojo.SystemUser;
 import com.one.service.UserService;
@@ -10,11 +10,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.event.annotation.BeforeTestMethod;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.Assert;
+
+import java.util.Optional;
 
 /**
  * @ClassName: UserServiceTest
@@ -23,26 +25,40 @@ import org.springframework.util.Assert;
  * @Date: 2020/12/17
  */
 // 高版本可不加此注解
-@SpringBootTest(classes = SpringbootJunitApplication.class) // 目的是加载ApplicationContext, 启动spring容器
-@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = JunitApplication.class) // 用于加载spring上下文, 启动spring容器
+@ExtendWith(MockitoExtension.class)  // 启用Mockito注解, 如 @Mock注解
 public class UserServiceTest {
 
+    /**
+     * 注解@InjectMocks : 创建一个实例，并将标记为 @Mock 的对象自动注入到该实例中。
+     */
     @Autowired
     @InjectMocks
     private UserService userService;
 
+    /**
+     * 使用@Mock注解创建一个Mock实例（虚拟对象）
+     */
     @Mock
     private SystemUserMapper systemUserMapper;
 
     @BeforeTestMethod
     public void setup() {
         //添加Mock注解初始化
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     public void testUserService() {
-        userService.run();
+        // 1. 定义Mock行为
+        SystemUser mockUser = new SystemUser(1L, "张三", 23);
+        Mockito.when(systemUserMapper.selectById(1L)).thenReturn(mockUser);
+
+        // 2.调用实际方法
+        SystemUser systemUser = userService.selectById(1L);
+
+        // 3.断言结果
+        assert mockUser.getName().equals(systemUser.getName());
     }
 
     /**
