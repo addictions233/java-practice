@@ -16,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.springframework.util.Assert;
 
-import java.util.Optional;
-
 /**
  * @ClassName: UserServiceTest
  * @Description: 测试springboot中集成单元测试
