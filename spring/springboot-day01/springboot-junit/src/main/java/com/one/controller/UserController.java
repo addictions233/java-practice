@@ -1,6 +1,8 @@
 package com.one.controller;
 
 import com.one.pojo.SystemUser;
+import com.one.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,9 @@ import javax.validation.Valid;
 @RestController
 public class UserController {
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping("save")
     public void saveUser(@RequestBody @Valid SystemUser user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -29,6 +34,11 @@ public class UserController {
     public String updateUser(@RequestBody @Valid SystemUser user) {
         System.out.println(user);
         return "aaa";
+    }
+
+    @GetMapping("/{id}")
+    public SystemUser getById(@PathVariable("id") Long id) {
+        return userService.selectById(id);
     }
 
 
