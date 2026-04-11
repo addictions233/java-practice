@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.one</groupId>
-    <artifactId>springcloud-DDD</artifactId>
+    <artifactId>springcloud-ddd</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
