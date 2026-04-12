@@ -1,4 +1,4 @@
-package com.one.mybatisplus.handler;
+package com.one.mybatisplus.typehandler;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.ibatis.type.BaseTypeHandler;

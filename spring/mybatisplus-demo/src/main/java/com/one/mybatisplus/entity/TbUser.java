@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.one.mybatisplus.serializer.EnumJsonSerializer;
 import com.one.mybatisplus.enums.UserStatusEnum;
-import com.one.mybatisplus.handler.JsonbTypeHandler;
+import com.one.mybatisplus.typehandler.JsonbTypeHandler;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

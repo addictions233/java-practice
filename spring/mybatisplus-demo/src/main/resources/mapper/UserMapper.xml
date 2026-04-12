@@ -8,7 +8,7 @@
         <result column="name" property="name" />
         <result column="age" property="age" />
         <result column="email" property="email" />
-        <result column="extend" property="extend" typeHandler="com.one.mybatisplus.handler.JsonbTypeHandler" />
+        <result column="extend" property="extend" typeHandler="com.one.mybatisplus.typehandler.JsonbTypeHandler" />
     </resultMap>
 
 
