@@ -19,6 +19,7 @@ public class ContextParamInterceptor implements InnerInterceptor {
 
     @Override
     public void beforeQuery(Executor executor, MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) throws SQLException {
+        // 执行查询语句之前, 添加参数
         boundSql.getAdditionalParameters().putIfAbsent("id", 2L);
     }
 }

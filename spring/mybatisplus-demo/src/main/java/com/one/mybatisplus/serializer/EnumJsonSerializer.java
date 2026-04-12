@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * @ClassName: EnumJsonSerializer
- * @Description: 枚举类型序列化器
+ * @Description: 枚举类型序列化器, 实现mvc层的序列化和反序列化
  * @Author: one
  * @Date: 2025/12/14
  */

@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.one.mybatisplus.serializer.EnumJsonSerializer;
 import com.one.mybatisplus.enums.UserStatusEnum;
+import com.one.mybatisplus.typehandler.JsonTypeHandler;
 import com.one.mybatisplus.typehandler.JsonbTypeHandler;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +36,7 @@ public class TbUser extends Model<TbUser> {  // model类是mybatis plus的基类
     private Long id;
 
     /**
-     * /解决类的属性名和表的字段名无法映射问题
+     * 解决类的属性名和表的字段名无法映射问题
      */
     @TableField("user_name")
     private String userName;
@@ -65,7 +66,7 @@ public class TbUser extends Model<TbUser> {  // model类是mybatis plus的基类
      *
      */
 //    @TableField(typeHandler = FastjsonTypeHandler.class) // 使用mybatis plus的fastjson类型处理器
-    @TableField(typeHandler = JsonbTypeHandler.class) // 使用自定义的类型处理器
+    @TableField(typeHandler = JsonTypeHandler.class) // 使用自定义的类型处理器
     private JSONObject extend;
 
     public TbUser(String name, Integer age) {
