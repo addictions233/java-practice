@@ -1,4 +1,4 @@
-package com.one.mybatisplus.config;
+package com.one.mybatisplus.serializer;
 
 import com.baomidou.mybatisplus.annotation.IEnum;
 import com.fasterxml.jackson.core.JsonGenerator;
