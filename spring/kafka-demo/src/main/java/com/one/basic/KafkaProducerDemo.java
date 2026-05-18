@@ -67,7 +67,7 @@ public class KafkaProducerDemo {
             System.out.println("topic:" + metadata.topic()); // 消息的topic
             System.out.println("partition:" + metadata.partition()); // 消息的分区partition
             System.out.println("offset:" + metadata.offset()); // 消息的偏移量offset
-            System.out.println("message:" + metadata.toString());
+            System.out.println("message:" + metadata);
         });
 
         //关系消息通道
