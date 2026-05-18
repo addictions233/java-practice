@@ -45,8 +45,13 @@ public class KafkaConsumerDemo {
         // 自动提交offset是异步提交, 可以设置自动提交间隔时间
         properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "10000");
 
+        // ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG是max.poll.interval.ms，表示最大轮询间隔时间，
+        // 若手动设置为500，意味着消费者在两次连续轮询之间最多只能等待500毫秒。
+        // 如果超过该最大轮询时间，消费者将被认为已经失去连接，从而触发重新平衡操作，将其分配给其他消费者。
+        // 该参数如果设置较小，可能会导致频繁重新平衡，而消费者本身没有问题的情况下，设置过小反而影响频繁导致该消费者无法正常工作，就会抛出以上异常。
+        // 但是，若设置过大的话，可能导致消费者在长时间无法处理新的记录。需要根据业务处理时长来决定这个参数值
+//        properties.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, "500");
         // poll 每批拉取的最大消费的消息数量
-//        properties.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, "5");
         properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "5");
 
         // 创建消费者
@@ -60,12 +65,17 @@ public class KafkaConsumerDemo {
             @Override
             public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
                 System.out.println("---onPartitionsRevoked-----");
-                par
+                for (TopicPartition partition : partitions) {
+                    System.out.println("partition:" + partition);
+                }
             }
 
             @Override
             public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
                 System.out.println("---onPartitionsAssigned-----");
+                for (TopicPartition partition : partitions) {
+                    System.out.println("partition:" + partition);
+                }
             }
         });
 
