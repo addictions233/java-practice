@@ -1,10 +1,12 @@
 package com.one.basic;
 
+import com.one.interceptor.KafkaProducerInterceptor;
 import com.one.partition.SinglePartitioner;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
@@ -28,19 +30,20 @@ public class KafkaProducerDemo {
         Properties properties = new Properties();
         //配置kafka的broker服务器信息
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-        // 分别设置key和value的序列化器
-        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
-        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+        // 分别设置key和value的序列化器, kafka不会对数据进行干预, 双方需要约定好编解码
+        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // 配置重试次数
         properties.put(ProducerConfig.RETRIES_CONFIG, 10);
-        // 配置使用自定义分区器
+        // 配置使用自定义分区器, 也就是决定key进去哪个partition
         properties.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, SinglePartitioner.class);
         // 配置生产者的拦截器
-        properties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, "com.one.interceptor.KafkaProducerInterceptor");
+        properties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, KafkaProducerInterceptor.class.getName());
 
 
-        //生产者producer对象,
+        // 生产者producer对象,
         // 第一个泛型String是发送消息的key, Key用来指定消息路由到哪个分区partition中,先对key取hash值,然后利用hash值对partition的个数取模
+        // 相同的key会进入同一个分区
         // 这样就能确定这个key对应的消息路由到哪个分区partition, 如果没有指定消息的key,就用轮询的方式选取一个分区partition
         // 第二个泛型String是发送消息的内容
         KafkaProducer<String,String> producer = new KafkaProducer<>(properties);

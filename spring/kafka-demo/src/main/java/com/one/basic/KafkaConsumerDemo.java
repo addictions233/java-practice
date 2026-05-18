@@ -4,6 +4,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -12,8 +13,7 @@ import java.util.Properties;
 
 /**
  * @ClassName: KafkaConsumerDemo
- * @Description: 消费者
- *         kafka的生产者和消费者都是java代码的服务器, 而broker是kafka中间件起的服务
+ * @Description: 消费者, kafka的生产者和消费者都是java代码的服务器, 而broker是kafka中间件起的服务, 采用scala编写
  * @Author: one
  * @Date: 2021/01/29
  */
@@ -25,8 +25,8 @@ public class KafkaConsumerDemo {
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
         // 设置key和value的反序列化器
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // 设置consumer的群组, Consumer是按照消费者组记录消费进度的
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group2");
         // earliest: 无提交的偏移量：从分区最早的消息开始消费（包括历史数据）
