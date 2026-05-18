@@ -31,7 +31,7 @@ public class KafkaConsumerDemo {
 
         // 设置consumer的群组, Consumer是按照消费者组记录消费进度的
         // 一条消息只能被一个消费者组中的一个Consumer进行消费, 但是能被多个消费者组进行消费
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group2");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group3");
 
         // 如果broker服务端没有保存该消费者组提交的消费偏移量
         // earliest: 从分区最早的消息开始消费（包括历史数据）
@@ -41,7 +41,11 @@ public class KafkaConsumerDemo {
 
         // 开启自动提交offset
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        // 自动提交offset是异步提交, 可以设置自动提交间隔时间
         properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
+
+        // poll 每批拉取的最大消费的消息数量
+        properties.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, "5");
 
         // 创建消费者
         // 一个Partition最多只能同时被一个Consumer消费。
@@ -52,13 +56,16 @@ public class KafkaConsumerDemo {
 
         while (true) {
             // 消费者主动向broker拉消息, 也就是拉模式, 超时时间1000ms
+            // 一次拉取的是一批消息
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
+            System.out.println("消息总数:" + records.count());
 
             // kafka消费有个问题: 消费进度偏移量offset是由consumer提交的, 但是是记录在broker的, 所以如果consumer提交消费进度失败或者错误
             // 会导致broker记录错误的consumer消费进度, 造成消息消费的丢失或者重复
             records.partitions().forEach(topicPartition -> {
                 // 从records中获取当前topicPartition的全部消息记录
                 List<ConsumerRecord<String, String>> partitionRecords = records.records(topicPartition);
+
                 // 如果我们要避免消费进度offset在consumer和broker的管理不一致, 可以客户端在保存一份自己的消费进度偏移量,对比broker端的消费进度
                 // 使用topic + partition 作为key, 记录当前partition的消费进度偏移量
                 String redisKey = topicPartition.topic() + "#" + topicPartition.partition();
