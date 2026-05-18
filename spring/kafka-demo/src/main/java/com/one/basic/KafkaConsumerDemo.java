@@ -1,13 +1,12 @@
 package com.one.basic;
 
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.time.Duration;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
@@ -31,8 +30,9 @@ public class KafkaConsumerDemo {
 
         // 设置consumer的群组, Consumer是按照消费者组记录消费进度的
         // 一条消息只能被一个消费者组中的一个Consumer进行消费, 但是能被多个消费者组进行消费
-        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group3");
+        properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group10");
 
+        // 如果broker
         // 如果broker服务端没有保存该消费者组提交的消费偏移量
         // earliest: 从分区最早的消息开始消费（包括历史数据）
         // latest(默认值): 从分区最新的消息开始消费, 历史消息不消费
@@ -40,19 +40,34 @@ public class KafkaConsumerDemo {
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         // 开启自动提交offset
-        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+//        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
+        properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false"); // 关闭自动提交offset, 需要进行手动提交
         // 自动提交offset是异步提交, 可以设置自动提交间隔时间
-        properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
+        properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "10000");
 
         // poll 每批拉取的最大消费的消息数量
-        properties.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, "5");
+//        properties.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, "5");
+        properties.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, "5");
 
         // 创建消费者
         // 一个Partition最多只能同时被一个Consumer消费。
         // 也就是说，如果有四个Partition的Topic，那么同一个消费者组中最多就只能配置四个消费者实例。
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
+
         //订阅主题, 可以订阅多个主题
-        consumer.subscribe(Collections.singletonList(TOPIC));
+        // 如果该消费者组有新的消费者加入, kafka的consumer会进行动态负载均衡
+        consumer.subscribe(Collections.singletonList(TOPIC), new ConsumerRebalanceListener() {
+            @Override
+            public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
+                System.out.println("---onPartitionsRevoked-----");
+                par
+            }
+
+            @Override
+            public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
+                System.out.println("---onPartitionsAssigned-----");
+            }
+        });
 
         while (true) {
             // 消费者主动向broker拉消息, 也就是拉模式, 超时时间1000ms
@@ -90,7 +105,7 @@ public class KafkaConsumerDemo {
             // 不过这次，一般会尽量推送给同一个消费者组当中的其他消费者实例。
             consumer.commitSync(); // 同步提交, 表示必须等到offset提交完毕之后, 再去消费下一批数据
 
-            consumer.commitAsync(); // 异步提交, 表示发送完提交offset请求后, 就开始消费下一批数据了, 不用等到Broker的确认
+//            consumer.commitAsync(); // 异步提交, 表示发送完提交offset请求后, 就开始消费下一批数据了, 不用等到Broker的确认
         }
 
     }
