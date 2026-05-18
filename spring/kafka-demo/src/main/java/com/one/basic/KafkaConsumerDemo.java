@@ -4,6 +4,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.time.Duration;
@@ -21,19 +22,27 @@ public class KafkaConsumerDemo {
     private static final String TOPIC = "kafka-one";
 
     public static void main(String[] args) {
-        // 添加配置信息, ConsumerConfig服务端的配置类
+        // 添加配置信息
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
-        // 设置key和value的反序列化器
-        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        // 设置key和value的反序列化器, producer进行序列化, consumer进行反序列化
+        properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+
         // 设置consumer的群组, Consumer是按照消费者组记录消费进度的
+        // 一条消息只能被一个消费者组中的一个Consumer进行消费, 但是能被多个消费者组进行消费
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "group2");
-        // earliest: 无提交的偏移量：从分区最早的消息开始消费（包括历史数据）
+
+        // 如果broker服务端没有保存该消费者组提交的消费偏移量
+        // earliest: 从分区最早的消息开始消费（包括历史数据）
+        // latest(默认值): 从分区最新的消息开始消费, 历史消息不消费
+        // none: 如果broker端没有该消费者组的消费偏移量, 则抛出异常
         properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
         // 开启自动提交offset
         properties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
         properties.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
+
         // 创建消费者
         // 一个Partition最多只能同时被一个Consumer消费。
         // 也就是说，如果有四个Partition的Topic，那么同一个消费者组中最多就只能配置四个消费者实例。

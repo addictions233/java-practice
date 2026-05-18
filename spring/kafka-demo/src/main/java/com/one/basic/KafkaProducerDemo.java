@@ -36,7 +36,7 @@ public class KafkaProducerDemo {
         // 配置重试次数
         properties.put(ProducerConfig.RETRIES_CONFIG, 10);
         // 配置使用自定义分区器, 也就是决定key进去哪个partition
-        properties.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, SinglePartitioner.class);
+        properties.put(ProducerConfig.PARTITIONER_CLASS_CONFIG, SinglePartitioner.class.getName());
         // 配置生产者的拦截器
         properties.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, KafkaProducerInterceptor.class.getName());
 
