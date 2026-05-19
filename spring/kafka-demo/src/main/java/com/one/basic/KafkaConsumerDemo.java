@@ -6,10 +6,7 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.time.Duration;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * @ClassName: KafkaConsumerDemo
@@ -85,10 +82,27 @@ public class KafkaConsumerDemo {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
             System.out.println("消息总数:" + records.count());
 
-            // kafka消费有个问题: 消费进度偏移量offset是由consumer提交的, 但是是记录在broker的, 所以如果consumer提交消费进度失败或者错误
-            // 会导致broker记录错误的consumer消费进度, 造成消息消费的丢失或者重复
-            records.partitions().forEach(topicPartition -> {
+            // 消费消息
+            for (ConsumerRecord<String, String> record : records) {
+                System.out.println("topic:" + record.topic()); // topic主题
+                System.out.println("partition:" + record.partition());  // partition 分区
+                System.out.println("key:" + record.key()); // 消息key
+                System.out.println("消息内容:" + record.value()); // 消息内容
+
+                // 第一种: 按照每条消息的粒度来提交偏移量, 最安全, 但是效率最低
+                HashMap<TopicPartition, OffsetAndMetadata> map = new HashMap<>();
+                map.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset()));
+                // 这种最安全, 每条消息记录级别的offset维护
+                consumer.commitSync();
+            }
+
+            // kafka消费有个问题: 消费进度偏移量offset是由consumer提交的, 但是是记录在broker的,
+            // 所以如果consumer提交消费进度失败或者错误, 会导致broker记录错误的consumer消费进度, 造成消息消费的丢失或者重复
+            for (TopicPartition topicPartition : records.partitions()) {
+                System.out.println("topic:" + topicPartition.topic() + ",partition:" + topicPartition.partition());
+
                 // 从records中获取当前topicPartition的全部消息记录
+                // 每个分区中的消息是有序的
                 List<ConsumerRecord<String, String>> partitionRecords = records.records(topicPartition);
 
                 // 如果我们要避免消费进度offset在consumer和broker的管理不一致, 可以客户端在保存一份自己的消费进度偏移量,对比broker端的消费进度
@@ -98,25 +112,36 @@ public class KafkaConsumerDemo {
                 long redisValue = partitionRecords.get(partitionRecords.size() - 1).offset();
                 // TODO 将 redisKey和redisValue放入缓存中, 这样就可以在客户端记录自己真实消费的偏移量
                 // TODO 后续消费对比自己记录的消费偏移量和broker给的消息的偏移量进行对比, 如果不一致以自己记录的为主, 丢掉重复消费的
-            });
 
-            // 消费消息
-            for (ConsumerRecord<String, String> record : records) {
-                System.out.println("topic:" + record.topic()); // topic主题
-                System.out.println("partition:" + record.partition());  // partition 分区
-                System.out.println("key:" + record.key()); // 消息key
-                System.out.println("消息内容:" + record.value()); // 消息内容
+                // 第二种: 按照分区partition的维度来手动提交offset
+                // 获取该分区最后一条消息的偏移量, 作为该partition提交的offset
+                long offset = partitionRecords.get(partitionRecords.size() - 1).offset();
+                HashMap<TopicPartition, OffsetAndMetadata> map = new HashMap<>();
+                map.put(topicPartition, new OffsetAndMetadata(offset));
+                // 由于broker是按照分区的维度来维护offset, 所以推荐采用这种方式来提交偏移量
+                consumer.commitSync(map);
             }
+
 
             // 提交消费offset, 消息就不会重复推送了
             // 这个Offset偏移量，需要消费者处理完成后主动向Kafka的Broker提交。
             // 提交完成后，Broker就会更新消费进度，表示这个消息已经被这个消费者组处理完了。
             // 但是如果消费者没有提交Offset，Broker就会认为这个消息还没有被处理过，就会重新往对应的消费者组进行推送，
             // 不过这次，一般会尽量推送给同一个消费者组当中的其他消费者实例。
+            // 第三种: 按照整个poll拉取的消息批次来提交offset
             consumer.commitSync(); // 同步提交, 表示必须等到offset提交完毕之后, 再去消费下一批数据
 
 //            consumer.commitAsync(); // 异步提交, 表示发送完提交offset请求后, 就开始消费下一批数据了, 不用等到Broker的确认
         }
 
     }
+
+    /**
+     * 如果是手动提交offset
+     * 1.按照消息的粒度进行同步提交
+     * 2.按照分区partition的维护进行同步提交
+     * 3.按照当前poll的批次来同步提交 (如果一个consumer对应消费多个partition, 就会一次poll到多个partition的消息)
+     *
+     * 如果在多个线程下消费是不是有问题???
+     */
 }
