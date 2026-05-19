@@ -93,6 +93,7 @@ public class KafkaConsumerDemo {
                 HashMap<TopicPartition, OffsetAndMetadata> map = new HashMap<>();
                 map.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset()));
                 // 这种最安全, 每条消息记录级别的offset维护
+                // 如果想要消息级别的ack机制, 建议使用rocketmq
                 consumer.commitSync();
             }
 
