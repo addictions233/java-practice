@@ -15,12 +15,20 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * 类说明：多线程下正确的使用消费者，需要记住，一个线程一个消费者
+ * 类说明：多线程下正确的使用消费者，需要记住，一个线程一个消费者, 对应一个分区partition
  */
 public class KafkaConConsumer {
 
+    /**
+     * 分区partition数量为2
+     */
     public static final int CONCURRENT_PARTITIONS_COUNT = 2;
 
+    /**
+     * 消费线程数量也为2, 消费线程数和分区数 和consumer数量保持一致
+     * 一个partition由一个consumer来消费, 一个consumer对应一个线程Thread
+     * 这样满足kafka的原则: 一个分区partition只一个一个消费者组里的 一个消费线程处理, 保证了有序性
+     */
     private static ExecutorService executorService = Executors.newFixedThreadPool(CONCURRENT_PARTITIONS_COUNT);
 
     private static class ConsumerWorker implements Runnable {
@@ -30,7 +38,7 @@ public class KafkaConConsumer {
         public ConsumerWorker(Map<String, Object> config, String topic) {
             Properties properties = new Properties();
             properties.putAll(config);
-            //一个线程一个消费者Consumer, Consumer是线程不安全的, 所以每个线程都需要一个消费者
+            // 一个线程一个消费者Consumer, Consumer是线程不安全的, 所以每个线程都需要一个消费者
             this.consumer = new KafkaConsumer<String, String>(properties);
             consumer.subscribe(Collections.singletonList(topic));
         }
@@ -49,6 +57,8 @@ public class KafkaConConsumer {
                                 record.offset(), record.key(), record.value()));
                         //do our work
                     }
+                    // 按照分区的维度来提交offset偏移量
+                    consumer.commitSync();
                 }
             } finally {
                 consumer.close();
@@ -68,7 +78,7 @@ public class KafkaConConsumer {
 
         for (int i = 0; i < CONCURRENT_PARTITIONS_COUNT; i++) {
             // Kafka中Producer是线程安全的, 但是Consumer不是线程安全的, 所有一个线程一个消费者Consumer
-            //一个线程一个消费者Consumer
+            // 一个分区partition由 一个线程一个消费者Consumer 来进行消费
             executorService.submit(new ConsumerWorker(properties, "concurrent-ConsumerOffsets"));
         }
     }

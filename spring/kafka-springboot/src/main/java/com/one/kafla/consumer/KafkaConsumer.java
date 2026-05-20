@@ -24,7 +24,15 @@ import java.util.Optional;
 @Component
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "kafka-topic", containerFactory = "kafkaListenerContainerFactory")
+    /**
+     * 你设置spring.kafka.listener.concurrency=2时，Spring Boot会为这个@KafkaListener创建2个独立的消费者线程，
+     * 每个线程对应一个Kafka Consumer实例。
+     * 结合你的topic有2个分区，这两个线程会各自分配到一个分区（Kafka的分区分配策略会保证同一个group下的分区不会被重复分配）。
+     * 所以线程1和线程2是并行执行消息处理的，完全不会串行。至于偏移量提交，因为是手动提交（Acknowledgement），
+     * 每个线程会在自己处理完一批消息后，独立提交自己负责的那个分区的偏移量——两个线程的提交操作也是并行的，互不等待。
+     * @param record 消息
+     */
+    @KafkaListener(topics = "kafka-topic", containerFactory = "kafkaListenerContainerFactory", concurrency = "2")
     public void receiveMessage(ConsumerRecord<String, String> record){
         Optional<ConsumerRecord<String, String>> optional = Optional.ofNullable(record);
         if(optional.isPresent()){

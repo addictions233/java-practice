@@ -6,13 +6,18 @@ import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 
 import java.time.Duration;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.*;
 
-
+/**
+ * 当你部署2个微服务实例，每个实例的concurrency=2时，每个实例确实会创建2个消费者线程，整个消费组（TEST_GRP_ID）下总共有4个消费者线程。
+ * 但这里要注意Kafka的核心规则：同一个消费组内，一个分区只能被一个消费者线程消费。
+ * 你的topic只有2个分区，所以最终只有2个线程会被分配到分区进行消费，
+ * 剩下的2个线程会处于空闲状态（等着分区重新分配，比如某个实例挂了的时候）。
+ * 至于具体哪两个线程分到分区，取决于你用的分区分配策略（默认是Range，也可以配置成RoundRobin）。
+ * 通常我们的服务实例数是大于broker的数量的,
+ * 我们更推荐: 一个线程启动Consumer拉取消息, 多个业务线程处理消息, 最后统一由consumer线程提交偏移量offset
+ */
 public class MultiThreadedConsumer {
     
     private static final KafkaConsumer<String, String> consumer;
@@ -38,14 +43,22 @@ public class MultiThreadedConsumer {
         consumer.subscribe(Arrays.asList("topic"));
         
         while (true) {
+            // consumer主线程拉取消息
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-            
+            // 如果一个consumer对应多个分区
+            List<CompletableFuture<Void>> list = new ArrayList<>();
             for (TopicPartition partition : records.partitions()) {
                 List<ConsumerRecord<String, String>> partitionRecords = records.records(partition);
-                
+
+                // 多个业务线程处理消息业务
                 // 每个分区一个线程处理，保证分区内的顺序
-                executor.submit(() -> processPartition(partition, partitionRecords));
+                // 同一个消费组内，一个分区只能被一个消费者线程消费。
+                list.add(CompletableFuture.runAsync(() -> processPartition(partition, partitionRecords), executor));
             }
+            // 等待所有的线程把业务处理结束
+            CompletableFuture.allOf(list.toArray(new CompletableFuture[0])).join();
+            // 由consumer主线程来提交偏移量
+            this.commitOffsets();
         }
     }
     
@@ -61,9 +74,10 @@ public class MultiThreadedConsumer {
             for (ConsumerRecord<String, String> record : partitionRecords) {
                 try {
                     System.out.println("topic:" + record.topic() + ",partition:" + record.partition() + ",msg:" + record.value());
+                    // 取最后一条消息的偏移量, 就是
                     lastOffset = record.offset();
                 } catch (Exception e) {
-                    // ❗ 关键：单条失败如何处理？
+                    // 关键：单条失败如何处理？
                     // 方案1：失败即停止该分区（最保守）
                     // 方案2：跳过失败，记录死信（需业务允许无序/丢失）
                     handleFailure(record, e);
