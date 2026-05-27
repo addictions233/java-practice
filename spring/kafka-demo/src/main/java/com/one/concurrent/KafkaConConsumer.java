@@ -16,6 +16,8 @@ import java.util.concurrent.Executors;
 
 /**
  * 类说明：多线程下正确的使用消费者，需要记住，一个线程一个消费者, 对应一个分区partition
+ * 一个服务启动多个Consumer有且只在一个服务订阅了多个Partition的情况下 (即微服务数量 < Partition分区数)
+ * 这种情况下一个微服务可以启动与它分配的Partition相同数量的Consumer个数
  */
 public class KafkaConConsumer {
 
@@ -25,7 +27,7 @@ public class KafkaConConsumer {
     public static final int CONCURRENT_PARTITIONS_COUNT = 2;
 
     /**
-     * 消费线程数量也为2, 消费线程数和分区数 和consumer数量保持一致
+     * 消费线程数量也为2, 消费线程数Thread 和分区数Partition 和 消费者consumer数量保持一致
      * 一个partition由一个consumer来消费, 一个consumer对应一个线程Thread
      * 这样满足kafka的原则: 一个分区partition只一个一个消费者组里的 一个消费线程处理, 保证了有序性
      */

@@ -17,6 +17,7 @@ import java.util.concurrent.*;
  * 至于具体哪两个线程分到分区，取决于你用的分区分配策略（默认是Range，也可以配置成RoundRobin）。
  * 通常我们的服务实例数是大于broker的数量的,
  * 我们更推荐: 一个线程启动Consumer拉取消息, 多个业务线程处理消息, 最后统一由consumer线程提交偏移量offset
+ * 这样能提升消费的效率, 但是违背同一个分区的消息顺序处理的逻辑
  */
 public class MultiThreadedConsumer {
     
