@@ -109,14 +109,10 @@ public class KafkaConsumerSeekDemo {
                 System.out.println("partition:" + record.partition());  // partition 分区
                 System.out.println("key:" + record.key()); // 消息key
                 System.out.println("消息内容:" + record.value()); // 消息内容
-
-                // 第一种: 按照每条消息的粒度来提交偏移量, 最安全, 但是效率最低
-                HashMap<TopicPartition, OffsetAndMetadata> map = new HashMap<>();
-                map.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset()));
-                // 这种最安全, 每条消息记录级别的offset维护
-                // 如果想要消息级别的ack机制, 建议使用rocketmq
-                consumer.commitSync();
             }
+
+            // 同步提交, 表示必须等到offset提交完毕之后, 再去消费下一批数据
+            consumer.commitSync();
         }
 
     }
