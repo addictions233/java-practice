@@ -7,7 +7,7 @@ import java.util.concurrent.CountDownLatch;
  * @author: wanjunjie
  * @date: 2024/05/17
  */
-public class CountDownTest {
+public class CountDownLatchTest {
 
     private static CountDownLatch countDownLatch = new CountDownLatch(3);
 
@@ -15,9 +15,9 @@ public class CountDownTest {
         for (int i = 0; i < 3; i++) {
             new Thread(() ->  {
                 try {
-                    System.out.println(Thread.currentThread().getId() + "开始执行了...");
+                    System.out.println(Thread.currentThread().getName() + "开始执行了...");
                     Thread.sleep(3000);
-                    System.out.println(Thread.currentThread().getId() + "执行结束了...");
+                    System.out.println(Thread.currentThread().getName() + "执行结束了...");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 } finally {
@@ -25,6 +25,7 @@ public class CountDownTest {
                 }
             }).start();
         }
+        // 阻塞等待countDownLatch减为0
         countDownLatch.await();
         System.out.println("主线程执行结束了....");
     }

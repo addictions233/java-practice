@@ -5,7 +5,7 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-public class SemaphoneTest2 {
+public class SemaphoreTest2 {
 
     /**
      * 实现一个同时只能处理5个请求的限流器
