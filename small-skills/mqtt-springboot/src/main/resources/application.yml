@@ -1,0 +1,31 @@
+server:
+  port: 9876
+spring:
+  application:
+    name: spring-integration-mqtt-demo
+mqtt:
+  # BASIC parameters are required.
+  BASIC:
+    protocol: MQTT
+    host: 192.168.79.133
+    port: 1883
+    username:
+    password:
+    client-id: 123456
+    # If the protocol is ws/wss, this value is required.
+    path:
+    # Topics that need to be subscribed when initially connecting to mqtt, multiple topics are divided by ",".
+    inbound-topic: mysys/+/envents_test
+  # 此部分是提供给后端生成token返回给前端，让前端使用websocket方式去和MQTT实现交互的，笔者此文的案例中并没有去实现
+  DRC:
+    protocol: WS
+    host: 192.168.79.133
+    port: 8083
+    path: /mqtt
+
+
+logging:
+  level:
+    com.com.example.mqtt: debug
+  file:
+    name: logs/springboot-integration-mqtt-demo.log

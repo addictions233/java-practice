@@ -27,12 +27,13 @@ public class WebSocketController {
      * MessageMapping注解定义客户端向服务器推送消息的访问路径  用于websocket
      * SendTo注解表示服务器 return的结果作为消息推送到topic主题上,所有订阅了topic主题的客户端都能接收到这条消息
      *
-     * @param ChatMessage 消息实体
+     * @param message 消息实体
      */
     @MessageMapping("/send")
     @SendTo("/topic")
-    public ChatMessage say(@Payload ChatMessage ChatMessage) {
-        return ChatMessage;
+    public ChatMessage say(@Payload ChatMessage message) {
+        System.out.println(message.getContent());
+        return message;
     }
 
     /**
@@ -43,6 +44,7 @@ public class WebSocketController {
      */
     @GetMapping("/send")
     public String msgReply(@RequestParam String msg) {
+        System.out.println(msg);
         // 将消息内容 msg 发送到 "/topic"主题上
         messagingTemplate.convertAndSend("/topic", msg);
         return msg;
