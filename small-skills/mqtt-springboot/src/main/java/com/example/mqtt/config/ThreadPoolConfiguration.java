@@ -13,7 +13,7 @@ import java.util.concurrent.*;
  * @version 0.1
  */
 @Configuration
-public class GlobalThreadPoolConfiguration {
+public class ThreadPoolConfiguration {
 
     @Value("${thread.pool.core-pool-size: 10}")
     private int corePoolSize;

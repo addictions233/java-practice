@@ -18,7 +18,7 @@ import static com.example.mqtt.model.TopicConst.*;
 @Getter
 public enum TopicEnum {
 
-    STATE_ENVENTS(Pattern.compile("^"+MY_BASIC_PRE+REGEX_SN+ENVENTS_TEST+"$"), ChannelName.ENVENTS_INBOUND_TEST),
+    STATE_ENVENTS(Pattern.compile("^"+MY_BASIC_PRE+REGEX_SN+ENVENTS_TEST+"$"), ChannelName.EVENTS_INBOUND_TEST),
     UNKNOWN(Pattern.compile("^.*$"),ChannelName.DEFAULT);
 
     Pattern pattern;

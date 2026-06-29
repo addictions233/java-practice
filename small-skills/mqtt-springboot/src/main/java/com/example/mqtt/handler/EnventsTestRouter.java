@@ -41,7 +41,7 @@ public class EnventsTestRouter {
     @Bean
     public IntegrationFlow myTestMethodRouterFlow() {
         return IntegrationFlows
-                .from(ChannelName.ENVENTS_INBOUND_TEST)
+                .from(ChannelName.EVENTS_INBOUND_TEST)
                 .<byte[], CommonTopicReceiver>transform(payload -> {
                     try {
                         return mapper.readValue(payload, CommonTopicReceiver.class);

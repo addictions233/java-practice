@@ -27,7 +27,7 @@ public class MqttMessageChannel {
         return new ExecutorChannel(threadPool);
     }
 
-    @Bean(name = ChannelName.ENVENTS_INBOUND_TEST)
+    @Bean(name = ChannelName.EVENTS_INBOUND_TEST)
     public MessageChannel enventsInboundTest() {
         return new DirectChannel();
     }

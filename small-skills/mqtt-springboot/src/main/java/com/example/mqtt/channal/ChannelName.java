@@ -11,7 +11,7 @@ public class ChannelName {
 
     public static final String INBOUND = "inbound";
 
-    public static final String ENVENTS_INBOUND_TEST = "enventsInboundEest";
+    public static final String EVENTS_INBOUND_TEST = "eventsInboundTest";
 
     public static final String INBOUND_TASK_TEST1 = "inboundTaskTest1";
     public static final String INBOUND_TASK_TEST2 = "inboundTaskTest2";
