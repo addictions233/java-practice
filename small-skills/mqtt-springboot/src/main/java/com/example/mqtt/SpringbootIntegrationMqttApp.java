@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootIntegrationMqttDemoApplication {
+public class SpringbootIntegrationMqttApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootIntegrationMqttDemoApplication.class, args);
+        SpringApplication.run(SpringbootIntegrationMqttApp.class, args);
     }
 
 }
