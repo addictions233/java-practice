@@ -1,5 +1,10 @@
 package com.corejava.genericmethod;
 
+/**
+ * 在 Java 中，泛型方法（Generic Method）的类型参数声明位置必须放在修饰符之后、返回值类型之前。
+ * 例如：public static <T> T identity(T arg) 中，<T> 就在 public static 后面、T（返回值）的前面。
+ * 正确格式：修饰符 <泛型参数列表> 返回值类型 方法名(参数列表)
+ */
 public class NumberUtil {
 
     /**
