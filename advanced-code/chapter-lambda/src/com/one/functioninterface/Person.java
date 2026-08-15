@@ -15,6 +15,10 @@ public class Person {
         return this.age - person.getAge();
     }
 
+    public int compareByMy(Person p, MyComparetor<Person> comparetor) {
+        return comparetor.compareTo(this, p);
+    }
+
     public String getName() {
         return name;
     }
