@@ -1,6 +1,4 @@
-package com.corejava.tongpeifu;
-
-import java.time.LocalDate;
+package com.corejava.extend;
 
 /**
  *  定义一个Manager类来继承Employee类

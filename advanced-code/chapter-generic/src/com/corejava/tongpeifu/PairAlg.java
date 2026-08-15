@@ -1,0 +1,41 @@
+package com.corejava.tongpeifu;
+
+
+import com.corejava.genericclass.Pair;
+
+/**
+ * 测试如何对 <?>泛型无限通配符 进行捕获
+ */
+public class PairAlg {
+    /**
+     * 这里无限定通配符的类型变量由传入该方法的实参确定具体的类型
+     * @param p 泛型参数
+     */
+    public static void swap(Pair<?> p) {
+        // 不能这样写写无限定通配符 ?
+//        ? t = p.getFirst();
+//        p.setFirst(p.getSecond());
+//        p.setSecond(t);
+
+        // 定义泛型方法, 对泛型通配符<?> 进行捕获
+        swapHelper(p);
+
+    }
+
+    /**
+     * 将Pair<T>对象中的first和second变量交换位置
+     * 在swap(Pair<p> p)方法中调用swaHelper()方法,这样就用T对无限定通配符?进行捕获
+     * @param p 泛型参数
+     * @param <T> 泛型方法
+     */
+    private static <T> void swapHelper(Pair<T> p) {
+        T t = p.getFirst();
+        p.setFirst(p.getSecond());
+        p.setSecond(t);
+    }
+
+    public static boolean hasNulls(Pair<?> p) {
+        return p.getFirst() == null || p.getSecond() == null;
+
+    }
+}

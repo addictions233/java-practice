@@ -13,6 +13,7 @@ public class ArrayAvgUtil {
      * @param <T> 泛型
      * @return T 泛型
      */
+    @SafeVarargs
     public static <T> T getAvg(T...arr){
        return arr[arr.length/2];
     }
