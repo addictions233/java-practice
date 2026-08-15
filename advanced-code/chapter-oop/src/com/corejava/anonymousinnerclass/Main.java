@@ -3,7 +3,7 @@ package com.corejava.anonymousinnerclass;
 public class Main {
 
     public static void main(String[] args) {
-        // 直接使用子类
+        // 直接使用子类, 基于extend继承
         Person studentPerson = new Student();
         studentPerson.eat();
 
@@ -20,7 +20,8 @@ public class Main {
 
         // 匿名内部类的构造器: 可以使用 new类名{{ "这里进行匿名对象的初始化赋值" }}
         Person anonymousPerson2 = new Person() {
-            /** 这里再打一个打括号，就是在匿名子类的构造器中写东西 **/ {
+            /* 这里再打一个大括号，就是在匿名子类的构造器中写东西 **/
+            {
                 setName("zhangsan");
             }
 
@@ -35,7 +36,8 @@ public class Main {
         String sql = new SQL() {
             {
                 // 在匿名内部类中调用方法进行初始化赋值
-                select("*").from("t_user").where("uname like 'j%'")
+                select("*").from("t_user")
+                        .where("uname like 'j%'")
                         .and("sex='男'").orderby("id desc");
             }
         }.toString();

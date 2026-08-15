@@ -6,7 +6,10 @@ package com.corejava.interfacedemo.interface8and9;
  *      jdk7,jdk8,jdk9中的接口中的成员对比:
  *          jdk7: 接口中只允许有 public static final修饰的常量和 public abstract修饰的抽象方法
  *          jdk8: 接口中添加了 public default修饰的默认方法和public static 修饰的静态方法
+ *                  default方法: 允许子类进行重写
+ *                  static方法: 子类不能重写, 只能通过类名调用 来使用
  *          jdk9: 接口中添加了 private 修饰的私有成员方法和私有静态方法
+ *                  为了补充 jdk8中 方法的内容,
  * @Author: one
  * @Date: 2021/06/19
  */
