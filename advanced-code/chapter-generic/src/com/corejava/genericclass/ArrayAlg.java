@@ -6,6 +6,7 @@ package com.corejava.genericclass;
  *      并将该值封装在 Pair类对象中一并返回
  */
 public class ArrayAlg {
+
     /**
      *  泛型方法:
      *      注意泛型方法的格式
@@ -25,6 +26,7 @@ public class ArrayAlg {
         }
         return new Pair<>(min,max);
     }
+
     /**
      *  定义一个内部类 Pair, 目的用其成员变量存储两个值
      *      因为该类不用用到其外部类的成员,所以用static修饰
