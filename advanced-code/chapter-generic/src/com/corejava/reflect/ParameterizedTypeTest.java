@@ -24,8 +24,8 @@ public class ParameterizedTypeTest {
         // 此次获取到字段的泛型类型
         Type genericType = field.getGenericType();
         System.out.println("Field Generic Type: " + genericType); // 输出字段的泛型类型: java.util.List<java.lang.String>
-        if (genericType instanceof ParameterizedType) {
-            ParameterizedType parameterizedType = (ParameterizedType) genericType;
+        if (genericType instanceof ParameterizedType parameterizedType) {
+
             // 获取参数化类型中的TypeVariable参数类型, 此处获取的是java.lang.String
             Type[] typeArguments = parameterizedType.getActualTypeArguments(); // 获取泛型参数
             for (Type t : typeArguments) {

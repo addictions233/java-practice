@@ -7,9 +7,8 @@ public class ReflectionExample1 {
     public static void main(String[] args) {
         // 类是单继承的，所以只能获取到一个泛型类型
         Type type = MyGenericClass.class.getGenericSuperclass(); // 获取父类的泛型类型
-        if (type instanceof ParameterizedType) {
-            ParameterizedType ptype = (ParameterizedType) type;
-            Type[] typeArguments = ptype.getActualTypeArguments(); // 获取泛型参数
+        if (type instanceof ParameterizedType parameterizedType) {
+            Type[] typeArguments = parameterizedType.getActualTypeArguments(); // 获取泛型参数
             for (Type t : typeArguments) {
                 System.out.println(t); // 输出泛型参数类型
             }
@@ -17,7 +16,7 @@ public class ReflectionExample1 {
     }
 
     // 获取类上的泛型类型
-    class MyGenericClass<T> extends MyClass<String> {
+    static class MyGenericClass extends MyClass<String> {
     }
 }
 

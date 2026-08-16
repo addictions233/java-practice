@@ -8,10 +8,9 @@ import java.util.List;
 public class ReflectionExample3 {
 
     public static void main(String[] args) throws NoSuchMethodException {
-        Method method = MyCalssWithNestedGeneric.class.getDeclaredMethod("myMethod");
+        Method method = MyClassWithNestedGeneric.class.getDeclaredMethod("myMethod");
         Type returnType = method.getGenericReturnType();
-        if (returnType instanceof ParameterizedType) {
-            ParameterizedType parameterizedType = (ParameterizedType) returnType;
+        if (returnType instanceof ParameterizedType parameterizedType) {
             Type rawType = parameterizedType.getRawType(); // 获取原始类型（例如 List）
             System.out.println(rawType);
             Type[] typeArguments = parameterizedType.getActualTypeArguments(); // 获取类型参数（例如 String）
@@ -21,9 +20,9 @@ public class ReflectionExample3 {
         }
     }
 
-    class MyCalssWithNestedGeneric {
+    static class MyClassWithNestedGeneric {
         public List<String> myMethod(){
-            return null;
+            return List.of();
         }
     }
 }
