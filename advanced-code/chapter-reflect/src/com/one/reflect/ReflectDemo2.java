@@ -20,11 +20,11 @@ public class ReflectDemo2 {
             name = sc.next();
         }
         //通过全类名获取该类的字节码对象
-        Class clazz = Class.forName(name);
+        Class<?> clazz = Class.forName(name);
 
         //获取类的访问修饰符
         String modifier = Modifier.toString(clazz.getModifiers());
-        if(modifier.length()>0) System.out.print(modifier+" ");
+        if(!modifier.isEmpty()) System.out.print(modifier+" ");
         System.out.println(name+"{");
         printField(clazz);  //打印该类所有字段
         printConstructor(clazz);  // 打印该类所有构造方法

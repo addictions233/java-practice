@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 
 public class ReflectDemo1 {
     public static void main(String[] args) {
-        Class clazz = Student.class;
+        Class<Student> clazz = Student.class;
         Field[] fields = clazz.getDeclaredFields();
         for (Field field : fields) {
             System.out.println(field);
