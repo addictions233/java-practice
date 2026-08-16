@@ -9,9 +9,12 @@ import java.lang.reflect.Method;
  * @Date: 2020/12/16
  */
 public class Test {
+
+    @Hello("abc")
     public static void main(String[] args) throws Exception {
         Class<Test> cls = Test.class;
         Method method = cls.getMethod("main", String[].class);
         Hello hello = method.getAnnotation(Hello.class);
+        System.out.println(hello.value());
     }
 }
