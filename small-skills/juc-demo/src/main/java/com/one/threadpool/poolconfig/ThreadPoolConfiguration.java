@@ -1,10 +1,13 @@
 package com.one.threadpool.poolconfig;
 
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.TaskDecorator;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
 /**
@@ -43,6 +46,19 @@ public class ThreadPoolConfiguration {
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         // 初始化
         executor.initialize();
+        executor.setTaskDecorator(runnable -> {
+            Map<String, String> contextMap = MDC.getCopyOfContextMap();
+            return () -> {
+                try {
+                    if (contextMap != null && !contextMap.isEmpty()) {
+                        MDC.setContextMap(contextMap);
+                    }
+                    runnable.run();
+                } finally {
+                    MDC.clear();
+                }
+            };
+        });
         return executor;
     }
 }

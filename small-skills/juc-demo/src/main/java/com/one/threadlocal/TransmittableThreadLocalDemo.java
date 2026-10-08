@@ -13,6 +13,8 @@ import java.util.concurrent.Executors;
  */
 public class TransmittableThreadLocalDemo {
 
+    static TransmittableThreadLocal<String> parent = new TransmittableThreadLocal<>();
+
     public static void main(String[] args) {
         ExecutorService executor = Executors.newFixedThreadPool(1);
         executor.submit(() -> {
@@ -20,7 +22,6 @@ public class TransmittableThreadLocalDemo {
         }); // 先进行工作线程创建
 
         // 使用TTL
-        final TransmittableThreadLocal<String> parent = new TransmittableThreadLocal<>();
         parent.set("value-set-in-parent");
         // 将Runnable通过TtlRunnable包装下
         executor.submit(TtlRunnable.get(() -> {
