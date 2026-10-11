@@ -1,11 +1,10 @@
 package com.one.threadlocal;
 
-import javax.lang.model.element.VariableElement;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * @description: TODO
+ * @description: 测试 InheritableThreadLocal 父子线程上下文传递
  * @author: wanjunjie
  * @date: 2024/05/31
  */
