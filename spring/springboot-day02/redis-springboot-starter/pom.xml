@@ -12,7 +12,7 @@
     <name>redis-springboot-starter</name>
     <dependencies>
 
-        <!--假如我们要将自己的项目整合到springboot, 都需要创建一个start模块-->
+        <!--假如我们要将自己的项目整合到springboot, 都需要创建一个starter模块-->
 
         <!-- 1.在starter模块要引入springboot starter模块 -->
         <dependency>

@@ -12,13 +12,14 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
 
 /**
- * @ClassName: EnableApplication
+ * ClassName: EnableApplication
  * 如果获取第三方jar中定义的bean对象并放入IOC容器中:
- *      @ComponentScan注解: 包扫描的范围: 扫描当前引导类SpringBootApplication所属的包及其子包,其他第三方jar包中的内容则扫描不到
- *      @Import注解: 可以用@Import注解加载类 这些类都会被Spring创建bean对象,放在ioc容器中
- *      @Enable*注解: 用于自动开启某些功能,本质上是对@Import注解的封装,目的就是创建第三jar包中的Bean对象,放在IOC容器中
- * 测试如果获取Springboot-enable-other模块中(第三方jar包)定义的User的bean对象?
- *     使用注解@Import注解创建Bean对象的四种使用方式:
+ *      注解@ComponentScan: 包扫描的范围: 扫描当前引导类SpringBootApplication所属的包及其子包,其他第三方jar包中的内容则扫描不到
+ *      注解@Import: 可以用@Import注解加载类 这些类都会被Spring创建bean对象,放在ioc容器中
+ *      注解@Enable*: 用于自动开启某些功能,本质上是对@Import注解的封装,目的就是创建第三jar包中的Bean对象,放在IOC容器中
+ *
+ * 测试如何获取Springboot-enable-other模块中(第三方jar包)定义的User的bean对象?
+ *     使用注解 @Import 注解创建Bean对象的四种使用方式:
  *          1, 导入bean,直接创建其属性中对应的类对应的bean对象
  *          2, 导入配置类,而配置类中用@Bean注解标识了bean对象,且配置类中可以省略@Configuration注解
  *          3, 导入ImportSelector接口的实现类,该实现类必须重写selectImports方法,该方法返回一个全限定类名的数组,
