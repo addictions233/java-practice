@@ -8,6 +8,14 @@
     <artifactId>groovy-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <!-- 如果你使用的是较新的 Maven 编译插件，也可以直接使用下面这一行替代上面两行 -->
+        <maven.compiler.release>21</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <!-- Groovy 核心库 -->
         <dependency>
@@ -38,9 +46,9 @@
                 </executions>
                 <dependencies>
                     <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
+                        <groupId>org.apache.groovy</groupId>
                         <artifactId>groovy</artifactId>
-                        <version>3.0.19</version>
+                        <version>4.0.22</version>
                         <scope>runtime</scope>
                     </dependency>
                 </dependencies>
@@ -52,9 +60,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
 </project>
