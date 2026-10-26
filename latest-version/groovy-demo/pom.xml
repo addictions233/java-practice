@@ -9,11 +9,17 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!-- Groovy 核心库 -->
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>3.0.19</version>
-            <type>pom</type>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy</artifactId>
+            <version>4.0.22</version> <!-- 建议使用 4.0.x 的较新版本以完美兼容 JDK 21 -->
+        </dependency>
+        <!-- Groovy JSR-223 脚本引擎支持 -->
+        <dependency>
+            <groupId>org.apache.groovy</groupId>
+            <artifactId>groovy-jsr223</artifactId>
+            <version>4.0.22</version>
         </dependency>
     </dependencies>
 
