@@ -7,7 +7,7 @@ import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.realm.SimpleAccountRealm;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.subject.Subject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ShiroTest {
 
