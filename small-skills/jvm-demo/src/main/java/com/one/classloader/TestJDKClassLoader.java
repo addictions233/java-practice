@@ -21,11 +21,13 @@ public class TestJDKClassLoader {
 
         System.out.println("---------------------------------------------------------------");
         // appClassLoader --> extClassLoader --> bootstrapClassLoader
+        // AppClassLoader 系统类加载器
         ClassLoader appClassLoader = ClassLoader.getSystemClassLoader();
         System.out.println("appClassLoader:" + appClassLoader);
+        // ExtClassLoader 扩展类加载器
         ClassLoader extClassLoader = appClassLoader.getParent();
         System.out.println("extClassLoader:" + extClassLoader);
-        // 我们获取不到引导类加载器，返回是个null。
+        // 我们获取不到 BootstrapClassLoader 引导类加载器，返回是个null。
         // 那是因为引导类加载器（BootstrapClassLoader）是用C和C++语言来实现的，jvm层面的
         // 所以java层面是获取不到它的对象的, java程序只能获取到 appClassLoader 和 extClassLoader
         ClassLoader bootstrapClassLoader = extClassLoader.getParent();
