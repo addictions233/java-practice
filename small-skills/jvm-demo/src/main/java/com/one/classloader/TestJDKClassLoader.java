@@ -16,20 +16,22 @@ public class TestJDKClassLoader {
     public static void main(String[] args) {
         // 获取某个类的类加载器名称
         System.out.println(String.class.getClassLoader());
-        System.out.println(BatchUpdateException.class.getClassLoader().getClass().getName());
-        System.out.println(TestJDKClassLoader.class.getClassLoader().getClass().getName());
-        System.out.println("---------------------------------------------------------------");
+        System.out.println(BatchUpdateException.class.getClassLoader());
+        System.out.println(TestJDKClassLoader.class.getClassLoader());
 
+        System.out.println("---------------------------------------------------------------");
+        // appClassLoader --> extClassLoader --> bootstrapClassLoader
         ClassLoader appClassLoader = ClassLoader.getSystemClassLoader();
         System.out.println("appClassLoader:" + appClassLoader);
-        ClassLoader platformClassLoader = appClassLoader.getParent();
-        System.out.println("platformClassLoader:" + platformClassLoader);
-        // 我们获取不到引导类加载器，返回是个null。那是因为引导类加载器（BootstrapClassLoader）是用C和C++语言来实现的，所以这里是获取不到它的对象的
-        ClassLoader bootstrapClassLoader = platformClassLoader.getParent();
+        ClassLoader extClassLoader = appClassLoader.getParent();
+        System.out.println("extClassLoader:" + extClassLoader);
+        // 我们获取不到引导类加载器，返回是个null。
+        // 那是因为引导类加载器（BootstrapClassLoader）是用C和C++语言来实现的，jvm层面的
+        // 所以java层面是获取不到它的对象的, java程序只能获取到 appClassLoader 和 extClassLoader
+        ClassLoader bootstrapClassLoader = extClassLoader.getParent();
         System.out.println("bootstrapClassLoader:" + bootstrapClassLoader);
-        System.out.println("---------------------------------------------");
 
-
-
+        System.out.println("---------------------------------------------------------------");
+        System.out.println(Thread.currentThread().getContextClassLoader());
     }
 }

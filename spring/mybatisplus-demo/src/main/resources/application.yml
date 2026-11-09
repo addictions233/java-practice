@@ -36,7 +36,7 @@ server:
 #        test-on-borrow: false
 
 
-#数据源配置
+# 单数据源配置
 spring:
   servlet:
     multipart:
