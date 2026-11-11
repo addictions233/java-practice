@@ -35,5 +35,11 @@ public class TestJDKClassLoader {
 
         System.out.println("---------------------------------------------------------------");
         System.out.println(Thread.currentThread().getContextClassLoader());
+
+        // 设置上下文的类加载器
+        Thread.currentThread().setContextClassLoader(String.class.getClassLoader());
+        // 获取上下文的类加载器
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        System.out.println(classLoader);
     }
 }
