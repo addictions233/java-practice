@@ -10,9 +10,10 @@ import java.util.Random;
  */
 public class ThreadLocalTest {
 
-    private ThreadLocal<Integer> number = new ThreadLocal<Integer>() {
+    private final ThreadLocal<Integer> number = new ThreadLocal<Integer>() {
         /**
-         * 调用ThreadLocal#get()方法才会调用#initialValue初始化方法
+         * 调用ThreadLocal#get()方法如果获取的值为空
+         * 就会调用#initialValue初始化方法
          */
         @Override
         protected Integer initialValue() {
@@ -24,7 +25,7 @@ public class ThreadLocalTest {
     public void testThreadLocal() {
         for (int i = 0; i < 5; i++) {
             new Thread(() -> {
-                // 会调用上面的#initialValue初始化方法
+                // 没有set值, 直接调用get()方法会调用上面的#initialValue初始化方法
                 Integer value = number.get();
                 System.out.println("[" + Thread.currentThread().getId() + "]:" + value);
             }).start();
