@@ -13,26 +13,27 @@ import java.util.concurrent.Executors;
  */
 public class TransmittableThreadLocalDemo {
 
-    static TransmittableThreadLocal<String> parent = new TransmittableThreadLocal<>();
-
     public static void main(String[] args) {
+        // 使用TransmittableThreadLocal
+        TransmittableThreadLocal<String> context = new TransmittableThreadLocal<>();
+
         // 构建线程池
         ExecutorService executor = Executors.newFixedThreadPool(1);
+        // 先进行工作线程创建
         executor.submit(() -> {
             System.out.println(Thread.currentThread().getName() + "已创建");
-        }); // 先进行工作线程创建
+        });
 
-        // 使用TTL
-        parent.set("trace-123");
+        context.set("trace-123");
         // 将Runnable通过TtlRunnable包装下
         executor.submit(TtlRunnable.get(() -> {
-            System.out.println(Thread.currentThread().getName() + ": " + parent.get());
+            System.out.println(Thread.currentThread().getName() + ": " + context.get());
         }));
 
         // 再次设置, 互相不干扰
-        parent.set("trace-456");
+        context.set("trace-456");
         executor.submit(TtlRunnable.get(() -> {
-            System.out.println(Thread.currentThread().getName() + ": " + parent.get());
+            System.out.println(Thread.currentThread().getName() + ": " + context.get());
         }));
     }
 }
