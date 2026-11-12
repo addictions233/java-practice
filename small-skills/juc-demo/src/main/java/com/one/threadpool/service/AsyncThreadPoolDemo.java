@@ -58,21 +58,16 @@ public class AsyncThreadPoolDemo {
     /**
      * 2, 第三种使用异步线程池的方式: executor.execute()或者 executor.submit()
      * 使用线程池的调用对象来调用 execute()方法或者submit()方法
-     * @param number
      */
     public void printNumber(int number) {
-        /**
-         * execute()方法不带返回值， 接口传入runnable对象
-         */
+        // execute()方法不带返回值， 接口传入runnable对象
         asyncTaskExecutor.execute( () -> {
             for (int i = 0; i < number; i++) {
                 System.out.println(i);
             }
         });
 
-        /**
-         * submit()方法带返回值，接口可以传入callable对象， 也可以传入runnable对象
-         */
+        // submit()方法带返回值，接口可以传入callable对象， 也可以传入runnable对象
         Future<Integer> result = asyncTaskExecutor.submit(() -> {
             int sum = 0;
             for (int i = 0; i < number; i++) {

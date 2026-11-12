@@ -27,38 +27,27 @@ public class AsyncExceptionTest {
                     final int cur = i;
                     // Future获取子线程异常，外层能捕获future包装后的异常
                     Future<?> future = executor.submit(new Runnable() {
+                        // executor.execute(new Runnable())
                         // execute执行中的异常能抛出,但是不能被外层中的try...catch...捕获
-                        // executor.execute(new Runnable()
+                        // executor.submit(new Runnable())
                         // 只用submit，不获取submit的返回值-future，有异常也不会抛出
-                        // executor.submit(new Runnable()
                         @Override
                         public void run() {
                             Thread.currentThread().setName("Thread-" + cur);
-
-                            System.out.println("Current value: " + cur);
-                            System.out.println(Thread.currentThread().getName());
-                            if (cur < 1) {
-                                return;
-                            } else {
-                                Integer.parseInt("abc");
+                            System.out.println(Thread.currentThread().getName() + " Current value: " + cur);
+                            if (cur % 2 == 1) {
+                                throw new IllegalArgumentException();
                             }
+                            System.out.println("Current value: " + cur + " end...");
                         }
                     });
-                    future.get();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Task exception.");
+//                    future.get();  // 不调用 future.get()方法, 异常信息不会抛出
+                } catch (Exception e) { // 使用线程池提交任务时，使用Future框架，可轻松获取执行结果，并在外层捕获异常
+                    System.out.println("error outside:" + e.getMessage());
                 }
             }
         } finally {
             executor.shutdown();
         }
-
-        /**
-         * 1、使用线程池提交任务时，使用Future框架，可轻松获取执行结果，并在外层捕获异常
-         * 2、构建线程池时，使用ThreadPoolExecutor，尽量指定阻塞队列的大小
-         * 3、使用thread时，可使用Thread.setUncaughtExceptionHandler(xxx)处理线程异常
-         */
     }
-
 }

@@ -36,9 +36,6 @@ public class AsyncThreadPoolService {
      * 则调用异步线程的主线程中是无法获取异步线程的执行结果的
      * 这点和同步线程是不一样的, 主线程获取到异步线程的String类型的返回结果一直为null
      * 所以异步线程的返回结果必须是Future<V>类型
-     * @param num 打印次数
-     * @return String
-     * @throws InterruptedException
      */
     public String printNumber(int num) throws InterruptedException {  // 这中异步方法的返回值写法是错误的
         for (int i = 0; i < num; i++) {
@@ -91,7 +88,6 @@ public class AsyncThreadPoolService {
      *
      * @param name 入参
      * @return Future<String>
-     * @throws InterruptedException
      */
     public Future<String> testFuture(String name) throws InterruptedException {
         System.out.println(Thread.currentThread().getName() + "开始执行");
@@ -107,7 +103,6 @@ public class AsyncThreadPoolService {
      * 注意: 使用CountDownLatch,异步线程如果抛出了异常终止了执行,主线程中会因为调用await()方法,一致处于等待状态
      * await()方法中可以传入参数来确定等待的最大时长
      * @param countDownLatch 异步线程计数器类
-     * @throws InterruptedException
      */
     public void testCountDownLatch(CountDownLatch countDownLatch) throws InterruptedException {
         try {
