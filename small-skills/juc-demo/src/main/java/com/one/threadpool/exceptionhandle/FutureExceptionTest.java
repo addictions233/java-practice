@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  * 2、使用execute执行子任务，异常可以被抛出，但是主线程不能捕获子任务线程中的异常
  * 3、使用submit提交子任务，只是提交，不获取返回值future，异常会被封装在子线程内部，不会抛出，主线程也无法捕获
  */
-public class AsyncExceptionTest {
+public class FutureExceptionTest {
 
     public static void main(String[] args) {
         // 线程池不推荐使用Executors去创建，而是通过ThreadPoolExecutor的方式，Executors各个方法的弊端：
