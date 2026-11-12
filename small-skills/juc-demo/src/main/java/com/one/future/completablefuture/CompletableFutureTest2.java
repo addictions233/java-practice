@@ -5,11 +5,12 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * @ClassName: CompletableFutureDemo2
- * @Description: 单任务结果消费
+ * @Description:
+ * 单任务结果消费
  *      1， thenApply()方法：有入参，有返回结果， 将上一阶段的返回结果作为当前阶段的入参
  *      2， thenAccept()方法： 有入参，无返回结果, 消费上一阶段返回的结果
  *      3， thenReturn()方法， 无入参，无返回结果， 当上一阶段执行结束之后，执行本阶段的任务
- *         多任务结果消费
+ * 多任务结果消费
  *       1，thenCombine()方法： 有入参，有返回结果， 前两个任务的执行结果作为当前任务的入参，并返回当前任务的执行结果
  *       2，thenAcceptBoth()方法： 有入参， 无返回结果， 前两个任务的执行结果作为当前任务的入参，不返回结果
  *       3，runAfterBoth()方法： 无返回结果无入参
