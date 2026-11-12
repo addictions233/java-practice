@@ -15,7 +15,7 @@ public class InheritableThreadLocalDemo {
 
     static Executor executor = Executors.newFixedThreadPool(1);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // 在主线程中设置初始化值
         myThreadLocal.set("one");
         myInheritableThreadLocal.set("one");
@@ -32,8 +32,12 @@ public class InheritableThreadLocalDemo {
             // 对初始化值进行修改
             myThreadLocal.set("two");
             myInheritableThreadLocal.set("two");
-            System.out.println(thread.getName()+":" + myThreadLocal.get());
-            System.out.println(thread.getName()+":" + myInheritableThreadLocal.get());
         });
+
+        // 休眠1s
+        Thread.sleep(1000);
+        // 子线程修改的值不会影响到父线程
+        System.out.println(currentThread.getName()+":" + myThreadLocal.get());
+        System.out.println(currentThread.getName()+":" + myInheritableThreadLocal.get());
     }
 }
