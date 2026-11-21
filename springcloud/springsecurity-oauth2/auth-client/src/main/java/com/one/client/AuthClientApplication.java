@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @description: TODO
+ * @description: OAuth2.0客户端服务 (微服务框架下集成到网关中)
  * @author: wanjunjie
  * @date: 2024/11/29
  */
