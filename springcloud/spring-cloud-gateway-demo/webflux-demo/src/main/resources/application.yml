@@ -1,2 +1,10 @@
 server:
   port: 8090
+
+
+spring:
+  # 使用 R2DBC 替代传统的 JDBC, 实现数据库驱动异步化
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/db_mall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
