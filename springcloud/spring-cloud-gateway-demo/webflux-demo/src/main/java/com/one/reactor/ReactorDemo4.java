@@ -7,6 +7,7 @@ import reactor.core.scheduler.Schedulers;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
+import java.util.function.Consumer;
 
 public class ReactorDemo4 {
 
@@ -18,29 +19,16 @@ public class ReactorDemo4 {
             return val;
         }).subscribeOn(Schedulers.fromExecutor(Executors.newFixedThreadPool(3)));
 
-        flux.subscribe(new Subscriber<Integer>() {
+        // 直接定义数据流的 Consumer
+        flux.subscribe(new Consumer<Integer>() {
             @Override
-            public void onSubscribe(Subscription s) {
-                s.request(3);
-            }
-
-            @Override
-            public void onNext(Integer val) {
+            public void accept(Integer val) {
                 // pool-1-thread-1消费到:10 消费线程用的上面定义的线程池
                 System.out.println(Thread.currentThread().getName() + "消费到:" + val);
             }
-
-            @Override
-            public void onError(Throwable t) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
         });
 
+        // 保持主线程不退出
         System.in.read();
     }
 }

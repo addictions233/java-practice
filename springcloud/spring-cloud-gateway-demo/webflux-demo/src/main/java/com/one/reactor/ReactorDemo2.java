@@ -11,6 +11,7 @@ public class ReactorDemo2 {
     public static void main(String[] args) throws IOException {
         Flux<Long> flux = Flux.defer(() -> Flux.just(100L));
         // 对消费流中的数据进行处理
+        // 操作符: 用于转换、过滤和组合数据流
         Flux<Long> mapFlux = flux.map(val -> val + 1000);
         // 对每个数据进行遍历操作
         Flux<Long> eachFlux = mapFlux.doOnEach(sig -> System.out.println(sig.get()));
