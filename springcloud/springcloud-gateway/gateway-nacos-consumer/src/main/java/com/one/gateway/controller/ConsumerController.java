@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @ClassName: ConsumerController
- * @Description: TODO
+ * @Description: 充当调用方
  * @Author: one
  * @Date: 2021/01/18
  */
