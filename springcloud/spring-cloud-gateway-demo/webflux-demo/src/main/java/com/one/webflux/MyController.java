@@ -1,7 +1,9 @@
 package com.one.webflux;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,6 +16,9 @@ import java.time.Duration;
  */
 @RestController
 public class MyController {
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     @GetMapping("/test")
     public String test() {
@@ -33,5 +38,10 @@ public class MyController {
     @GetMapping(value = "/testSSE", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> testSSE() {
         return Flux.just("hello flux1", "hello flux2").delayElements(Duration.ofSeconds(1));
+    }
+
+    @GetMapping("/findStudent/{id}")
+    public Mono<Student> findAll(@PathVariable("id") Integer id) {
+        return studentRepository.findById(id);
     }
 }
