@@ -18,6 +18,8 @@
     </properties>
 
     <dependencies>
+        <!-- Reactor Core（响应式编程核心库） -->
+        <!--  Spring WebFlux: 基于 Reactor 的异步非阻塞 Web 框架，支持响应式 HTTP 服务-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
