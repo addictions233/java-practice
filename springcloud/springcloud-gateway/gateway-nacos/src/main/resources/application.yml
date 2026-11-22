@@ -25,5 +25,5 @@ spring:
             #网关也是作为一个服务应用启动起来的,只用访问http://localhost:8888/consumer/**的路径请求都会路由到对应的uri中
             - Path=/api/consumer/**
           filters: # 局部过滤器,只针对当前路由器有效
-            - StripPrefix=1
-#            - PrefixPath:/api 添加路由前缀
+            - StripPrefix=1  # 删除第一个路径前缀的过滤器
+#            - PrefixPath:/api 添加路由前缀的过滤器
