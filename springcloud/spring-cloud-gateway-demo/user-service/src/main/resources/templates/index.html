@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello Thymeleaf</title>
+</head>
+<body>
+<!--username: <h1 th:utext="${username}"/>-->
+<script>
+    fetch('http://localhost:28080/auth/test', {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+</script>
+</body>
+</html>
