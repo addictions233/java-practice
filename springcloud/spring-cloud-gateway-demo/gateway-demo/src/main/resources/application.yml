@@ -8,12 +8,14 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
     gateway:
       routes:
         - id: user_service_route
           uri: lb://user-service  # 动态路由: 根据负载均衡找到对应的服务地址
           predicates:  # 断言匹配器, 不能为空, 满足断言规则的访问路径才能路由到对应的服务中
-            - path=/user/**
+            - Path=/user/**
           filters: # 定义局部过滤器
             - StripPrefix=1 # 去除路径前缀的过滤器
 #            - PrefixPath=/api # 添加路径前缀的过滤器
