@@ -19,9 +19,17 @@ public class CheckAuthGatewayFilterFactory extends AbstractNameValueGatewayFilte
     @Override
     public GatewayFilter apply(NameValueConfig config) {
         return (exchange, chain) -> {
-            log.info("调用CheckAuthGatewayFilterFactory==="
-                    + config.getName() + ":" + config.getValue());
+            log.info("调用CheckAuthGatewayFilterFactory===" + config.getName() + ":" + config.getValue());
             return chain.filter(exchange);
         };
+    }
+
+    /**
+     * 指定过滤器的名称
+     * @return 过滤器
+     */
+    @Override
+    public String name() {
+        return "checkAuth";
     }
 }

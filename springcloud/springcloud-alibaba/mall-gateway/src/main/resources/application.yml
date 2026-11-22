@@ -29,7 +29,8 @@ spring:
             #- Header=X-Request-Id, \d+
 
           #配置过滤器工厂
-#          filters:
+          filters:
+
 #            - AddRequestHeader=X-Request-color, red  #添加请求头
 #            - AddRequestParameter=color, blue  # 添加请求参数
 #            - CheckAuth=fox,男  #自定义过滤器工厂
@@ -39,6 +40,10 @@ spring:
 #                redis-rate-limiter.burstCapacity: 2 #令牌桶的总容量, 指的是用户在一秒钟内允许执行的最大请求数，也就是令牌桶可以保存的令牌数, 如果将此值设置为零将阻止所有请求;
 #                redis-rate-limiter.requestedTokens: 1   # 指的是每个请求消耗多少个令牌, 默认是1.
 #                keyResolver: "#{@keyResolver}" # 指的是限流的时候以什么维度来判断，使用SpEL表达式按名称引用Bean
+            - name: checkAuth # 配置自定义过滤器
+              args:
+                name: zhangsan
+                value: 23
 
 
 

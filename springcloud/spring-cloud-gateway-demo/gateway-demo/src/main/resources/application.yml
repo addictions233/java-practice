@@ -16,7 +16,11 @@ spring:
           uri: lb://user-service  # 动态路由: 根据负载均衡找到对应的服务地址
           predicates:  # 断言匹配器, 不能为空, 满足断言规则的访问路径才能路由到对应的服务中
             - Path=/user/**
-          filters: # 定义局部过滤器
-            - StripPrefix=1 # 去除路径前缀的过滤器
-#            - PrefixPath=/api # 添加路径前缀的过滤器
+          filters: # 定义局部过滤器, 只对当前匹配的请求路径生效
+            - StripPrefix=1 # 去除路径前缀的过滤器, 对应的过滤器名称: StripPrefixGatewayFilterFactory
+#            - PrefixPath=/api # 添加路径前缀的过滤器, 对应的过滤器名称: PrefixPathGatewayFilterFactory
+      default-filters: # 定义默认过滤器, 应用到所有的已定义的路由上
+        - name: MyFilterFactory # 这里配置自定义过滤器的名称
+          args:
+            tag: one  # 这里配置自定义过滤器的参数
 
