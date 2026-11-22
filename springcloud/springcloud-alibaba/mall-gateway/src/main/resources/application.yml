@@ -28,11 +28,11 @@ spring:
             # Header匹配  请求中带有请求头名为 x-request-id，其值与 \d+ 正则表达式匹配
             #- Header=X-Request-Id, \d+
 
-#          #配置过滤器工厂
+          #配置过滤器工厂
 #          filters:
-#            #            - AddRequestHeader=X-Request-color, red  #添加请求头
-#            #            - AddRequestParameter=color, blue  # 添加请求参数
-#            #            - CheckAuth=fox,男  #自定义过滤器工厂
+#            - AddRequestHeader=X-Request-color, red  #添加请求头
+#            - AddRequestParameter=color, blue  # 添加请求参数
+#            - CheckAuth=fox,男  #自定义过滤器工厂
 #            - name: RequestRateLimiter   #限流过滤器
 #              args:
 #                redis-rate-limiter.replenishRate: 1 #令牌桶每秒填充速率, 指的是允许用户每秒执行多少请求，不丢弃任何请求;

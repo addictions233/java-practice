@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: user-service  # 注册到nacos中的服务名称
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -7,8 +9,8 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
-  application:
-    name: user
+        username: nacos
+        password: nacos
 
 server:
   port: 28081
