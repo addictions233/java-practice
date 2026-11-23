@@ -20,7 +20,7 @@ spring:
             - StripPrefix=1 # 去除路径前缀的过滤器, 对应的过滤器名称: StripPrefixGatewayFilterFactory
 #            - PrefixPath=/api # 添加路径前缀的过滤器, 对应的过滤器名称: PrefixPathGatewayFilterFactory
       default-filters: # 定义默认过滤器, 应用到所有的已定义的路由上
-        - name: MyFilterFactory # 这里配置自定义过滤器的名称
+        - name: MyRoutePredicateFactory # 这里配置自定义过滤器的名称
           args:
             tag: one  # 这里配置自定义过滤器的参数
 
