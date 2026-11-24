@@ -41,7 +41,7 @@ public class CheckAuthFilter implements GlobalFilter, Ordered {
             // 请求结束，不继续向下请求
             return response.writeWith(Mono.just(buffer));
         }
-        //TODO 校验token进行身份认证
+        // TODO 调用认证服务 校验token进行身份认证
         log.info("校验token");
         return chain.filter(exchange);
     }
