@@ -7,15 +7,15 @@ import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.util.pattern.PathPatternParser;
 
 /**
- * @description: 基于配置类解决跨域访问
+ * @description 基于配置类解决跨域访问
  * 跨域问题的产生: 跨域问题源于浏览器的同源策略。同源策略要求来自同一源的资源之间可以相互访问，而不同源的资源则受到限制。
  * 这意味在实际应用中前端页面、后端服务、第三方API等需要相互通信的资源，如果不在同一域下，就会遇到跨域问题。
  *
- * 同源策略（Same Orgin Policy）: 是一种约定，它是浏览器核心也最基本的安全功能，
+ * 同源策略（Same Origin Policy）: 是一种约定，它是浏览器核心也最基本的安全功能，
  * 它会阻止一个域的js脚本和另外一个域的内容进行交互，如果缺少了同源策略，浏览器很容易受到XSS、CSRF等攻击。
  * 所谓同源（即在同一个域）就是两个页面具有相同的协议（protocol）、主机（host）和端口号（port）。
- * @author: wanjunjie
- * @date: 2024/11/29
+ * @author wanjunjie
+ * @date 2024/11/29
  */
 //@Configuration   // gateway网关解决跨域有两个方式: 一种是在配置文件中直接配置, 一种是基于配置类
 public class CorsConfig {
