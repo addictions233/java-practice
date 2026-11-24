@@ -6,12 +6,13 @@ import org.springframework.cloud.gateway.filter.factory.AbstractNameValueGateway
 import org.springframework.stereotype.Component;
 
 /**
- * @description:  过滤器工厂（ GatewayFilter Factories）: 定义单个服务的过滤器: 针对单个服务生效, 必须在配置文件中指定该过滤器
- * GatewayFilter是网关中提供的一种过滤器，可以对进入网关的请求和微服务返回的响应做处理
+ * 网关服务的一个比较重要的功能就是进行认证鉴权
+ * 过滤器工厂（ GatewayFilterFactory）: 定义单个服务的过滤器: 针对单个服务生效, 必须在配置文件中指定该过滤器
+ * GatewayFilterFactory是网关中提供的一种过局部滤器，可以对进入网关的请求和微服务返回的响应做处理
  * 继承AbstractNameValueGatewayFilterFactory且我们的自定义名称必须要以GatewayFilterFactory结尾并交给spring管理。
  *
- * @author: wanjunjie
- * @date: 2024/11/29
+ * @author wanjunjie
+ * @date 2024/11/29
  */
 @Component
 @Slf4j

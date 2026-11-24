@@ -13,11 +13,13 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * @author one
- * @description 全局过滤器的作用也是处理一切进入网关的请求和微服务响应，与GatewayFilter的作用一样。
- * - GatewayFilter：网关过滤器，需要通过spring.cloud.routes.filters配置在具体的路由下，只作用在当前特定路由上，
- *                  也可以通过配置spring.cloud.default-filters让它作用于全局路由上。
+ * 定义全局过滤器 GlobalFilter
+ * 全局过滤器的作用也是处理一切进入网关的请求和微服务响应，与GatewayFilterFactory的作用一样。
+ * - GatewayFilterFactory：网关过滤器，需要通过spring.cloud.routes.filters配置在具体的路由下，
+ *                        只作用在当前特定路由上，也可以通过配置spring.cloud.default-filters让它作用于全局路由上。
  * - GlobalFilter：全局过滤器，不需要再配置文件中配置，作用在所有的路由上，最终通过GatewayFilterAdapter包装成GatewayFilterChain能够识别的过滤器。
+ *
+ * @author one
  * @date 2024-12-1
  */
 @Component

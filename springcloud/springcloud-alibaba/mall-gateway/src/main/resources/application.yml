@@ -28,7 +28,7 @@ spring:
             # Header匹配  请求中带有请求头名为 x-request-id，其值与 \d+ 正则表达式匹配
             #- Header=X-Request-Id, \d+
 
-          #配置过滤器工厂
+          # 配置 局部过滤器
           filters:
 
 #            - AddRequestHeader=X-Request-color, red  #添加请求头
@@ -47,7 +47,7 @@ spring:
 
 
 
-      #跨域配置
+      # 跨域配置
       globalcors:
         cors-configurations:
           '[/**]':
@@ -60,7 +60,7 @@ spring:
               - OPTION
 
   data:
-    #配置redis地址
+    # 配置redis地址
     redis:
       host: 127.0.0.1
       port: 6379
