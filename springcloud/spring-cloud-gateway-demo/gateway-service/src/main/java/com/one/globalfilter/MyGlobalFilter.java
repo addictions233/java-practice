@@ -7,12 +7,13 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * 定义全局过滤器: 对网关处理的‌所有请求‌生效（无论是否匹配路由）
+ * 自定义全局过滤器: 对网关处理的‌所有请求‌生效（无论是否匹配路由）
  */
 @Component
 public class MyGlobalFilter implements GlobalFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        return null;
+        // 调用过滤器链中的下一个过滤器
+        return chain.filter(exchange);
     }
 }

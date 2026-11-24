@@ -9,7 +9,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * 自定义过滤器
+ * 自定义局部过滤器
  */
 @Component
 public class MyGatewayFilterFactory implements GatewayFilterFactory<MyGatewayFilterFactory.MyConfig> {
