@@ -32,19 +32,34 @@ public class ReactorDemo {
                 // 消费者可以在这里定义一个非常大的数字,表示可以处理生产者的所有数据
                 subscription.request(4);
             }
+
+            /**
+             * 负责按需发出数据项（onNext）
+             * @param value the element signaled
+             */
             @Override
             public void onNext(Integer value) {
                 // 消费数据
                 System.out.println("消费到数据:" + value);
                 if (value == 20) {
                     // 消费者取消消费
+                    // 取消订阅（cancel()）
                     subscription.cancel();
                 }
             }
+
+            /**
+             * 错误信号（onError）
+             * @param t the throwable signaled
+             */
             @Override
             public void onError(Throwable t) {
 
             }
+
+            /**
+             * 完成信号（onComplete）
+             */
             @Override
             public void onComplete() {
 
@@ -52,6 +67,8 @@ public class ReactorDemo {
         });
 
         // Mono也能充当生产者, 但是只能生产一条数据
+        // Flux代表0到N个元素的异步序列，类似于传统编程中的集合或流\
+        // Mono则专为0或1个元素的场景设计，类似于Java中的Optional或Future
         Mono<String> mono = Mono.just("aaa");
         mono.subscribe(new Subscriber<String>() {
             @Override

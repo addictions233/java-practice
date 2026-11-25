@@ -25,11 +25,19 @@ public class MyController {
         return "hello webmvc";
     }
 
+    /**
+     * Flux代表0到N个元素的异步序列，类似于传统编程中的集合或流
+     * @return Flux
+     */
     @GetMapping("/testFlux")
     public Flux<String> testFlux() {
         return Flux.just("hello webflux");
     }
 
+    /**
+     * Mono则专为0或1个元素的场景设计，类似于Java中的Optional或Future
+     * @return Mono
+     */
     @GetMapping("/testMono")
     public Mono<String> testMono() {
         return Mono.just("hello mono");

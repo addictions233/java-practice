@@ -18,6 +18,7 @@ public class ReactorDemo2 {
         eachFlux.subscribe(new Subscriber<>() {
             @Override
             public void onSubscribe(Subscription s) {
+                // 消费者主动请求数据 request(n)
                 s.request(1000);
             }
 

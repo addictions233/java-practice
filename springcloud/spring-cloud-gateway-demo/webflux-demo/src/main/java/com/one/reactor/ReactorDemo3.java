@@ -18,7 +18,10 @@ public class ReactorDemo3 {
             // main转换值:10  转换这里都是用的 main 线程
             System.out.println(Thread.currentThread().getName() + "转换值:" + val);
             return val;
-        }).publishOn(Schedulers.fromExecutor(Executors.newFixedThreadPool(1)));
+        }).publishOn(
+                //  线程调度器（Scheduler）
+                Schedulers.fromExecutor(Executors.newFixedThreadPool(1))
+        );
 
         // 直接定义 消费数据流的 Consumer
         flux.subscribe(new Consumer<Integer>() {
