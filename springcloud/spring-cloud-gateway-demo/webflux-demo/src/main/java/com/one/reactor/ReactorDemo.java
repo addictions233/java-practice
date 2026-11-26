@@ -13,7 +13,7 @@ import java.io.IOException;
 public class ReactorDemo {
 
     public static void main(String[] args) throws IOException {
-        // 定义生产者 ---> 事件(数据)
+        // Flux定义生产者 ---> 事件(数据)
         // Publisher: 数据生产者
         Flux<Integer> flux = Flux.just(10, 20, 30);
         // 绑定消费者
