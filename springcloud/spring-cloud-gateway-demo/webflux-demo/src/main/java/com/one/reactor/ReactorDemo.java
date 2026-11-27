@@ -40,7 +40,7 @@ public class ReactorDemo {
             @Override
             public void onNext(Integer value) {
                 // 消费数据
-                System.out.println("消费到数据:" + value);
+                System.out.println("消费到数据:" + value + ",线程:" + Thread.currentThread().getName());
                 if (value == 20) {
                     // 消费者取消消费
                     // 取消订阅（cancel()）
@@ -70,14 +70,14 @@ public class ReactorDemo {
         // Flux代表0到N个元素的异步序列，类似于传统编程中的集合或流\
         // Mono则专为0或1个元素的场景设计，类似于Java中的Optional或Future
         Mono<String> mono = Mono.just("aaa");
-        mono.subscribe(new Subscriber<String>() {
+        mono.subscribe(new Subscriber<>() {
             @Override
             public void onSubscribe(Subscription s) {
                 s.request(1);
             }
             @Override
             public void onNext(String s) {
-                System.out.println("Mono消费数据:" + s);
+                System.out.println("Mono消费数据:" + s + ",线程:" + Thread.currentThread().getName());
             }
             @Override
             public void onError(Throwable t) {
